@@ -1,0 +1,431 @@
+:root {
+  --bg: #0d0d0d;
+  --primary: #2fffd8;
+  --accent: #774bff;
+  --text: #ffffff;
+  --text-50: rgba(255, 255, 255, 0.7);
+}
+
+.px-6 {
+  padding-left: 1.5rem;
+  padding-right: 1.5rem;
+}
+.py-16 {
+  padding-top: 4rem;
+  padding-bottom: 4rem;
+}
+
+/* ---------- reset / base ---------- */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+html,
+body {
+  height: 100%;
+  background: var(--bg);
+  color: var(--text);
+  font-family: system-ui, sans-serif;
+  -webkit-font-smoothing: antialiased;
+}
+a {
+  color: inherit;
+  text-decoration: none;
+}
+button {
+  cursor: pointer;
+  font: inherit;
+  border: none;
+  background: none;
+}
+
+/* ---------- helpers ---------- */
+.full-vh {
+  min-height: 100vh;
+}
+.flex-center {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.flex-col {
+  flex-direction: column;
+}
+.container {
+  max-width: 64rem;
+  margin: 0 auto;
+  /* margin-top: -8rem; */
+}
+
+/* logo */
+.logo-bg{
+  position:absolute;
+  inset:0;
+  background-position:top;
+  background-size:80%;
+  background-repeat:no-repeat;
+  opacity:0.08;
+  z-index:1;
+  pointer-events:none;
+}
+
+
+/* ---------- hero visuals ---------- */
+.hero {
+  position: relative;
+  overflow: hidden;
+  margin-bottom: -8rem;
+}
+.hero-bg {
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(
+    ellipse at 40% 50%,
+    rgba(47, 255, 216, 0.35),
+    rgba(119, 75, 255, 0.25) 60%,
+    transparent 80%
+  );
+  filter: blur(120px);
+  z-index: -2;
+}
+.cube {
+  position: absolute;
+  top: 33%;
+  right: -6rem;
+  width: 12rem;
+  height: 12rem;
+  border-radius: 1.5rem;
+  background: linear-gradient(to bottom right, var(--primary), var(--accent));
+  box-shadow: 0 0 40px 10px rgba(47, 255, 216, 0.35);
+  animation: spinY 20s linear infinite;
+  z-index: -1;
+}
+@keyframes spinY {
+  from {
+    transform: rotateY(0);
+  }
+  to {
+    transform: rotateY(360deg);
+  }
+}
+
+/* ---------- typography ---------- */
+.hero-title {
+  font-weight: 800;
+  font-size: clamp(2.5rem, 6vw, 3.75rem);
+  max-width: 48rem;
+  text-align: center;
+  margin-bottom: 1rem;
+}
+.hero-title2 {
+  font-weight: 100;
+  font-size: clamp(1.5rem, 6vw, 1.75rem);
+  max-width: 48rem;
+  text-align: center;
+  margin-bottom: 1rem;
+  margin-top: 2rem;
+}
+.hero-sub {
+  font-size: 1.125rem;
+  max-width: 36rem;
+  text-align: center;
+  color: var(--text-50);
+}
+.section-title {
+  font-weight: 700;
+  font-size: 2rem;
+  text-align: center;
+  margin-bottom: 2rem;
+}
+
+/* ---------- buttons ---------- */
+.btn-row {
+  display: flex;
+  gap: 1rem;
+  margin-top: 2rem;
+  flex-direction: column;
+  align-items: center;
+}
+@media (min-width: 640px) {
+  .btn-row {
+    flex-direction: row;
+  }
+}
+.btn {
+  padding: 0.75rem 1.5rem;
+  border-radius: 0.5rem;
+  font-weight: 600;
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+.btn-primary {
+  background: var(--primary);
+  color: var(--bg);
+  box-shadow: 0 8px 20px rgba(47, 255, 216, 0.3);
+}
+.btn-primary:hover {
+  transform: scale(1.05);
+  box-shadow: 0 8px 30px rgba(47, 255, 216, 0.5);
+}
+.btn-outline {
+  border: 1px solid rgba(255, 255, 255, 0.25);
+  color: var(--text);
+}
+.btn-outline:hover {
+  background: rgba(255, 255, 255, 0.1);
+}
+
+/* ---------- cards / grids ---------- */
+.card-grid {
+  display: grid;
+  gap: 1.5rem;
+}
+@media (min-width: 640px) {
+  .card-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+@media (min-width: 1024px) {
+  .card-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+.card {
+  padding: 1.5rem;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 1rem;
+  background: rgba(255, 255, 255, 0.05);
+  backdrop-filter: blur(6px);
+}
+
+/* step list */
+.step-grid {
+  display: grid;
+  gap: 1.5rem;
+  margin-top: 0.5rem;
+}
+@media (min-width: 640px) {
+  .step-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+.step {
+  text-align: center;
+}
+.step-circle {
+  margin: 0 auto 0.75rem;
+  width: 2.5rem;
+  height: 2.5rem;
+  border-radius: 50%;
+  background: var(--primary);
+  color: var(--bg);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 700;
+}
+
+/* benefit cards */
+.benefit-card h3 {
+  margin-bottom: 0.5rem;
+  font-size: 1.125rem;
+  font-weight: 700;
+  color: var(--primary);
+}
+
+/* footer */
+.footer {
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+  padding: 2rem;
+  text-align: center;
+  font-size: 0.875rem;
+  color: var(--text-50);
+}
+
+/* responsive tweak */
+@media (max-width: 400px) {
+  .hero-title {
+    font-size: 2rem;
+  }
+  .btn {
+    width: 100%;
+  }
+}
+
+/* AppBanner layout */
+.app-banner {
+  position: relative;
+  padding: 4rem 1.5rem;
+  background: rgba(255, 255, 255, 0.03);
+  border-top: 1px solid rgba(255, 255, 255, 0.07);
+  margin-top: 2rem;
+}
+.app-banner-bg {
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  background: radial-gradient(
+    circle at 0 0,
+    var(--primary) 0%,
+    var(--accent) 70%,
+    transparent
+  );
+  filter: blur(100px);
+}
+.banner-inner {
+  max-width: 40rem;
+  margin: 0 auto;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1.25rem;
+}
+.badge-row {
+  display: flex;
+  gap: 1rem;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+.store-badge {
+  height: 3.25rem;
+  width: auto;
+} /* same height for both badges */
+
+/* google translate */
+
+/* === floating translator button ================= */
+/* #google_translate_wrapper{
+  position:fixed;
+  top:50%;
+  right:0.75rem;
+  transform:translateY(-50%);
+  z-index:9999;
+}
+
+/* hide default text + shrink select */
+/* #google_translate_element{
+  display:none;               /* hidden until hover */
+  /* margin-top:0.5rem;
+} */ 
+
+/* .globe-btn{
+  width:3rem;
+  height:3rem;
+  border-radius:50%;
+  background:var(--primary);
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  box-shadow:0 4px 12px rgba(47,255,216,.4);
+  transition:transform .25s;
+}
+.globe-btn:hover{ transform:scale(1.1); } */
+
+/* SVG icon */
+/* .globe-btn svg{
+  width:1.4rem;
+  fill:var(--bg);
+} */
+
+/* show the language select when wrapper is hovered */
+/* #google_translate_wrapper:hover #google_translate_element{
+  display:block;
+}
+#google_translate_wrapper select{
+  padding:0.35rem 1rem;
+  border-radius:0.35rem;
+  background:rgba(255,255,255,.05);
+  color:#fff;
+  border:1px solid rgba(255,255,255,.25);
+  font-size:.85rem;
+} */
+
+/* remove Google banner + logo */
+/* .goog-logo-link, .goog-te-banner-frame{display:none!important}
+body{top:0!important}
+
+.translate-float{
+  position:fixed;
+  top:50%;
+  right:2.5rem;                /* 25 px in from edge */
+  /* transform:translateY(-50%);
+  z-index:9999;
+/* } */ 
+
+/* ensure dropdown list is scrollable on small screens (mobile safari) */
+/* .translate-float select{
+  max-height:2.4rem;           /* collapsed height */
+/* } */ 
+
+/* ───────── Google Translate floating widget ───────── */
+#google_translate_wrapper {
+  position: fixed;
+  top: 50%;
+  right: 2.5rem;          /* nudged in so long lists stay visible */
+  transform: translateY(-50%);
+  z-index: 9999;
+}
+
+/* globe button */
+#google_translate_wrapper .globe-btn {
+  width: 3rem;
+  height: 3rem;
+  border-radius: 50%;
+  background: var(--primary);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 4px 12px rgba(47, 255, 216, 0.4);
+  transition: transform 0.25s;
+}
+#google_translate_wrapper .globe-btn:hover {
+  transform: scale(1.1);
+}
+#google_translate_wrapper .globe-btn svg {
+  width: 1.4rem;
+  fill: var(--bg);
+}
+
+/* hide the select until hover */
+#google_translate_element {
+  display: none;
+  margin-top: 0.5rem;
+}
+#google_translate_wrapper:hover #google_translate_element {
+  display: block;
+}
+
+/* style the injected <select> */
+#google_translate_wrapper select {
+  padding: 0.35rem 1rem;
+  border-radius: 0.35rem;
+  background: rgba(255, 255, 255, 0.05);
+  color: #fff;
+  border: 1px solid rgba(255, 255, 255, 0.25);
+  font-size: 0.85rem;
+}
+
+/* --- DROPDOWN LIST FIX --- *
+   Google inserts an <iframe class="goog-te-menu-frame"> that can overflow.
+   Make the frame scrollable and keep it inside the viewport. */
+.goog-te-menu-frame.skiptranslate {
+  position: fixed !important;
+  top: 50% !important;
+  right: 2.5rem !important;
+  transform: translateY(-50%) !important;
+  width: 12rem !important;
+  max-height: 60vh !important;   /* scroll if list is long */
+  overflow-y: auto !important;
+  border: 1px solid rgba(255,255,255,.25) !important;
+  box-shadow: 0 4px 14px rgba(0,0,0,.4) !important;
+  border-radius: 0.5rem !important;
+  z-index: 10000 !important;
+}
+
+/* remove Google credit banner & shift body back */
+.goog-logo-link,
+.goog-te-banner-frame {
+  display: none !important;
+}
+body { top: 0 !important; }

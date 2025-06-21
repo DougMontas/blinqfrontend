@@ -6,6 +6,7 @@
   "scripts": {
     "dev": "vite",
     "build": "vite build",
+    "serve": "vite preview",
     "lint": "eslint .",
     "watch:css": "tailwindcss -c tailwind.config.js -i ./src/index.css -o ./src/tailwind.generated.css --watch",
     "build:css": "tailwindcss -c tailwind.config.js -i ./src/index.css -o ./src/tailwind.generated.css --minify",

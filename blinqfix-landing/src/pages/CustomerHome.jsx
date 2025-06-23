@@ -2,6 +2,7 @@ import { useNavigate } from "react-router-dom";
 import AppBanner from "../sections/AppBanner";
 import logo from "../assets/blinqfix_logo.jpeg";
 import Customers from "./Customers"
+import SuccessRedirect from "./onboarding-success";
 
 export default function CustomerHome() {
   const nav = useNavigate();
@@ -32,6 +33,7 @@ export default function CustomerHome() {
           <button className="btn btn-outline" onClick={() => nav("/")}>
             Back
           </button>
+        
         </div>
       </section>
 

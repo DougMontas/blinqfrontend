@@ -1,5 +1,4 @@
 // app/stripe/onboarding-success/page.js
-export const dynamic = "force-dynamic";
 export default function SuccessRedirect() {
   if (typeof window !== "undefined") {
     window.location.href = "blinqfix://onboarding-success";

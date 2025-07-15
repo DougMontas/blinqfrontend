@@ -1,16 +1,24 @@
-// app/stripe/onboarding-success/page.js
+// /onboarding-success/page.js
+import { useEffect } from "react";
+
 export default function SuccessRedirect() {
-  if (typeof window !== "undefined") {
-    window.location.href = "blinqfix://onboarding-success";
-  }
+  useEffect(() => {
+    const timeout = setTimeout(() => {
+      window.location.href = "blinqfix://onboarding-success";
+    }, 300); // small delay for hydration
+
+    return () => clearTimeout(timeout);
+  }, []);
+
   return (
-    <html>
+    <>
       <head>
+        <title>Redirecting...</title>
         <meta httpEquiv="refresh" content="0;url=blinqfix://onboarding-success" />
       </head>
       <body>
-        <p>Redirecting back to the BlinqFix app...</p>
+        <p>Redirecting you back to the BlinqFix app...</p>
       </body>
-    </html>
+    </>
   );
 }

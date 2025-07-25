@@ -17,6 +17,7 @@ export default function App() {
       <Route path="/pros" element={<ProviderNetwork />} />
       <Route path="/onboarding-success" element={<SuccessRedirect />} />
       <Route path="/onboarding-failed" element={<FailedRedirect />} />
+      <Route path="/reset-password/:token" element={<ResetPasswordWeb />} />
       <Route path="*" element={<Navigate to="/" replace />} />
     </Routes>
   );

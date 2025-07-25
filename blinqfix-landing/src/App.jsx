@@ -6,6 +6,7 @@ import ProviderNetwork from "./pages/ProviderNetwork";
 import Customers from "./pages/Customers";
 import SuccessRedirect from "./pages/onboarding-success";
 import FailedRedirect from "./pages/onboarding-failed";
+import ResetPasswordWeb from "./pages/ResetPasswordWeb";
 
 export default function App() {
   return (

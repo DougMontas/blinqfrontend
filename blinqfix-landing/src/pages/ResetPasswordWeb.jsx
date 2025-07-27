@@ -6,8 +6,10 @@ export default function ResetPasswordWeb() {
 
   useEffect(() => {
     // Redirect to app with deep link
-    window.location.href = `blinqfix://reset-password/${token}`;
+    // window.location.href = `blinqfix://reset-password/${token}`;
+    window.location.href = `blinqfix://ResetPasswordScreen?token=${token}`
   }, [token]);
 
   return <p>Redirecting you to the BlinqFix app...</p>;
 }
+

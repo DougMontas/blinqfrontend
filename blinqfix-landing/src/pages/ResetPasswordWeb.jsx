@@ -23,7 +23,8 @@ export default function ResetPasswordWeb() {
   useEffect(() => {
     const isMobile = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
     if (isMobile) {
-      window.location.href = `blinqfix://ResetPasswordScreen?token=${token}`;
+      window.location.href = `blinqfix://reset-password/${token}`;
+      ;
     } else {
       // Optionally redirect to a helpful page
       window.location.href = `https://blinqfix.com/download`; // or home

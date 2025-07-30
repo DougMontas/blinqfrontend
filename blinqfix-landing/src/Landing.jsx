@@ -137,7 +137,7 @@ export default function Landing() {
           backgroundSize: "contain",
           backgroundRepeat: "no-repeat",
           backgroundPosition: "right center",
-          opacity: 0.22,
+          opacity: 0.11,
           position: "absolute",
           inset: 0,
           pointerEvents: "none",

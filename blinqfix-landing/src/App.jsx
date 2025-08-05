@@ -7,9 +7,11 @@ import Customers from "./pages/Customers";
 import SuccessRedirect from "./pages/onboarding-success";
 import FailedRedirect from "./pages/onboarding-failed";
 import ResetPasswordWeb from "./pages/ResetPasswordWeb";
+import { Analytics } from "@vercel/analytics/react"; 
 
 export default function App() {
   return (
+    <>
     <Routes>
       <Route path="/" element={<Landing />} />
       <Route path="/customer" element={<CustomerHome />} />
@@ -21,5 +23,7 @@ export default function App() {
       <Route path="/reset-password/:token" element={<ResetPasswordWeb />} />
       <Route path="*" element={<Navigate to="/" replace />} />
     </Routes>
+    <Analytics />
+    </>
   );
 }

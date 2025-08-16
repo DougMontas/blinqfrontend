@@ -108,6 +108,7 @@
 import { useNavigate } from "react-router-dom";
 import logo from "./assets/blinqfix_logo.jpeg";
 import blinqfixImage from "./assets/blinqfix_image.png";
+import FooterWeb from "./sections/Footer";
 
 export default function Landing() {
   const nav = useNavigate();
@@ -191,6 +192,8 @@ export default function Landing() {
         the smartest way to earn more on your terms—or get that urgent repair
         done right now.
       </p>
+
+      <FooterWeb />
     </section>
   );
 }

@@ -40,3 +40,38 @@
 .read-the-docs {
   color: #888;
 }
+
+
+/* ____footer */.bfw-footer {
+  margin-top: 32px;
+  padding: 16px 12px 24px;
+  border-top: 1px solid #ddd;
+  display: flex;
+  flex-direction: column; /* vertical stack */
+  align-items: center;     /* centered horizontally */
+  text-align: center;      /* centered text */
+}
+
+.bfw-links {
+  display: flex;
+  flex-direction: column;  /* vertical list */
+  align-items: center;
+  gap: 8px;
+}
+
+.bfw-link {
+  color: #1976d2;
+  text-decoration: none;
+  font-size: 14px;
+}
+
+.bfw-link:hover,
+.bfw-link:focus-visible {
+  text-decoration: underline;
+}
+
+.bfw-copy {
+  margin-top: 8px;
+  font-size: 12px;
+  color: #888;
+}

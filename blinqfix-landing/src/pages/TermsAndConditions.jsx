@@ -923,7 +923,7 @@ export default function ProviderTermsAndAgreement() {
         </Section>
 
         <footer style={styles.footer}>
-          <div style={styles.footerLinks}>
+          {/* <div style={styles.footerLinks}>
             <FooterLink to="/legal/terms">Terms &amp; Conditions</FooterLink>
             <FooterLink to="/legal/privacy">Privacy Policy</FooterLink>
             <FooterLink to="/help/faq">FAQ</FooterLink>
@@ -933,7 +933,7 @@ export default function ProviderTermsAndAgreement() {
             >
               Help
             </a>
-          </div>
+          </div> */}
           <p style={styles.copyright}>© {new Date().getFullYear()} BlinqFix</p>
         </footer>
       </main>

@@ -157,7 +157,7 @@ import { motion } from 'framer-motion';
 
 export default function AppBanner() {
   return (
-    <section className="app-banner">
+    <section className="app-banner" style={{width: "100%"}}>
       <motion.div
         className="app-banner-bg"
         initial={{ opacity: 0 }}
@@ -168,7 +168,7 @@ export default function AppBanner() {
 
       <div className="banner-inner">
         <h3 className="section-title" style={{ marginBottom: '0.5rem' }}>
-          Get the app
+          Get the Blinqfix app
         </h3>
         <p className="hero-sub" style={{ maxWidth: '22rem' }}>
           Book or accept jobs on the go. Download BlinqFix for iOS and Android.

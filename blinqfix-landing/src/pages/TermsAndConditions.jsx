@@ -382,7 +382,7 @@ const styles = {
     width: "48px",
     height: "48px",
     background: "rgba(255, 255, 255, 0.15)",
-    border: "none",
+    // border: "none",
     borderRadius: "16px",
     cursor: "pointer",
     transition: "all 0.3s ease",

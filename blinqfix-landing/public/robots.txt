@@ -1,0 +1,13 @@
+# robots.txt for https://www.blinqfix.com/
+
+User-agent: *
+Allow: /
+
+# (Optional) Keep API/private areas out of the index. Remove lines that don't apply.
+Disallow: /api/
+Disallow: /admin/
+
+# Point bots to your canonical sitemap
+Sitemap: https://www.blinqfix.com/sitemap.xml
+# Optional alias copy for any integrations that expect /site.xml
+Sitemap: https://www.blinqfix.com/site.xml

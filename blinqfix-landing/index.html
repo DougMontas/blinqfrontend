@@ -1,16 +1,162 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
+    <!-- Charset & Viewport (kept from your original) -->
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>BlinqFix</title>
+
+    <!-- =========================
+         Primary SEO
+         ========================= -->
+    <title>BlinqFix — 24/7 Emergency Home Services Nationwide | Electricians, Plumbers & Handymen</title>
+    <meta name="description" content="BlinqFix provides fast, 24/7 emergency home services across the USA—licensed electricians, plumbers, and handymen. Upfront smart pricing, instant booking, and live tracking in the Blinqfix App." />
+    <link rel="canonical" href="https://www.blinqfix.com/" />
+    <meta name="robots" content="index,follow,max-snippet:-1,max-image-preview:large,max-video-preview:-1" />
+    <meta name="author" content="BlinqFix" />
+    <meta name="application-name" content="Blinqfix App" />
+    <meta name="theme-color" content="#0f172a" />
+    <link rel="alternate" hreflang="en-us" href="https://www.blinqfix.com/" />
+
+    <!-- (Optional) Meta keywords: not used by Google, harmless elsewhere -->
+    <meta name="keywords" content="BlinqFix, emergency electrician, emergency plumber, 24/7 handyman, nationwide home services, smart pricing, book a pro, same-day repair" />
+
+    <!-- =========================
+         Open Graph / Social
+         ========================= -->
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="BlinqFix" />
+    <meta property="og:locale" content="en_US" />
+    <meta property="og:title" content="24/7 Emergency Home Services Nationwide | BlinqFix" />
+    <meta property="og:description" content="Licensed pros on demand for electrical, plumbing, and handyman emergencies. Transparent pricing and live tracking." />
+    <meta property="og:url" content="https://www.blinqfix.com/" />
+    <meta property="og:image" content="https://www.blinqfix.com/og/og-image.jpg" />
+    <meta property="og:image:alt" content="BlinqFix — emergency home services with live tracking and upfront pricing" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+
+    <meta name="twitter:card" content="summary_large_image" />
+    <!-- <meta name="twitter:site" content="@YOUR_HANDLE">  Optional -->
+    <meta name="twitter:title" content="24/7 Emergency Home Services Nationwide | BlinqFix" />
+    <meta name="twitter:description" content="Licensed pros on demand for electrical, plumbing, and handyman emergencies. Transparent pricing and live tracking." />
+    <meta name="twitter:image" content="https://www.blinqfix.com/og/og-image.jpg" />
+
+    <!-- =========================
+         Icons / Manifest (safe to add; 404s don't break the app)
+         ========================= -->
+    <link rel="icon" href="/favicon.ico" />
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicons/favicon-32x32.png" />
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicons/favicon-16x16.png" />
+    <link rel="apple-touch-icon" sizes="180x180" href="/favicons/apple-touch-icon.png" />
+    <link rel="manifest" href="/site.webmanifest" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-title" content="Blinqfix App" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+    <meta name="msapplication-TileColor" content="#0f172a" />
+
+    <!-- =========================
+         Structured Data (JSON‑LD)
+         Safe, non-visual schemas that won't break rendering
+         ========================= -->
+
+    <!-- Organization -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Organization",
+      "name": "BlinqFix",
+      "url": "https://www.blinqfix.com/",
+      "logo": "https://www.blinqfix.com/brand/logo.png",
+      "sameAs": [
+        "https://www.facebook.com/TO_REPLACE",
+        "https://www.instagram.com/TO_REPLACE",
+        "https://www.linkedin.com/company/TO_REPLACE"
+      ],
+      "contactPoint": [{
+        "@type": "ContactPoint",
+        "telephone": "+1-XXX-XXX-XXXX",
+        "contactType": "customer service",
+        "areaServed": "US",
+        "availableLanguage": ["en"]
+      }]
+    }
+    </script>
+
+    <!-- Services (ItemList) – update URLs if you have specific service pages -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "ItemList",
+      "name": "BlinqFix Services",
+      "itemListElement": [
+        {
+          "@type": "ListItem",
+          "position": 1,
+          "item": {
+            "@type": "Service",
+            "name": "Emergency Electrician",
+            "serviceType": "Electrical repair & troubleshooting",
+            "areaServed": "US",
+            "provider": { "@type": "Organization", "name": "BlinqFix" },
+            "url": "https://www.blinqfix.com/services/electrician"
+          }
+        },
+        {
+          "@type": "ListItem",
+          "position": 2,
+          "item": {
+            "@type": "Service",
+            "name": "Emergency Plumber",
+            "serviceType": "Burst pipes, leaks & drain issues",
+            "areaServed": "US",
+            "provider": { "@type": "Organization", "name": "BlinqFix" },
+            "url": "https://www.blinqfix.com/services/plumber"
+          }
+        },
+        {
+          "@type": "ListItem",
+          "position": 3,
+          "item": {
+            "@type": "Service",
+            "name": "Handyman Services",
+            "serviceType": "Urgent home repairs",
+            "areaServed": "US",
+            "provider": { "@type": "Organization", "name": "BlinqFix" },
+            "url": "https://www.blinqfix.com/services/handyman"
+          }
+        }
+      ]
+    }
+    </script>
+
+    <!-- Mobile App (Blinqfix App) -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "MobileApplication",
+      "name": "Blinqfix App",
+      "operatingSystem": "iOS, Android",
+      "applicationCategory": "UtilitiesApplication",
+      "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" },
+      "url": "https://www.blinqfix.com/",
+      "installUrl": "https://www.blinqfix.com/app",
+      "publisher": { "@type": "Organization", "name": "BlinqFix" }
+    }
+    </script>
+
+    <!-- =========================
+         Your existing stylesheet (kept)
+         ========================= -->
     <link rel="stylesheet" href="/src/styles.css" />
+
+    <!-- (Optional) Google Search Console verification -->
+    <!-- <meta name="google-site-verification" content="PASTE_SEARCH_CONSOLE_TOKEN" /> -->
   </head>
 
   <body>
+    <!-- Your React mount point (kept) -->
     <div id="root"></div>
 
-    <!-- Google Website-Translator -->
+    <!-- Google Website-Translator (kept exactly, styles adjusted below) -->
     <script>
       function googleTranslateElementInit() {
         new google.translate.TranslateElement(
@@ -19,7 +165,7 @@
             includedLanguages:
               "en,es,fr,de,pt,ru,zh-CN,ar,it,ja,ko,hi,pl,nl,tr,sv",
             layout: google.translate.TranslateElement.InlineLayout.SIMPLE,
-            autoDisplay: false,
+            autoDisplay: false
           },
           "google_translate_element"
         );
@@ -30,7 +176,7 @@
       defer
     ></script>
 
-    <!-- Clamp the dropdown every time it opens -->
+    <!-- Clamp the dropdown every time it opens (kept) -->
     <script>
       const fixFrame = () => {
         const f = document.querySelector(".goog-te-menu-frame.skiptranslate");
@@ -50,26 +196,29 @@
         `;
       };
 
-      /* patch on open (click triggers class change) */
+      // Patch on open (click triggers class change)
       document.addEventListener("click", () => {
         setTimeout(fixFrame, 300); // wait for Google to (re)draw
       });
 
-      /* initial iframe (first render) */
+      // Initial iframe (first render)
       const obs = new MutationObserver(fixFrame);
       obs.observe(document.body, { childList: true, subtree: true });
     </script>
 
     <style>
+      /* Keep translator chrome hidden (kept) */
       .goog-logo-link,
       .goog-te-banner-frame {
         display: none !important;
       }
-      body {
-        top: 0 !important;
-      }
+      body { top: 0 !important; }
     </style>
 
+    <!-- Your app entry (kept) -->
     <script type="module" src="/src/main.jsx"></script>
+
+    <!-- Non-breaking progressive enhancement -->
+    <noscript>Your browser needs JavaScript enabled for the fastest BlinqFix booking experience.</noscript>
   </body>
 </html>

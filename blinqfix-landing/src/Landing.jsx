@@ -699,6 +699,7 @@ import {
 } from "lucide-react";
 import { motion } from "framer-motion";
 import AppBanner from "./sections/AppBanner";
+import logo from "./assets/blinqfix_logo.jpeg";
 // import Footer from "./sections/Footer"
 
 /* ============================ STYLES ============================ */
@@ -747,7 +748,6 @@ const styles = {
       "radial-gradient(circle, rgba(251, 191, 36, 0.08) 0%, transparent 60%)",
     transform: "translate(-50%, -50%)",
     pointerEvents: "none",
-  
   },
 
   translateWrapper: {
@@ -900,7 +900,6 @@ const styles = {
     marginTop: "100px",
     padding: "0 20px",
     maxWidth: "1200px",
-  
   },
   featureCard: {
     background:
@@ -1066,30 +1065,30 @@ const Footer = () => {
 
   return (
     <>
-    <AppBanner />
-    <footer style={styles.footer}>
-      <img
-        src="https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/6809c4269_driver_marker.png"
-        alt="BlinqFix Logo"
-        style={styles.footerLogo}
-      />
-      <nav style={styles.footerNav}>
-        {navLinks.map((link) => (
-          <Link
-            key={link.name}
-            to={link.path}
-            style={{
-              ...styles.footerLink,
-              ...(hoveredLink === link.name ? styles.footerLinkHover : {}),
-            }}
-            onMouseEnter={() => setHoveredLink(link.name)}
-            onMouseLeave={() => setHoveredLink(null)}
-          >
-            {link.name}
-          </Link>
-        ))}
-      </nav>
-      {/* <div style={styles.footerSocials}>
+      <AppBanner />
+      <footer style={styles.footer}>
+        <img
+          src="https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/6809c4269_driver_marker.png"
+          alt="BlinqFix Logo"
+          style={styles.footerLogo}
+        />
+        <nav style={styles.footerNav}>
+          {navLinks.map((link) => (
+            <Link
+              key={link.name}
+              to={link.path}
+              style={{
+                ...styles.footerLink,
+                ...(hoveredLink === link.name ? styles.footerLinkHover : {}),
+              }}
+              onMouseEnter={() => setHoveredLink(link.name)}
+              onMouseLeave={() => setHoveredLink(null)}
+            >
+              {link.name}
+            </Link>
+          ))}
+        </nav>
+        {/* <div style={styles.footerSocials}>
         {socialLinks.map((link) => (
           <a
             key={link.name}
@@ -1109,13 +1108,13 @@ const Footer = () => {
           </a>
         ))}
       </div> */}
-      <p style={styles.footerCopyright}>
-        © {new Date().getFullYear()} BlinqFix, Inc. All rights reserved.
-      </p>
-    </footer>
-</>
-  )
-}
+        <p style={styles.footerCopyright}>
+          © {new Date().getFullYear()} BlinqFix, Inc. All rights reserved.
+        </p>
+      </footer>
+    </>
+  );
+};
 
 /* ============================ MAIN COMPONENT ============================ */
 export default function Home() {
@@ -1168,6 +1167,12 @@ export default function Home() {
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 0.2 }}
         >
+            <img
+            src={logo}
+            alt="BlinqFix Logo"
+            style={{ height: "200px", width: "auto", opacity: 100, margin:0}}
+        ></img>
+          
           {/* <div style={styles.badge}>
             <Zap size={56} color="#fbb_f24" />
             <span style={styles.badgeText}>Emergency Repairs • On-Demand</span>
@@ -1180,6 +1185,7 @@ export default function Home() {
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 0.4 }}
         >
+        
           Your <span style={styles.emergencyText}>Emergency</span> Repair
           Lifeline.
         </motion.h1>
@@ -1222,20 +1228,19 @@ export default function Home() {
           animate={{ opacity: 1, scale: 1 }}
           transition={{ duration: 0.8, delay: 1 }}
         >
-         
-         <h6
-         className="hero-title2"
-         style={{ fontStyle: "italic", marginTop: "1.5rem" }}
-       >
-         The fastest way to get emergency repairs done in America.
-       </h6>
+          <h6
+            className="hero-title2"
+            style={{ fontStyle: "italic", marginTop: "1.5rem" }}
+          >
+            The fastest way to get emergency repairs done in America.
+          </h6>
           <p style={styles.proDescription}>
-          BlinqFix turns chaos into clarity for everyone involved. Customers gain
-        a trusted, transparent lifeline. Service pros enjoy a steady stream of
-        high-paying emergency jobs without spending a dime on marketing.
-        Download the BlinqFix app today, complete verification, and experience
-        the smartest way to earn more on your terms—or get that urgent repair
-        done right now.
+            BlinqFix turns chaos into clarity for everyone involved. Customers
+            gain a trusted, transparent lifeline. Service pros enjoy a steady
+            stream of high-paying emergency jobs without spending a dime on
+            marketing. Download the BlinqFix app today, complete verification,
+            and experience the smartest way to earn more on your terms—or get
+            that urgent repair done right now.
           </p>
         </motion.div>
 
@@ -1245,12 +1250,12 @@ export default function Home() {
           animate={{ opacity: 1, scale: 1 }}
           transition={{ duration: 0.8, delay: 1 }}
         >
-            <h6
-         className="hero-title2"
-         style={{ fontStyle: "italic", marginTop: "1.5rem" }}
-       >
-         Service Pros wanted, territories are going fast!
-       </h6>
+          <h6
+            className="hero-title2"
+            style={{ fontStyle: "italic", marginTop: "1.5rem" }}
+          >
+            Service Pros wanted, territories are going fast!
+          </h6>
           <h3 style={styles.proTitle}>
             Service Pros: Stop Paying for Leads. Start Earning with real jobs.
           </h3>

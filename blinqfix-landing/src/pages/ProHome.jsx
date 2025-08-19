@@ -297,6 +297,29 @@ export default function ProHome() {
       color: "#8b949e",
       lineHeight: 1.6,
     },
+    proCallout: {
+      background: "rgba(30, 41, 59, 0.5)",
+      backdropFilter: "blur(10px)",
+      border: "1px solid #334155",
+      borderRadius: "20px",
+      padding: "12px",
+      marginTop: "28px",
+      maxWidth: "800px",
+      textAlign: "center",
+      marginBottom: '75px'
+    },
+
+    proTitle: {
+      fontSize: "22px",
+      fontWeight: "700",
+      color: "#ffffff",
+      marginBottom: "12px",
+    },
+    proDescription: {
+      fontSize: "16px",
+      color: "#94a3b8",
+      lineHeight: "1.7",
+    },
     testimonialGrid: {
         display: "grid",
         gridTemplateColumns: "repeat(auto-fit, minmax(280px, 1fr))",
@@ -423,6 +446,31 @@ export default function ProHome() {
         >
           Fill your downtime with high-pay local jobs—on <strong style={styles.strong}>your</strong> terms.
         </motion.p>
+
+        <motion.div
+          style={styles.proCallout}
+          initial={{ opacity: 0, scale: 0.95 }}
+          animate={{ opacity: 1, scale: 1 }}
+          transition={{ duration: 0.8, delay: 1 }}
+        >
+          <h6
+            className="hero-title2"
+            style={{ fontStyle: "italic", marginTop: "1.5rem", textAlign: "center", size: '100px' }}
+          >
+            Service Pros wanted, territories are going fast!
+          </h6>
+          <h3 style={styles.proTitle}>
+            Service Pros: Stop Paying for Leads. Start Earning with real jobs.
+          </h3>
+          <p style={styles.proDescription}>
+            BlinqFix sends high-paying emergency jobs directly to you, with no
+            marketing costs or lead fees. Complete your verification and start
+            claiming exclusive jobs in your territory today.
+          </p>
+        </motion.div>
+
+
+
         <motion.div 
           style={styles.buttonRow}
           className="buttonRow"

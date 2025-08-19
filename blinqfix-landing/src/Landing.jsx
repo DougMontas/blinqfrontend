@@ -1244,27 +1244,7 @@ export default function Home() {
           </p>
         </motion.div>
 
-        <motion.div
-          style={styles.proCallout}
-          initial={{ opacity: 0, scale: 0.95 }}
-          animate={{ opacity: 1, scale: 1 }}
-          transition={{ duration: 0.8, delay: 1 }}
-        >
-          <h6
-            className="hero-title2"
-            style={{ fontStyle: "italic", marginTop: "1.5rem" }}
-          >
-            Service Pros wanted, territories are going fast!
-          </h6>
-          <h3 style={styles.proTitle}>
-            Service Pros: Stop Paying for Leads. Start Earning with real jobs.
-          </h3>
-          <p style={styles.proDescription}>
-            BlinqFix sends high-paying emergency jobs directly to you, with no
-            marketing costs or lead fees. Complete your verification and start
-            claiming exclusive jobs in your territory today.
-          </p>
-        </motion.div>
+        
 
         <div style={styles.featuresSection}>
           {features.map((feature, index) => (

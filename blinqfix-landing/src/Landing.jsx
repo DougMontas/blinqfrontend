@@ -682,9 +682,8 @@
 //   );
 // }
 
-
 //working
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import { useNavigate, Link } from "react-router-dom";
 import {
   Zap,
@@ -702,6 +701,7 @@ import {
 import { motion } from "framer-motion";
 import AppBanner from "./sections/AppBanner";
 import logo from "./assets/blinqfix_logo.jpeg";
+import TranslateButton from "./sections/TranslateButton.jsx";
 // import Footer from "./sections/Footer"
 
 /* ============================ STYLES ============================ */
@@ -1121,7 +1121,7 @@ const Footer = () => {
 /* ============================ MAIN COMPONENT ============================ */
 export default function Home() {
   const navigate = useNavigate();
-  const [langDropdownOpen, setLangDropdownOpen] = useState(false);
+
   const features = [
     {
       icon: Zap,
@@ -1149,55 +1149,28 @@ export default function Home() {
     },
   ];
 
-  useEffect(() => {
-    const addGoogleTranslateScript = () => {
-      if (document.getElementById("google-translate-script")) return;
-
-      const script = document.createElement("script");
-      script.id = "google-translate-script";
-      script.src = "//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit";
-      document.body.appendChild(script);
-
-      window.googleTranslateElementInit = () => {
-        new window.google.translate.TranslateElement({
-          pageLanguage: "en",
-          layout: window.google.translate.TranslateElement.InlineLayout.SIMPLE,
-        }, "google_translate_element");
-      };
-    };
-    addGoogleTranslateScript();
-  }, []);
-
-
-
   return (
     <div style={styles.container}>
       <style>{styles.keyframes}</style>
+      <style>{`
+ .goog-te-banner-frame.skiptranslate,
+ .goog-logo-link,
+ .goog-te-gadget span {
+   display: none !important;
+ }
+ .goog-te-gadget .goog-te-combo {
+  background: #1e293b;
+  color: #fff;
+  border-radius: 4px;
+  padding: 4px;
+  font-size: 13px;
+}
+`}</style>
       <div style={styles.logoBackground} />
       <div style={styles.gridBackground} />
       <div style={styles.glowEffect} />
 
-      {/* <div style={styles.translateWrapper}>
-        
-        <button style={styles.globeButton}>
-          <Globe size={18} />
-        </button>
-        <span style={styles.translateText}>Language</span>
-        <div id="google_translate_element" />
-      </div> */}
-
-      <div style={styles.translateWrapper}>
-        <div style={{ position: "relative" }}>
-          <button style={styles.globeButton} onClick={() => setLangDropdownOpen(!langDropdownOpen)}>
-            <Globe size={18} />
-          </button>
-          <span style={styles.translateText}>Language</span>
-          <div
-            id="google_translate_element"
-            style={{ display: langDropdownOpen ? "block" : "none", marginTop: 4 }}
-          />
-        </div>
-      </div>
+      <TranslateButton />
 
       <main style={styles.heroSection}>
         <motion.div
@@ -1205,12 +1178,12 @@ export default function Home() {
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 0.2 }}
         >
-            <img
+          <img
             src={logo}
             alt="BlinqFix Logo"
-            style={{ height: "200px", width: "auto", opacity: 100, margin:0}}
-        ></img>
-          
+            style={{ height: "200px", width: "auto", opacity: 100, margin: 0 }}
+          ></img>
+
           {/* <div style={styles.badge}>
             <Zap size={56} color="#fbb_f24" />
             <span style={styles.badgeText}>Emergency Repairs • On-Demand</span>
@@ -1223,7 +1196,6 @@ export default function Home() {
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 0.4 }}
         >
-        
           Your <span style={styles.emergencyText}>Emergency</span> Repair
           Lifeline.
         </motion.h1>
@@ -1281,8 +1253,6 @@ export default function Home() {
             that urgent repair done right now.
           </p>
         </motion.div>
-
-        
 
         <div style={styles.featuresSection}>
           {features.map((feature, index) => (

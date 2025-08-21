@@ -1152,20 +1152,6 @@ export default function Home() {
   return (
     <div style={styles.container}>
       <style>{styles.keyframes}</style>
-      <style>{`
- .goog-te-banner-frame.skiptranslate,
- .goog-logo-link,
- .goog-te-gadget span {
-   display: none !important;
- }
- .goog-te-gadget .goog-te-combo {
-  background: #1e293b;
-  color: #fff;
-  border-radius: 4px;
-  padding: 4px;
-  font-size: 13px;
-}
-`}</style>
       <div style={styles.logoBackground} />
       <div style={styles.gridBackground} />
       <div style={styles.glowEffect} />

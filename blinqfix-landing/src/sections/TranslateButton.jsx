@@ -8,6 +8,7 @@ export default function TranslateButton() {
   useEffect(() => {
     console.log("[TranslateButton] Mounting...");
 
+    // Initialize only once
     if (!window.googleTranslateElementInit) {
       window.googleTranslateElementInit = () => {
         console.log("[TranslateButton] Initializing Google Translate...");
@@ -42,6 +43,18 @@ export default function TranslateButton() {
     return () => document.removeEventListener("mousedown", handleClickOutside);
   }, []);
 
+  useEffect(() => {
+    // Hide duplicate select boxes on open
+    if (open) {
+      const combos = document.querySelectorAll(".goog-te-combo");
+      if (combos.length > 1) {
+        for (let i = 1; i < combos.length; i++) {
+          combos[i].style.display = "none";
+        }
+      }
+    }
+  }, [open]);
+
   return (
     <div
       ref={ref}
@@ -55,6 +68,7 @@ export default function TranslateButton() {
         borderRadius: "20px",
         backdropFilter: "blur(10px)",
         border: "1px solid rgba(51, 65, 85, 0.5)",
+        overflow: "hidden",
       }}
     >
       <button
@@ -63,12 +77,18 @@ export default function TranslateButton() {
           setOpen(!open);
         }}
         style={{
-          background: "none",
-          border: "none",
-          color: "#fff",
-          cursor: "pointer",
-          display: "flex",
+          display: 'flex',
           alignItems: "center",
+          gap: "8px",
+          background: "#161b22",
+          color: "#c9d1d9",
+          padding: "10px 16px",
+          borderRadius: "50px",
+          border: "1px solid #30363d",
+          cursor: "pointer",
+          boxShadow: "0 4px 12px rgba(0,0,0,0.3)",
+          transition: "all 0.2s ease-in-out",
+          fontWeight: 500,
         }}
       >
         <Globe size={18} />

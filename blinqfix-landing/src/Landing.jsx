@@ -682,6 +682,8 @@
 //   );
 // }
 
+
+//working
 import React, { useState, useEffect } from "react";
 import { useNavigate, Link } from "react-router-dom";
 import {
@@ -1119,6 +1121,7 @@ const Footer = () => {
 /* ============================ MAIN COMPONENT ============================ */
 export default function Home() {
   const navigate = useNavigate();
+  const [langDropdownOpen, setLangDropdownOpen] = useState(false);
   const features = [
     {
       icon: Zap,
@@ -1146,6 +1149,27 @@ export default function Home() {
     },
   ];
 
+  useEffect(() => {
+    const addGoogleTranslateScript = () => {
+      if (document.getElementById("google-translate-script")) return;
+
+      const script = document.createElement("script");
+      script.id = "google-translate-script";
+      script.src = "//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit";
+      document.body.appendChild(script);
+
+      window.googleTranslateElementInit = () => {
+        new window.google.translate.TranslateElement({
+          pageLanguage: "en",
+          layout: window.google.translate.TranslateElement.InlineLayout.SIMPLE,
+        }, "google_translate_element");
+      };
+    };
+    addGoogleTranslateScript();
+  }, []);
+
+
+
   return (
     <div style={styles.container}>
       <style>{styles.keyframes}</style>
@@ -1153,12 +1177,26 @@ export default function Home() {
       <div style={styles.gridBackground} />
       <div style={styles.glowEffect} />
 
-      <div style={styles.translateWrapper}>
+      {/* <div style={styles.translateWrapper}>
+        
         <button style={styles.globeButton}>
           <Globe size={18} />
         </button>
         <span style={styles.translateText}>Language</span>
         <div id="google_translate_element" />
+      </div> */}
+
+      <div style={styles.translateWrapper}>
+        <div style={{ position: "relative" }}>
+          <button style={styles.globeButton} onClick={() => setLangDropdownOpen(!langDropdownOpen)}>
+            <Globe size={18} />
+          </button>
+          <span style={styles.translateText}>Language</span>
+          <div
+            id="google_translate_element"
+            style={{ display: langDropdownOpen ? "block" : "none", marginTop: 4 }}
+          />
+        </div>
       </div>
 
       <main style={styles.heroSection}>

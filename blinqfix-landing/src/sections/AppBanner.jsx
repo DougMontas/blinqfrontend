@@ -180,7 +180,7 @@ export default function AppBanner() {
         >
           {/* App Store Button */}
           <a
-            href="https://apps.apple.com/app/your-app-id"
+            href="https://apps.apple.com/us/app/blinqfix-app/id6747390132"
             target="_blank"
             rel="noopener noreferrer"
             style={{

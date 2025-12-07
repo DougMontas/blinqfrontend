@@ -11,6 +11,8 @@ import { Analytics } from "@vercel/analytics/react";
 import TermsAndConditions from "./pages/TermsAndConditions";
 import PrivacyPolicy from "./pages/PrivacyPolicyWeb";
 import FAQ from "./pages/FAQ";
+import EmergencyMiamiPage from "./pages/Gettheapp";
+import ServiceProLandingPage from "./pages/GetJobs";
 
 export default function App() {
   return (
@@ -27,6 +29,8 @@ export default function App() {
       <Route path="/onboarding-success" element={<SuccessRedirect />} />
       <Route path="/onboarding-failed" element={<FailedRedirect />} />
       <Route path="/reset-password/:token" element={<ResetPasswordWeb />} />
+      <Route path="/gettheapp" element={<EmergencyMiamiPage />} />
+      <Route path="/getjobs" element={<ServiceProLandingPage />} />
       <Route path="*" element={<Navigate to="/" replace />} />
     </Routes>
     <Analytics />

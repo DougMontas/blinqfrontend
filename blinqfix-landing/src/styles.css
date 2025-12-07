@@ -290,7 +290,89 @@ button {
 .store-badge {
   height: 3.25rem;
   width: auto;
-} /* same height for both badges */
+} same height for both badges
+
+/* stack badge + QR vertically */
+.store-column {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+/* Apple QR image */
+.qr-image {
+  margin-top: 0.6rem;
+  width: 90px;
+  height: 90px;
+  border-radius: 10px;
+  background: #ffffff;
+  padding: 3px;
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.35);
+  object-fit: contain;
+}
+
+/* Android QR placeholder */
+.qr-placeholder {
+  margin-top: 0.6rem;
+  width: 90px;
+  height: 90px;
+  border-radius: 10px;
+  border: 1px dashed rgba(255, 255, 255, 0.35);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.75rem;
+  color: rgba(255, 255, 255, 0.75);
+  text-align: center;
+}
+
+/* QR caption text */
+/* spread columns + keep them centered */
+.badge-row {
+  display: flex;
+  justify-content: center;
+  gap: 3.5rem;            /* ⬅️ more space between Apple & Google */
+  flex-wrap: wrap;
+}
+
+/* stack each badge / QR / caption vertically + centered */
+.store-column {
+  display: flex;
+  flex-direction: column;
+  align-items: center;   /* centers QR & text under the badge */
+}
+
+/* QR box alignment */
+.qr-image,
+.qr-placeholder {
+  margin-top: 0.75rem;   /* space below the badge */
+}
+
+/* caption centered relative to the QR */
+.qr-caption {
+  display: block;
+  margin-top: 0.45rem;
+  font-size: 0.75rem;
+  line-height: 1.3;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  color: rgba(255, 255, 255, 0.75);
+  text-align: center;
+  max-width: 8.5rem;     /* keeps text under the QR */
+}
+
+.qr-caption-muted {
+  color: rgba(255, 255, 255, 0.55);
+}
+
+/* optional: tighter spacing on small screens */
+@media (max-width: 640px) {
+  .badge-row {
+    gap: 1.75rem;
+  }
+}
+
+
 
 /* google translate */
 

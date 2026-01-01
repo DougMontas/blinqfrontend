@@ -1,0 +1,14 @@
+[
+    {
+      "relation": [
+        "delegate_permission/common.handle_all_urls"
+      ],
+      "target": {
+        "namespace": "android_app",
+        "package_name": "com.blinqfix.app",
+        "sha256_cert_fingerprints": [
+          "1D:81:F0:CB:BE:25:89:C0:01:5F:B8:E0:54:BF:FA:80:2A:18:3F:46:77:A0:64:CF:99:E5:78:A5:31:AE:3A:C7"
+        ]
+      }
+    }
+  ]

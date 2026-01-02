@@ -13,6 +13,7 @@ import PrivacyPolicy from "./pages/PrivacyPolicyWeb";
 import FAQ from "./pages/FAQ";
 import EmergencyMiamiPage from "./pages/Gettheapp";
 import ServiceProLandingPage from "./pages/GetJobs";
+import AccountDeletionPage from "./pages/accountDeletion";
 
 export default function App() {
   return (
@@ -31,6 +32,7 @@ export default function App() {
       <Route path="/reset-password/:token" element={<ResetPasswordWeb />} />
       <Route path="/gettheapp" element={<EmergencyMiamiPage />} />
       <Route path="/getjobs" element={<ServiceProLandingPage />} />
+      <Route path="/account-deletion" element={<AccountDeletionPage />} />
       <Route path="*" element={<Navigate to="/" replace />} />
     </Routes>
     <Analytics />

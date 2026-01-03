@@ -13,7 +13,7 @@ import PrivacyPolicy from "./pages/PrivacyPolicyWeb";
 import FAQ from "./pages/FAQ";
 import EmergencyMiamiPage from "./pages/Gettheapp";
 import ServiceProLandingPage from "./pages/GetJobs";
-import AccountDeletionPage from "./pages/accountDeletion";
+import AccountDeletionPage from "./pages/AccountDeletionPage";
 
 export default function App() {
   return (

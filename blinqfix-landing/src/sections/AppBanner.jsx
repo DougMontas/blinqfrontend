@@ -281,13 +281,13 @@ export default function AppBanner() {
           alt="Scan to download BlinqFix on the App Store"
           className="qr-image"
         />
-        <span className="qr-caption">Scan with your iPhone camera</span>
+        <span className="qr-caption">Scan with your iOS device</span>
       </div>
 
       {/* GOOGLE PLAY + placeholder QR */}
       <div className="store-column">
         <a
-          href="https://play.google.com/store/games"
+          href="https://play.google.com/store/apps/details?id=com.blinqfix.app"
           target="_blank"
           rel="noopener noreferrer"
           style={{
@@ -305,13 +305,23 @@ export default function AppBanner() {
               height: "100%",
               objectFit: "contain",
               display: "block",
+              
             }}
           />
         </a>
 
-        <div className="qr-placeholder">QR coming soon</div>
+        <div className="qr-placeholder">
+        <img
+          src="/blinqfix_playstore_qr.png"
+          alt="Scan to download BlinqFix on the Google Play Store"
+          className="qr-image"
+          style={{
+            marginTop: "2px"
+          }}
+        />
+        </div>
         <span className="qr-caption qr-caption-muted">
-          Android app coming soon
+          Scan with your Android device
         </span>
       </div>
     </div>

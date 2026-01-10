@@ -772,7 +772,7 @@ const EmergencyMiamiPage = () => {
                     </div>
                     <span className="bf-em-qr-caption"
                     style={{
-                      marginTop: "2px"
+                      marginBottom: "2px"
                     }}
                     >
                       

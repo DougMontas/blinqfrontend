@@ -2037,14 +2037,14 @@ const ServiceProLandingPage = () => {
                     className="bf-qr-image"
                   />
                   <span className="bf-qr-caption">
-                    Scan with your iPhone camera
+                    Scan with your iOS device
                   </span>
                 </div>
 
                 {/* GOOGLE PLAY + COMING SOON (QR SLOT READY) */}
                 <div className="bf-store-column">
                   <a
-                    href="https://play.google.com/store"
+                    href="https://play.google.com/store/apps/details?id=com.blinqfix.app"
                     target="_blank"
                     rel="noopener noreferrer"
                     className="bf-store-link"
@@ -2055,9 +2055,16 @@ const ServiceProLandingPage = () => {
                     />
                   </a>
 
-                  <div className="bf-qr-placeholder">QR coming soon</div>
+                  <div className="bf-qr-placeholder">
+                  <img
+                    src="/blinqfix_playstore_qr.png"
+                    alt="Scan to download BlinqFix on the Google PlayStore"
+                    className="bf-qr-image"
+                  />
+                    </div>
                   <span className="bf-qr-caption bf-qr-caption-muted">
-                    Android app coming soon
+                    Scan with your Android device
+                   
                   </span>
                 </div>
               </div>

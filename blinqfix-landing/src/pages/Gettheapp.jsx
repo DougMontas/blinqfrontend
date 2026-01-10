@@ -745,14 +745,14 @@ const EmergencyMiamiPage = () => {
                       className="bf-em-qr-image"
                     />
                     <span className="bf-em-qr-caption">
-                      Scan with your iPhone
+                      Scan with your iOS device
                     </span>
                   </div>
 
                   {/* GOOGLE (placeholder QR for now) */}
                   <div className="bf-em-store-column">
                     <a
-                      href="https://play.google.com/store/games"
+                      href="https://play.google.com/store/apps/details?id=com.blinqfix.app"
                       target="_blank"
                       rel="noopener noreferrer"
                       className="bf-em-store-link"
@@ -764,9 +764,15 @@ const EmergencyMiamiPage = () => {
                     </a>
 
                     <div className="bf-em-qr-placeholder">
-                      ANDROID APP COMING SOON
+                      <img
+                      src="/blinqfix_playstore_qr.png"
+                      alt="Scan to download BlinqFix on the Google PlayStore"
+                      className="bf-em-qr-image"
+                    />
                     </div>
-                    <span className="bf-em-qr-caption bf-em-qr-caption-muted" />
+                    <span className="bf-em-qr-caption">
+                      Scan with your Android device
+                    </span>
                   </div>
                 </div>
               </div>

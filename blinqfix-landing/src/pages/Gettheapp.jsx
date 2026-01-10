@@ -770,10 +770,12 @@ const EmergencyMiamiPage = () => {
                       className="bf-em-qr-image"
                     />
                     </div>
-                    <span className="bf-em-qr-caption">
-                      style={{
-                        marginTop: "2px"
-                      }}
+                    <span className="bf-em-qr-caption"
+                    style={{
+                      marginTop: "2px"
+                    }}
+                    >
+                      
                       Scan with your Android device
                     </span>
                   </div>

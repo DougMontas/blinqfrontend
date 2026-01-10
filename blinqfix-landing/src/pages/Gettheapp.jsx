@@ -768,12 +768,13 @@ const EmergencyMiamiPage = () => {
                       src="/blinqfix_playstore_qr.png"
                       alt="Scan to download BlinqFix on the Google PlayStore"
                       className="bf-em-qr-image"
+                      style={{
+                        marginTop: "2px"
+                      }}
                     />
                     </div>
                     <span className="bf-em-qr-caption"
-                    style={{
-                      margin: ""
-                    }}
+                    
                     >
                       
                       Scan with your Android device

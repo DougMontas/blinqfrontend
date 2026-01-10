@@ -2061,7 +2061,7 @@ const ServiceProLandingPage = () => {
                     alt="Scan to download BlinqFix on the Google PlayStore"
                     className="bf-qr-image"
                     style={{
-                      marginTop: "2px"
+                      marginTop: "3px"
                     }}
                   />
                     </div>

@@ -2062,7 +2062,7 @@ const ServiceProLandingPage = () => {
                     className="bf-qr-image"
                   />
                     </div>
-                  <span className="bf-qr-caption bf-qr-caption-muted">
+                  <span className="bf-qr-caption">
                     Scan with your Android device
                    
                   </span>

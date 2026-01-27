@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import PricingSection from "../sections/PricingSection";
 
 const emergencyStyles = `
 :root {
@@ -981,6 +982,11 @@ const EmergencyMiamiPage = () => {
             <a href="/help/faq">blinqfix.com/help/faq</a>.
           </p>
         </section>
+
+        <PricingSection 
+        ctaCustomerHref="/CustomerDashboard"
+        ctaProHref="/providers/apply"
+        />
 
         {/* SERVICE PROS CTA */}
         <section className="bf-em-section bf-em-pro-cta">

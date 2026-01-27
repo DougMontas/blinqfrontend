@@ -2352,6 +2352,7 @@
 // export default ServiceProLandingPage;
 
 import React from "react";
+import PricingSection from "../sections/PricingSection";
 
 const serviceProStyles = `
 :root {
@@ -3532,14 +3533,19 @@ const ServiceProLandingPage = () => {
           </div>
         </section>
 
+        <PricingSection
+        ctaCustomerHref="/CustomerDashboard"
+        ctaProHref="/providers/apply"
+        />
+
         {/* CTA */}
         <section className="bf-cta-final">
           <div className="bf-cta-content">
             <h2>Ready to fill your schedule?</h2>
             <p>Join the network of top-rated pros in South Florida.</p>
-            <a className="bf-pro-btn bf-pro-btn-primary" href="/providers/apply">
+            {/* <a className="bf-pro-btn bf-pro-btn-primary" href="/providers/apply">
               Apply Now
-            </a>
+            </a> */}
           </div>
         </section>
 

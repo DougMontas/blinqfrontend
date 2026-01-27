@@ -581,6 +581,7 @@ import {
   CheckCircle,
 } from "lucide-react";
 import AppBanner from "../sections/AppBanner";
+import PricingSection from "../sections/PricingSection";
 
 // Placeholder data
 const testimonials = [
@@ -1066,13 +1067,18 @@ export default function ProHome() {
         </div>
 
         {/* ✅ IMPORTANT: wrap AppBanner in a div with the ref */}
-        <div ref={appBannerRef}>
+        {/* <div ref={appBannerRef}>
           <AppBanner styles={styles} />
-        </div>
+        </div> */}
+          <PricingSection 
+        ctaCustomerHref="/CustomerDashboard"
+        ctaProHref="/providers/apply"
+        />
       </section>
 
       <footer style={styles.footer}>© {new Date().getFullYear()} BlinqFix Inc. All rights reserved.</footer>
       <style>{styles.responsiveStyles}</style>
+      
     </main>
   );
 }

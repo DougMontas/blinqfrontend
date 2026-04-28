@@ -1,4 +1,5 @@
 import React from "react";
+import { applyPageSeo } from "../utils/seo";
 
 const styles = {
   main: {
@@ -56,9 +57,37 @@ const styles = {
 const AccountDeletionPage = () => {
   const year = new Date().getFullYear();
 
-  // Optional: set the page title for this route
   React.useEffect(() => {
-    document.title = "BlinqFix Account & Data Deletion";
+    return applyPageSeo({
+      title: "Account and Data Deletion | BlinqFix",
+      description:
+        "Learn how to delete your BlinqFix account, what data is removed, and how to request deletion if you cannot access the app.",
+      canonical: "https://www.blinqfix.com/account-deletion",
+      og: {
+        url: "https://www.blinqfix.com/account-deletion",
+        title: "Account and Data Deletion | BlinqFix",
+        description:
+          "Instructions for deleting your BlinqFix account and understanding retained data.",
+      },
+      twitter: {
+        title: "BlinqFix Account Deletion",
+        description:
+          "How to delete your account and what happens to your personal data after a deletion request.",
+      },
+      schema: [
+        {
+          id: "blinqfix-account-deletion-schema",
+          data: {
+            "@context": "https://schema.org",
+            "@type": "WebPage",
+            name: "BlinqFix Account and Data Deletion",
+            url: "https://www.blinqfix.com/account-deletion",
+            description:
+              "Account deletion instructions and data handling information for BlinqFix users.",
+          },
+        },
+      ],
+    });
   }, []);
 
   return (
@@ -250,7 +279,7 @@ const AccountDeletionPage = () => {
         <p style={{ ...styles.muted, marginBottom: 0 }}>
           You can also review our full{" "}
           <a
-            href="https://blinqfix.com/privacy-policy"
+            href="https://blinqfix.com/privacypolicy"
             target="_blank"
             rel="noopener noreferrer"
           >

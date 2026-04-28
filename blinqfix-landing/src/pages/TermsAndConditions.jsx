@@ -1,342 +1,3 @@
-// import React from "react";
-// import { useNavigate, Link } from "react-router-dom";
-// import {
-//   ArrowLeft,
-//   FileText,
-//   BookText,
-//   CheckSquare,
-//   User,
-//   Briefcase,
-//   Wrench,
-//   Shield,
-//   Users,
-//   Lock,
-//   AlertTriangle,
-//   Phone,
-//   DollarSign,
-// } from "lucide-react";
-
-// const Section = ({ title, icon: Icon, children }) => (
-//   <section className="card">
-//     <div className="section-header">
-//       <Icon size={20} color="#60a5fa" />
-//       <h2 className="section-title">{title}</h2>
-//     </div>
-//     {children}
-//   </section>
-// );
-
-// const P = ({ children }) => <p className="p">{children}</p>;
-// const UL = ({ children }) => <ul className="ul">{children}</ul>;
-// const LI = ({ children }) => <li className="li">{children}</li>;
-// const SubHeading = ({ children }) => <div className="subheading">{children}</div>;
-// const PolicyHeading = ({ children }) => <div className="policy-heading">{children}</div>;
-
-// export default function TermsAndConditions() {
-//   const navigate = useNavigate();
-
-//   const css = `
-//     :root{
-//       --bg-1:#0f172a; --bg-2:#1e3a8a; --bg-3:#312e81;
-//       --text:#e0e7ff; --muted:#94a3b8; --border:rgba(255,255,255,.1);
-//       --border-soft:rgba(255,255,255,.08); --panel:rgba(255,255,255,.05);
-//       --link:#1976d2; --accent:#60a5fa; --success:#22c55e;
-//     }
-//     .legal-page{
-//       min-height:100vh; background:linear-gradient(180deg,var(--bg-1),var(--bg-2) 50%,var(--bg-3));
-//       color:var(--text); display:flex; flex-direction:column;
-//     }
-//     .legal-container{
-//       width:100%; max-width:900px; margin:0 auto; padding:40px 20px;
-//       display:flex; flex-direction:column; gap:16px;
-//     }
-//     .legal-header{ display:flex; align-items:center; justify-content:space-between; }
-//     .back-btn{
-//       width:44px; height:44px; border-radius:999px; border:1px solid var(--border);
-//       background:rgba(255,255,255,.1); display:inline-flex; align-items:center; justify-content:center; cursor:pointer;
-//     }
-//     .back-spacer{ width:44px; height:44px; }
-//     .header-center{ text-align:center; flex:1; }
-//     .badge{
-//       display:inline-flex; align-items:center; gap:8px; background:rgba(255,255,255,.1);
-//       padding:6px 12px; border-radius:16px; margin-bottom:8px;
-//     }
-//     .badge-text{ color:#fff; font-size:12px; font-weight:600; }
-//     .header-title{ font-size:24px; font-weight:700; color:#fff; }
-
-//     .card{
-//       background:var(--panel); border:1px solid var(--border); border-radius:16px; padding:20px;
-//     }
-//     .intro{ background:linear-gradient(180deg, rgba(255,255,255,.05), rgba(255,255,255,.02)); text-align:center; }
-//     .intro-title{ font-size:20px; font-weight:700; color:#fff; margin-bottom:8px; }
-//     .intro-sub{ font-size:14px; color:var(--muted); }
-
-//     .section-header{
-//       display:flex; align-items:center; gap:12px; padding-bottom:6px; margin-bottom:12px; border-bottom:1px solid var(--border-soft);
-//     }
-//     .section-title{ font-size:18px; font-weight:700; color:#fff; margin:0; }
-
-//     .p{ font-size:15px; line-height:1.55; margin:0 0 12px; }
-//     .ul{ margin:4px 0 12px 18px; padding:0; }
-//     .li{ margin:0 0 8px 0; }
-//     .subheading, .policy-heading{ font-size:15px; font-weight:700; color:#fff; margin:8px 0 6px; }
-
-//     .notice{
-//       background:linear-gradient(180deg, rgba(239,68,68,.1), rgba(220,38,38,.05));
-//       border:1px solid var(--border); border-radius:16px; padding:20px;
-//     }
-//     .notice-title{ display:flex; align-items:center; gap:12px; font-weight:700; color:#fff; margin-bottom:12px; }
-//     .notice-text{ font-size:14px; line-height:1.45; color:var(--text); }
-
-//     .footer{
-//       margin:32px auto 12px; width:100%; max-width:900px; text-align:center; padding:16px 0; border-top:1px solid var(--border);
-//     }
-//     .footer a{ color:var(--link); text-decoration:none; margin:0 10px; }
-//     .copy{ margin-top:8px; font-size:12px; color:var(--muted); }
-//   `;
-
-//   return (
-//     <div className="legal-page">
-//       <style>{css}</style>
-
-//       <div className="legal-container">
-//         {/* Header */}
-//         <header className="legal-header">
-//           <button className="back-btn" onClick={() => navigate(-1)} aria-label="Go back">
-//             <ArrowLeft size={24} color="#fff" />
-//           </button>
-
-//           <div className="header-center">
-//             <div className="badge">
-//               <FileText size={16} color="#e0e7ff" />
-//               <span className="badge-text">Legal</span>
-//             </div>
-//             <div className="header-title">Terms of Use</div>
-//           </div>
-
-//           <div className="back-spacer" />
-//         </header>
-
-//         {/* Intro */}
-//         <div className="card intro">
-//           <div className="intro-title">BlinqFix Terms of Use for Customers and Service Pros</div>
-//           <div className="intro-sub">Effective Date: 05/01/2025</div>
-//         </div>
-
-//         {/* 1. Definitions */}
-//         <Section title="1. Definitions" icon={BookText}>
-//           <UL>
-//             <LI>“Platform”: The BlinqFix website, mobile app, software, and related services.</LI>
-//             <LI>“User”: Any individual or entity accessing the Platform, including Customers and Service Providers.</LI>
-//             <LI>“Customer”: An individual or entity seeking home services through the Platform.</LI>
-//             <LI>“Service Provider” / “Contractor”: Independent professionals providing services via the Platform.</LI>
-//             <LI>“Services”: Repair, maintenance, installation, clean-up, and other tasks offered or completed through the Platform.</LI>
-//             <LI>“Content”: Text, photos, ratings, reviews, communications, and other data uploaded or generated by Users.</LI>
-//             <LI>“Booking”: A confirmed job request made in the app.</LI>
-//           </UL>
-//         </Section>
-
-//         {/* 2. Overview */}
-//         <Section title="2. Overview and Acceptance" icon={CheckSquare}>
-//           <P>
-//             By accessing or using the Platform, you agree to these Terms, the Privacy Policy, the SMS &amp; Phone Number
-//             Privacy Policy below, and any additional posted policies. If you do not agree, do not use the Platform.
-//           </P>
-//         </Section>
-
-//         {/* 3. Account Registration */}
-//         <Section title="3. Account Registration & Eligibility" icon={User}>
-//           <P>To use the Platform, Users must:</P>
-//           <UL>
-//             <LI>Provide complete and accurate information</LI>
-//             <LI>Maintain security of login credentials</LI>
-//             <LI>Be at least 18 years of age and legally able to enter contracts</LI>
-//           </UL>
-//           <P>BlinqFix may refuse access, suspend, or cancel accounts at its sole discretion for violations or fraud.</P>
-//         </Section>
-
-//         {/* 4. Customer Terms */}
-//         <Section title="4. Customer Terms (Homeowners)" icon={Wrench}>
-//           <SubHeading>4.1 Submitting a Request</SubHeading>
-//           <UL>
-//             <LI>Provide accurate address, contact, and job details</LI>
-//             <LI>Ensure safe access to the property and disclose hazards</LI>
-//           </UL>
-
-//           <SubHeading>4.2 Booking, Pricing &amp; Payments</SubHeading>
-//           <UL>
-//             <LI>
-//               Pricing and fees (including any platform/convenience fee) are shown before you confirm. By booking, you
-//               authorize payment for the shown amounts and any approved add-ons.
-//             </LI>
-//             <LI>
-//               Some jobs may require additional on-site approval for non-covered scope; you’ll see and confirm before
-//               you’re charged.
-//             </LI>
-//           </UL>
-
-//           <SubHeading>4.3 Cancellations &amp; Refunds</SubHeading>
-//           <UL>
-//             <LI>Terms are disclosed in-app during booking and may vary by job status and timing.</LI>
-//           </UL>
-
-//           <SubHeading>4.4 Conduct</SubHeading>
-//           <UL>
-//             <LI>Treat Service Pros respectfully and lawfully</LI>
-//             <LI>Do not request unsafe or illegal work</LI>
-//           </UL>
-
-//           <SubHeading>4.5 Ratings &amp; Reviews</SubHeading>
-//           <UL>
-//             <LI>
-//               Reviews must be accurate, respectful, and free of hateful or harassing content. We may moderate or remove
-//               content that violates policy.
-//             </LI>
-//           </UL>
-//         </Section>
-
-//         {/* 5. Service Provider Terms */}
-//         <Section title="5. Service Provider Terms" icon={Briefcase}>
-//           <SubHeading>5.1 Overview</SubHeading>
-//           <P>By using the Platform as a Service Provider, you agree to be bound by these Terms and applicable policies.</P>
-
-//           <SubHeading>5.2 Platform Access</SubHeading>
-//           <P>
-//             BlinqFix is a marketplace connecting Clients with independent professionals. BlinqFix does not perform
-//             services and is not responsible for contractors’ work.
-//           </P>
-
-//           <SubHeading>5.3 Contractor Status</SubHeading>
-//           <P>You are an independent contractor—not an employee, partner, agent, or representative of BlinqFix.</P>
-
-//           <SubHeading>5.4 Payment</SubHeading>
-//           <P>
-//             Payments are processed through the Platform. You receive payment for completed work minus BlinqFix’s
-//             platform fee and any agreed fees. You are responsible for taxes and withholdings.
-//           </P>
-
-//           <SubHeading>5.5 Platform Fee</SubHeading>
-//           <P>A platform service fee (currently 7%) is deducted per transaction for platform tools and services.</P>
-
-//           <SubHeading>5.6 Conduct &amp; Performance</SubHeading>
-//           <UL>
-//             <LI>Arrive on time and communicate proactively</LI>
-//             <LI>Maintain required licenses and insurance</LI>
-//             <LI>Perform work safely and professionally</LI>
-//             <LI>Accurately represent skills and qualifications</LI>
-//           </UL>
-
-//           <SubHeading>5.7 Insurance Requirements</SubHeading>
-//           <P>
-//             Maintain valid General Liability Insurance (minimum $500,000 per occurrence). BlinqFix must be named as
-//             Certificate Holder and Additional Insured. Upload a current COI and keep it updated.
-//           </P>
-
-//           <SubHeading>5.8 Non-Circumvention</SubHeading>
-//           <P>
-//             For 12 months after your last interaction with a BlinqFix customer through the Platform, do not solicit or
-//             accept jobs outside the Platform that were originated on BlinqFix.
-//           </P>
-
-//           <SubHeading>5.9 Confidentiality</SubHeading>
-//           <P>Keep customer and platform information confidential during and after your use of the Platform.</P>
-
-//           <SubHeading>5.10 Termination</SubHeading>
-//           <P>BlinqFix may suspend or terminate access for violations or misconduct.</P>
-//         </Section>
-
-//         {/* 6. General Rules */}
-//         <Section title="6. General Rules & Prohibited Uses" icon={Users}>
-//           <UL>
-//             <LI>Do not misuse, reverse engineer, or attack the Platform</LI>
-//             <LI>Do not upload unlawful, harassing, or infringing content</LI>
-//             <LI>Obey all applicable laws and safety standards</LI>
-//           </UL>
-//         </Section>
-
-//         {/* 7. Privacy & Security */}
-//         <Section title="7. Privacy & Security" icon={Lock}>
-//           <P>
-//             We use industry-standard measures to safeguard your information. See our Privacy Policy and SMS policy below
-//             for details on the data we collect and how we use it.
-//           </P>
-//         </Section>
-
-//         {/* SMS Policy */}
-//         <Section title="BlinqFix SMS & Phone Number Privacy Policy" icon={Phone}>
-//           <PolicyHeading>1. Information We Collect</PolicyHeading>
-//           <P>If you opt in to SMS, we collect your phone number and messaging preferences (e.g., job notifications, marketing).</P>
-
-//           <PolicyHeading>2. How We Use Your Phone Number</PolicyHeading>
-//           <UL>
-//             <LI>Job Notifications &amp; Updates (Transactional)</LI>
-//             <LI>Customers: confirmations, arrival times, progress updates, and completion notices.</LI>
-//             <LI>Service Providers: new job opportunities, job details, scheduling changes, and progress updates.</LI>
-//             <LI>Promotions &amp; Marketing Messages: offers, platform updates, training, and announcements relevant to your role.</LI>
-//           </UL>
-
-//           <PolicyHeading>3. Message Frequency</PolicyHeading>
-//           <UL>
-//             <LI>Transactional: sent as needed based on your activity.</LI>
-//             <LI>Marketing: up to 4 messages/month.</LI>
-//           </UL>
-
-//           <PolicyHeading>4. Opting Out</PolicyHeading>
-//           <P>Reply STOP to unsubscribe; HELP for help. You may still receive messages needed to complete in-progress transactions.</P>
-
-//           <PolicyHeading>5. Data Sharing &amp; Disclosure</PolicyHeading>
-//           <P>We don’t sell or rent your number. We may share it with providers who send messages on our behalf (e.g., Twilio) or with authorities if required by law.</P>
-
-//           <PolicyHeading>6. Data Security</PolicyHeading>
-//           <P>We use industry-standard safeguards for phone numbers and preferences.</P>
-
-//           <PolicyHeading>7. Changes</PolicyHeading>
-//           <P>We may update this policy; changes will show an updated Effective Date.</P>
-
-//           <PolicyHeading>8. Contact</PolicyHeading>
-//           <P>Email: support@blinqfix.com<br/>Message &amp; data rates may apply.</P>
-//         </Section>
-
-//         {/* 8 & 9 */}
-//         <Section title="8. Disclaimers & Limitation of Liability" icon={Shield}>
-//           <P>
-//             The Platform is provided “as is.” To the fullest extent permitted by law, BlinqFix disclaims warranties of
-//             merchantability, fitness, and non-infringement, and is not liable for indirect or consequential damages.
-//           </P>
-//         </Section>
-
-//         <Section title="9. Changes to Terms" icon={FileText}>
-//           <P>We may update these Terms from time to time. Updates will be posted with an effective date. Continued use constitutes acceptance.</P>
-//         </Section>
-
-//         {/* Notice */}
-//         <div className="notice">
-//           <div className="notice-title">
-//             <AlertTriangle size={20} color="#f87171" />
-//             <span>Important Notice</span>
-//           </div>
-//           <div className="notice-text">
-//             By using the BlinqFix platform, you acknowledge you’ve read and agree to these Terms and the SMS &amp; Phone
-//             Number Privacy Policy.
-//           </div>
-//         </div>
-//       </div>
-
-//       {/* Simple footer (same-file styles) */}
-//       <footer className="footer">
-//         <div>
-//           <Link to="/legal/terms">Terms &amp; Conditions</Link>
-//           · <Link to="/legal/privacy">Privacy Policy</Link>
-//           · <Link to="/help/faq">FAQ</Link>
-//           · <a href="mailto:support@blinqfix.com?subject=Need%20Help&body=Hi,%20I%20need%20assistance%20with...">Help</a>
-//         </div>
-//         <div className="copy">© {new Date().getFullYear()} BlinqFix</div>
-//       </footer>
-//     </div>
-//   );
-// }
-
-
 import React, { useState } from "react";
 import { useNavigate, Link } from "react-router-dom";
 import {
@@ -355,6 +16,7 @@ import {
   DollarSign,
   Info
 } from "lucide-react";
+import { applyPageSeo } from "../utils/seo";
 
 /* ============================ STYLES ============================ */
 const styles = {
@@ -703,6 +365,39 @@ const FooterLink = ({ to, children }) => {
 export default function ProviderTermsAndAgreement() {
   const navigate = useNavigate();
   const [backButtonHovered, setBackButtonHovered] = useState(false);
+
+  React.useEffect(() => {
+    return applyPageSeo({
+      title: "Terms and Conditions | BlinqFix",
+      description:
+        "Read the BlinqFix terms and conditions for customers and service professionals, including platform rules, payments, disputes, and responsibilities.",
+      canonical: "https://www.blinqfix.com/termsandconditions",
+      og: {
+        url: "https://www.blinqfix.com/termsandconditions",
+        title: "Terms and Conditions | BlinqFix",
+        description:
+          "Terms of use for customers and service pros using the BlinqFix platform.",
+      },
+      twitter: {
+        title: "BlinqFix Terms and Conditions",
+        description:
+          "Platform terms covering usage, payments, service provider obligations, and customer responsibilities.",
+      },
+      schema: [
+        {
+          id: "blinqfix-terms-schema",
+          data: {
+            "@context": "https://schema.org",
+            "@type": "WebPage",
+            name: "BlinqFix Terms and Conditions",
+            url: "https://www.blinqfix.com/termsandconditions",
+            description:
+              "Terms and conditions page for customers and service professionals using BlinqFix.",
+          },
+        },
+      ],
+    });
+  }, []);
 
   return (
     <div style={styles.container}>

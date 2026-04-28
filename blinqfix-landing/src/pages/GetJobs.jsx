@@ -1,3559 +1,630 @@
-// import React from "react";
-
-// const serviceProStyles = `
-// :root {
-//   /* Brand Colors */
-//   --bf-bg: #020617;
-//   --bf-bg-secondary: #0f172a;
-//   --bf-primary: #06b6d4; /* Cyan 500 */
-//   --bf-primary-glow: #06b6d4;
-//   --bf-accent: #f97316; /* Orange */
-
-//   /* Text Colors */
-//   --bf-text-main: #f8fafc;
-//   --bf-text-muted: #94a3b8;
-//   --bf-text-dim: #475569;
-
-//   /* Borders & Glass */
-//   --bf-border: rgba(148, 163, 184, 0.1);
-//   --bf-glass: rgba(15, 23, 42, 0.6);
-//   --bf-glass-highlight: rgba(255, 255, 255, 0.03);
-
-//   /* Layout */
-//   --bf-radius: 12px;
-//   --bf-container: 1120px;
-// }
-
-// /* BASE */
-
-// .bf-pro-page {
-//   background-color: var(--bf-bg);
-//   color: var(--bf-text-main);
-//   font-family: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
-//     sans-serif;
-//   min-height: 100vh;
-//   padding: 0 1.5rem;
-//   overflow-x: hidden;
-//   position: relative;
-//   line-height: 1.5;
-// }
-
-// /* Background Ambient Glows */
-
-// .bf-bg-glow {
-//   position: absolute;
-//   width: 500px;
-//   height: 500px;
-//   border-radius: 50%;
-//   filter: blur(100px);
-//   opacity: 0.15;
-//   z-index: 0;
-//   pointer-events: none;
-// }
-
-// .bf-bg-glow-1 {
-//   top: -100px;
-//   left: -100px;
-//   background: var(--bf-primary);
-// }
-
-// .bf-bg-glow-2 {
-//   top: 40%;
-//   right: -200px;
-//   background: #3b82f6;
-// }
-
-// /* Sections Wrapper */
-
-// .bf-pro-hero,
-// .bf-section,
-// .bf-cta-final,
-// .bf-footer {
-//   max-width: var(--bf-container);
-//   margin: 0 auto;
-//   position: relative;
-//   z-index: 1;
-// }
-
-// /* --- HERO SECTION --- */
-
-// .bf-pro-hero {
-//   padding: 5rem 0 4rem;
-//   display: grid;
-//   gap: 3rem;
-//   align-items: center;
-// }
-
-// @media (min-width: 968px) {
-//   .bf-pro-hero {
-//     grid-template-columns: 1.2fr 0.8fr;
-//     padding: 6rem 0 4.5rem;
-//   }
-// }
-
-// .bf-pro-hero-content {
-//   max-width: 34rem;
-// }
-
-// /* Badges */
-
-// .bf-pro-badge-wrapper {
-//   display: flex;
-//   align-items: center;
-//   gap: 1rem;
-//   flex-wrap: wrap;
-//   margin-bottom: 1.5rem;
-//   font-size: 0.85rem;
-//   font-weight: 500;
-// }
-
-// .bf-pro-badge {
-//   display: inline-flex;
-//   align-items: center;
-//   gap: 0.5rem;
-//   padding: 0.4rem 0.8rem;
-//   border-radius: 100px;
-//   background: rgba(6, 182, 212, 0.1);
-//   color: #22d3ee;
-//   border: 1px solid rgba(6, 182, 212, 0.2);
-// }
-
-// .bf-pro-badge-text {
-//   color: var(--bf-text-muted);
-// }
-
-// .bf-pulse {
-//   width: 8px;
-//   height: 8px;
-//   background: #22d3ee;
-//   border-radius: 50%;
-//   box-shadow: 0 0 0 0 rgba(34, 211, 238, 0.7);
-//   animation: pulse-cyan 2s infinite;
-// }
-
-// @keyframes pulse-cyan {
-//   0% {
-//     transform: scale(0.95);
-//     box-shadow: 0 0 0 0 rgba(34, 211, 238, 0.7);
-//   }
-//   70% {
-//     transform: scale(1);
-//     box-shadow: 0 0 0 6px rgba(34, 211, 238, 0);
-//   }
-//   100% {
-//     transform: scale(0.95);
-//     box-shadow: 0 0 0 0 rgba(34, 211, 238, 0);
-//   }
-// }
-
-// /* Hero text */
-
-// .bf-hero-title {
-//   font-size: clamp(2.5rem, 5vw, 4rem);
-//   line-height: 1.1;
-//   font-weight: 800;
-//   letter-spacing: -0.03em;
-//   margin-bottom: 1.2rem;
-// }
-
-// .text-gradient {
-//   background: linear-gradient(135deg, #ffffff 0%, #94a3b8 100%);
-//   -webkit-background-clip: text;
-//   -webkit-text-fill-color: transparent;
-// }
-
-// .bf-pro-subhead {
-//   font-size: 1.125rem;
-//   color: var(--bf-text-muted);
-//   max-width: 540px;
-//   margin-bottom: 2rem;
-// }
-
-// /* Feature List */
-
-// .bf-pro-feature-list {
-//   list-style: none;
-//   padding: 0;
-//   margin: 2rem 0 0;
-//   display: flex;
-//   flex-direction: column;
-//   gap: 0.75rem;
-// }
-
-// .bf-pro-feature-list li {
-//   display: flex;
-//   align-items: center;
-//   gap: 0.75rem;
-//   color: var(--bf-text-main);
-//   font-weight: 500;
-// }
-
-// /* Icon sizes */
-
-// .icon-check {
-//   width: 20px;
-//   height: 20px;
-//   color: var(--bf-primary);
-// }
-
-// .icon-x {
-//   width: 20px;
-//   height: 20px;
-//   color: #ef4444;
-// }
-
-// .icon-bolt {
-//   width: 24px;
-//   height: 24px;
-//   color: #eab308;
-// }
-
-// /* Buttons */
-
-// .bf-pro-cta-row {
-//   display: flex;
-//   gap: 1rem;
-//   flex-wrap: wrap;
-//   margin-bottom: 0.75rem;
-// }
-
-// .bf-pro-btn {
-//   display: inline-flex;
-//   align-items: center;
-//   justify-content: center;
-//   padding: 0.8rem 1.6rem;
-//   border-radius: 99px;
-//   font-weight: 600;
-//   text-decoration: none;
-//   transition: all 0.2s ease;
-// }
-
-// .bf-pro-btn-primary {
-//   background: var(--bf-text-main);
-//   color: var(--bf-bg);
-// }
-
-// .bf-pro-btn-primary:hover {
-//   transform: translateY(-2px);
-//   box-shadow: 0 0 20px rgba(255, 255, 255, 0.3);
-// }
-
-// .bf-pro-btn-secondary {
-//   background: rgba(255, 255, 255, 0.05);
-//   color: var(--bf-text-main);
-//   border: 1px solid var(--bf-border);
-// }
-
-// .bf-pro-btn-secondary:hover {
-//   background: rgba(255, 255, 255, 0.1);
-// }
-
-// /* =========================
-//    APP STORE BADGES + QR
-//    ======================= */
-
-// .bf-app-download {
-//   margin-top: 2rem;
-//   padding-top: 1.5rem;
-//   border-top: 1px dashed var(--bf-border);
-//   display: flex;
-//   flex-direction: column;
-//   align-items: center;
-//   text-align: center;
-// }
-
-// .bf-app-label {
-//   font-size: 0.85rem;
-//   color: var(--bf-text-dim);
-//   margin-bottom: 0.9rem;
-//   text-transform: uppercase;
-//   letter-spacing: 0.06em;
-//   font-weight: 600;
-// }
-
-// /* Row: Apple column + Google column */
-// .bf-badges {
-//   display: flex;
-//   justify-content: center;
-//   align-items: flex-start;
-//   gap: 4rem; /* more separation */
-//   flex-wrap: nowrap;
-// }
-
-// /* Each store column */
-// .bf-store-column {
-//   display: flex;
-//   flex-direction: column;
-//   align-items: center;
-//   max-width: 260px; /* a bit wider */
-// }
-
-// /* Store badges */
-// .bf-store-link {
-//   display: inline-flex;
-//   height: 48px; /* larger badges */
-//   transition: opacity 0.2s, transform 0.15s;
-// }
-
-// .bf-store-link img {
-//   height: 100%;
-//   width: auto;
-//   display: block;
-// }
-
-// .bf-store-link:hover {
-//   opacity: 0.85;
-//   transform: translateY(-1px);
-// }
-
-// /* QR IMAGE – slightly larger */
-// .bf-qr-image {
-//   margin-top: 0.5rem;
-//   width: 90px;
-//   height: 90px;
-//   border-radius: 10px;
-//   background: #ffffff;
-//   padding: 3px;
-//   box-shadow: 0 4px 14px rgba(0, 0, 0, 0.35);
-//   object-fit: contain;
-// }
-
-// /* Placeholder for future Google QR – same footprint */
-// .bf-qr-placeholder {
-//   margin-top: 0.5rem;
-//   width: 90px;
-//   height: 90px;
-//   border-radius: 10px;
-//   border: 1px dashed var(--bf-border);
-//   display: flex;
-//   align-items: center;
-//   justify-content: center;
-//   font-size: 0.75rem;
-//   color: var(--bf-text-dim);
-//   opacity: 0.9;
-// }
-
-// /* Captions */
-// .bf-qr-caption {
-//   font-size: 0.75rem;
-//   text-transform: uppercase;
-//   letter-spacing: 0.08em;
-//   color: var(--bf-text-muted);
-//   margin-top: 0.35rem;
-// }
-
-// .bf-qr-caption-muted {
-//   color: var(--bf-text-dim);
-// }
-
-// /* --- HERO RIGHT (GLASS CARD) --- */
-
-// .bf-pro-hero-visual {
-//   display: flex;
-//   justify-content: center;
-// }
-
-// .bf-glass-card {
-//   background: linear-gradient(
-//     145deg,
-//     rgba(30, 41, 59, 0.7),
-//     rgba(15, 23, 42, 0.8)
-//   );
-//   backdrop-filter: blur(12px);
-//   border: 1px solid var(--bf-border);
-//   border-top: 1px solid rgba(255, 255, 255, 0.1);
-//   border-radius: 20px;
-//   padding: 2rem;
-//   box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
-//   position: relative;
-// }
-
-// .bf-rotate-card {
-//   transform: rotate(-2deg);
-//   transition: transform 0.3s ease;
-// }
-
-// .bf-rotate-card:hover {
-//   transform: rotate(0deg);
-// }
-
-// .bf-card-header {
-//   display: flex;
-//   gap: 1rem;
-//   align-items: center;
-//   margin-bottom: 1.5rem;
-// }
-
-// .icon-box {
-//   width: 48px;
-//   height: 48px;
-//   background: rgba(234, 179, 8, 0.1);
-//   border-radius: 12px;
-//   display: flex;
-//   align-items: center;
-//   justify-content: center;
-//   color: #eab308;
-// }
-
-// .bf-card-header h3 {
-//   margin: 0;
-//   font-size: 1.1rem;
-// }
-
-// .bf-card-header p {
-//   margin: 0;
-//   color: var(--bf-text-muted);
-//   font-size: 0.9rem;
-// }
-
-// .bf-card-divider {
-//   height: 1px;
-//   background: var(--bf-border);
-//   margin: 0 -2rem 1.5rem;
-// }
-
-// .bf-checklist {
-//   list-style: none;
-//   padding: 0;
-//   margin: 0;
-//   display: flex;
-//   flex-direction: column;
-//   gap: 1rem;
-// }
-
-// .bf-checklist li {
-//   display: flex;
-//   align-items: center;
-//   gap: 0.75rem;
-//   color: var(--bf-text-muted);
-//   font-size: 0.95rem;
-// }
-
-// .bf-checklist strong {
-//   color: var(--bf-text-main);
-// }
-
-// .bf-card-footer {
-//   margin-top: 1.5rem;
-//   font-size: 0.8rem;
-//   color: var(--bf-text-dim);
-//   display: flex;
-//   align-items: center;
-//   gap: 0.5rem;
-// }
-
-// .bf-status-dot {
-//   width: 6px;
-//   height: 6px;
-//   background: #22c55e;
-//   border-radius: 50%;
-//   box-shadow: 0 0 10px #22c55e;
-// }
-
-// /* --- SECTIONS GENERAL --- */
-
-// .bf-section {
-//   margin-bottom: 5rem;
-//   padding-top: 2rem;
-// }
-
-// .bf-section-header {
-//   text-align: center;
-//   margin-bottom: 3rem;
-// }
-
-// .bf-section-header h2 {
-//   font-size: 2rem;
-//   margin-bottom: 0.5rem;
-// }
-
-// .bf-section-header p {
-//   color: var(--bf-text-muted);
-// }
-
-// /* --- STEPS --- */
-
-// .bf-grid-steps {
-//   display: grid;
-//   grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-//   gap: 2rem;
-// }
-
-// .bf-step-card {
-//   background: var(--bf-bg-secondary);
-//   border: 1px solid var(--bf-border);
-//   padding: 2rem;
-//   border-radius: 16px;
-//   transition: border-color 0.2s;
-// }
-
-// .bf-step-card:hover {
-//   border-color: rgba(6, 182, 212, 0.3);
-// }
-
-// .bf-step-num {
-//   font-size: 3rem;
-//   font-weight: 800;
-//   color: rgba(255, 255, 255, 0.15);
-//   line-height: 1;
-//   margin-bottom: 0.5rem;
-// }
-
-// .bf-step-card h3 {
-//   margin-bottom: 0.75rem;
-//   color: var(--bf-primary);
-// }
-
-// .bf-step-card p {
-//   font-size: 0.95rem;
-//   color: var(--bf-text-muted);
-// }
-
-// /* --- TICKETS (EARNINGS) --- */
-
-// .bf-grid-tickets {
-//   display: grid;
-//   grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-//   gap: 1.5rem;
-// }
-
-// .bf-ticket-card {
-//   background: #182030;
-//   border: 1px solid var(--bf-border);
-//   border-radius: 16px;
-//   padding: 1.5rem;
-//   position: relative;
-//   display: flex;
-//   flex-direction: column;
-// }
-
-// .bf-ticket-highlight {
-//   border-color: rgba(249, 115, 22, 0.4);
-//   background: radial-gradient(
-//       circle at top right,
-//       rgba(249, 115, 22, 0.1),
-//       transparent 60%
-//     ),
-//     #182030;
-// }
-
-// .bf-ticket-badge {
-//   position: absolute;
-//   top: -10px;
-//   right: 20px;
-//   background: #f97316;
-//   color: white;
-//   font-size: 0.7rem;
-//   font-weight: 700;
-//   text-transform: uppercase;
-//   padding: 0.2rem 0.6rem;
-//   border-radius: 4px;
-// }
-
-// .bf-ticket-header {
-//   display: flex;
-//   justify-content: space-between;
-//   margin-bottom: 1rem;
-// }
-
-// .bf-tag {
-//   font-size: 0.75rem;
-//   font-weight: 600;
-//   padding: 0.2rem 0.5rem;
-//   border-radius: 4px;
-// }
-
-// .bf-tag-hvac {
-//   background: rgba(34, 211, 238, 0.15);
-//   color: #22d3ee;
-// }
-
-// .bf-tag-plumbing {
-//   background: rgba(59, 130, 246, 0.15);
-//   color: #60a5fa;
-// }
-
-// .bf-tag-elec {
-//   background: rgba(234, 179, 8, 0.15);
-//   color: #facc15;
-// }
-
-// .bf-time {
-//   font-size: 0.8rem;
-//   color: var(--bf-text-dim);
-// }
-
-// .bf-ticket-card h3 {
-//   font-size: 1.1rem;
-//   margin: 0 0 0.5rem;
-// }
-
-// .bf-ticket-desc {
-//   font-size: 0.9rem;
-//   color: var(--bf-text-muted);
-//   margin-bottom: 1.5rem;
-//   flex-grow: 1;
-// }
-
-// .bf-ticket-price {
-//   background: rgba(0, 0, 0, 0.3);
-//   padding: 0.75rem;
-//   border-radius: 8px;
-//   display: flex;
-//   justify-content: space-between;
-//   align-items: center;
-// }
-
-// .bf-ticket-price span {
-//   font-size: 0.8rem;
-//   color: var(--bf-text-muted);
-// }
-
-// .bf-ticket-price strong {
-//   color: #22c55e;
-//   font-size: 1.1rem;
-// }
-
-// /* --- COMPARISON --- */
-
-// .bf-section-compare {
-//   margin-bottom: 4rem;
-// }
-
-// .bf-compare-grid {
-//   display: grid;
-//   grid-template-columns: 1fr;
-//   border-radius: 20px;
-//   overflow: hidden;
-//   border: 1px solid var(--bf-border);
-// }
-
-// @media (min-width: 768px) {
-//   .bf-compare-grid {
-//     grid-template-columns: 1fr 1fr;
-//   }
-// }
-
-// .bf-compare-col {
-//   padding: 3rem 2rem;
-// }
-
-// .bf-compare-bad {
-//   background: rgba(15, 23, 42, 0.6);
-// }
-
-// .bf-compare-good {
-//   background: rgba(6, 182, 212, 0.05);
-//   position: relative;
-// }
-
-// .bf-compare-good::before {
-//   content: "";
-//   position: absolute;
-//   top: 0;
-//   left: 0;
-//   width: 100%;
-//   height: 4px;
-//   background: var(--bf-primary);
-// }
-
-// .bf-compare-col h3 {
-//   margin-top: 0;
-//   margin-bottom: 1.5rem;
-//   font-size: 1.25rem;
-// }
-
-// .bf-compare-col ul {
-//   list-style: none;
-//   padding: 0;
-//   display: flex;
-//   flex-direction: column;
-//   gap: 1rem;
-// }
-
-// .bf-compare-col li {
-//   display: flex;
-//   align-items: center;
-//   gap: 1rem;
-//   color: var(--bf-text-muted);
-// }
-
-// /* --- FINAL CTA & FOOTER --- */
-
-// .bf-cta-final {
-//   text-align: center;
-//   padding: 4rem 1rem;
-//   border-top: 1px solid var(--bf-border);
-// }
-
-// .bf-cta-content h2 {
-//   font-size: 2rem;
-//   margin-bottom: 1rem;
-// }
-
-// .bf-cta-content p {
-//   color: var(--bf-text-muted);
-//   margin-bottom: 2rem;
-// }
-
-// .bf-footer {
-//   text-align: center;
-//   padding: 3rem 0;
-//   border-top: 1px solid var(--bf-border);
-//   font-size: 0.9rem;
-//   color: var(--bf-text-dim);
-// }
-
-// /* -------------------------
-//    RESPONSIVE SMALL SCREENS
-//    ------------------------ */
-
-// @media (max-width: 640px) {
-//   .bf-pro-page {
-//     padding: 0 1rem;
-//   }
-
-//   .bf-hero-title {
-//     font-size: 2.3rem;
-//   }
-
-//   .bf-section-header {
-//     margin-bottom: 2.2rem;
-//   }
-
-//   .bf-compare-col {
-//     padding: 2.3rem 1.6rem;
-//   }
-
-//   .bf-badges {
-//     flex-wrap: wrap;
-//     gap: 1.5rem;
-//   }
-
-//   .bf-store-link {
-//     height: 40px; /* slightly smaller on phones */
-//   }
-
-//   .bf-qr-image,
-//   .bf-qr-placeholder {
-//     width: 70px;
-//     height: 70px;
-//   }
-// }
-// `;
-
-// // Reusable Icon Components
-// const CheckIcon = () => (
-//   <svg
-//     className="icon-check"
-//     viewBox="0 0 24 24"
-//     fill="none"
-//     stroke="currentColor"
-//     strokeWidth="3"
-//     strokeLinecap="round"
-//     strokeLinejoin="round"
-//   >
-//     <polyline points="20 6 9 17 4 12" />
-//   </svg>
-// );
-
-// const XIcon = () => (
-//   <svg
-//     className="icon-x"
-//     viewBox="0 0 24 24"
-//     fill="none"
-//     stroke="currentColor"
-//     strokeWidth="3"
-//     strokeLinecap="round"
-//     strokeLinejoin="round"
-//   >
-//     <line x1="18" y1="6" x2="6" y2="18" />
-//     <line x1="6" y1="6" x2="18" y2="18" />
-//   </svg>
-// );
-
-// const BoltIcon = () => (
-//   <svg className="icon-bolt" viewBox="0 0 24 24" fill="currentColor" stroke="none">
-//     <path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z" />
-//   </svg>
-// );
-
-// const ServiceProLandingPage = () => {
-//   return (
-//     <>
-//       <style>{serviceProStyles}</style>
-
-//       <main className="bf-pro-page">
-//         {/* BACKGROUND EFFECTS */}
-//         <div className="bf-bg-glow bf-bg-glow-1" />
-//         <div className="bf-bg-glow bf-bg-glow-2" />
-
-//         {/* HERO SECTION */}
-//         <section className="bf-pro-hero">
-//           <div className="bf-pro-hero-content">
-//             <div className="bf-pro-badge-wrapper">
-//               <span className="bf-pro-badge">
-//                 <span className="bf-pulse" />
-//                 Emergency Work Only Miami-Dade & Broward
-//               </span>
-//               <span className="bf-pro-badge-text">
-//             HVAC • Plumbing • Electrical
-//               </span>
-//             </div>
-
-//             <h1 className="bf-hero-title">
-//               More emergency jobs,
-//               <br />
-//               <span className="text-gradient">less wasted leads.</span>
-//             </h1>
-
-//             <p className="bf-pro-subhead">
-//               BlinqFix sends you high-intent emergency on-demand customers ready to book
-//               now. Stop fighting over tire-kickers. You choose the jobs, you
-//               keep the profit.
-//             </p>
-
-//             <div className="bf-pro-cta-row">
-//               <a className="bf-pro-btn bf-pro-btn-primary" href="#app-download">
-//                 Get the app to join
-//                 <svg
-//                   width="16"
-//                   height="16"
-//                   viewBox="0 0 24 24"
-//                   fill="none"
-//                   stroke="currentColor"
-//                   strokeWidth="2.5"
-//                   strokeLinecap="round"
-//                   strokeLinejoin="round"
-//                   style={{ marginLeft: 8 }}
-//                 >
-//                   <path d="M5 12h14" />
-//                   <path d="m12 5 7 7-7 7" />
-//                 </svg>
-//               </a>
-//               <a className="bf-pro-btn bf-pro-btn-secondary" href="#how-it-works">
-//                 How it works
-//               </a>
-//             </div>
-
-//             <ul className="bf-pro-feature-list">
-//               <li>
-//                 <CheckIcon /> Real emergency tickets, no junk leads.
-//               </li>
-//               <li>
-//                 <CheckIcon /> See photos, address &amp; issue upfront.
-//               </li>
-//               <li>
-//                 <CheckIcon /> Built for serious trade businesses.
-//               </li>
-//             </ul>
-
-//             {/* APP STORE BADGES + QR */}
-//             <div id="app-download" className="bf-app-download">
-//               <p className="bf-app-label">Run your business from the field:</p>
-
-//               <div className="bf-badges">
-//                 {/* APP STORE + QR */}
-//                 <div className="bf-store-column">
-//                   <a
-//                     href="https://apps.apple.com/us/app/blinqfix-app/id6747390132"
-//                     target="_blank"
-//                     rel="noopener noreferrer"
-//                     className="bf-store-link"
-//                   >
-//                     <img
-//                       src="https://developer.apple.com/assets/elements/badges/download-on-the-app-store.svg"
-//                       alt="Download on the App Store"
-//                     />
-//                   </a>
-
-//                   <img
-//                     src="/blinqfix_app_qr.png"
-//                     alt="Scan to download BlinqFix on the App Store"
-//                     className="bf-qr-image"
-//                   />
-//                   <span className="bf-qr-caption">
-//                     Scan with your iPhone
-//                   </span>
-//                 </div>
-
-//                 {/* GOOGLE PLAY + COMING SOON (QR SLOT READY) */}
-//                 <div className="bf-store-column">
-//                   <a
-//                     href="https://play.google.com/store"
-//                     target="_blank"
-//                     rel="noopener noreferrer"
-//                     className="bf-store-link"
-//                   >
-//                     <img
-//                       src="https://upload.wikimedia.org/wikipedia/commons/thumb/7/78/Google_Play_Store_badge_EN.svg/250px-Google_Play_Store_badge_EN.svg.png"
-//                       alt="Get it on Google Play"
-//                     />
-//                   </a>
-
-//                   <div className="bf-qr-placeholder">ANDROID APP COMING SOON</div>
-//                   <span className="bf-qr-caption bf-qr-caption-muted">
-                    
-//                   </span>
-//                 </div>
-//               </div>
-//             </div>
-//           </div>
-
-//           {/* HERO RIGHT: VALUE CARD */}
-//           <aside className="bf-pro-hero-visual">
-//             <div className="bf-glass-card bf-rotate-card">
-//               <div className="bf-card-header">
-//                 <div className="icon-box">
-//                   <BoltIcon />
-//                 </div>
-//                 <div>
-//                   <h3>Built for Trades</h3>
-//                   <p>Designed for the field, not the office.</p>
-//                 </div>
-//               </div>
-//               <div className="bf-card-divider" />
-//               <ul className="bf-checklist">
-//                 <li>
-//                   <CheckIcon />{" "}
-//                   <span>
-//                     <strong>Zero</strong> upfront lead costs
-//                   </span>
-//                 </li>
-//                 <li>
-//                   <CheckIcon />{" "}
-//                   <span>
-//                     <strong>Exclusive</strong> zip code targeting
-//                   </span>
-//                 </li>
-//                 <li>
-//                   <CheckIcon />{" "}
-//                   <span>
-//                     <strong>Instant</strong> payout options
-//                   </span>
-//                 </li>
-//               </ul>
-//               <div className="bf-card-footer">
-//                 <span className="bf-status-dot" /> Live in Miami-Dade
-//                 &amp; Broward
-//               </div>
-//             </div>
-//           </aside>
-//         </section>
-
-//         {/* HOW IT WORKS */}
-//         <section id="how-it-works" className="bf-section">
-//           <div className="bf-section-header">
-//             <h2>How BlinqFix works</h2>
-//             <p>A streamlined workflow designed to get you paid faster.</p>
-//           </div>
-
-//           <div className="bf-grid-steps">
-//             <div className="bf-step-card">
-//               <div className="bf-step-num">1</div>
-//               <h3>Create Profile</h3>
-//               <p>
-//                 Upload your license, insurance, and logo. Tell us your trade
-//                 and set your coverage zones.
-//               </p>
-//             </div>
-//             <div className="bf-step-card">
-//               <div className="bf-step-num">2</div>
-//               <h3>Set Schedule</h3>
-//               <p>
-//                 Toggle your availability for emergency calls. Nights, weekends,
-//                 or 24/7 — you control the flow.
-//               </p>
-//             </div>
-//             <div className="bf-step-card">
-//               <div className="bf-step-num">3</div>
-//               <h3>Accept Jobs</h3>
-//               <p>
-//                 Review the issue, photos, and price. Accept the ticket
-//                 instantly and head to the site.
-//               </p>
-//             </div>
-//           </div>
-//         </section>
-
-//         {/* LIVE TICKETS PREVIEW */}
-//         <section className="bf-section">
-//           <div className="bf-section-header">
-//             <h2>Real tickets. Real revenue.</h2>
-//             <p>No bidding wars. Here is what typical emergency tickets look like.</p>
-//           </div>
-
-//           <div className="bf-grid-tickets">
-//             {/* Ticket 1 */}
-//             <article className="bf-ticket-card">
-//               <div className="bf-ticket-header">
-//                 <span className="bf-tag bf-tag-hvac">HVAC</span>
-//                 <span className="bf-time">8:45pm • Miami</span>
-//               </div>
-//               <h3>AC System Failure / No Cool</h3>
-//               <p className="bf-ticket-desc">
-//                 Customer reports unit freezing up. Photos of condenser included.
-//               </p>
-//               <div className="bf-ticket-price">
-//                 <span>Est. Payout</span>
-//                 <strong>$275 – $450</strong>
-//               </div>
-//             </article>
-
-//             {/* Ticket 2 */}
-//             <article className="bf-ticket-card bf-ticket-highlight">
-//               <div className="bf-ticket-badge">High Demand</div>
-//               <div className="bf-ticket-header">
-//                 <span className="bf-tag bf-tag-plumbing">Plumbing</span>
-//                 <span className="bf-time">7:10pm • Ft. Lauderdale</span>
-//               </div>
-//               <h3>Burst Pipe / Active Leak</h3>
-//               <p className="bf-ticket-desc">
-//                 Main water shutoff failed. Flooding in kitchen. Urgent response
-//                 needed.
-//               </p>
-//               <div className="bf-ticket-price">
-//                 <span>Est. Payout</span>
-//                 <strong>$350 – $650</strong>
-//               </div>
-//             </article>
-
-//             {/* Ticket 3 */}
-//             <article className="bf-ticket-card">
-//               <div className="bf-ticket-header">
-//                 <span className="bf-tag bf-tag-elec">Electrical</span>
-//                 <span className="bf-time">3:30pm • Hollywood</span>
-//               </div>
-//               <h3>Breaker Trips / Burning Smell</h3>
-//               <p className="bf-ticket-desc">
-//                 Panel is hot to touch. Partial power outage in master bed.
-//               </p>
-//               <div className="bf-ticket-price">
-//                 <span>Est. Payout</span>
-//                 <strong>$250 – $400</strong>
-//               </div>
-//             </article>
-//           </div>
-//         </section>
-
-//         {/* COMPARISON */}
-//         <section className="bf-section bf-section-compare">
-//           <div className="bf-compare-grid">
-//             <div className="bf-compare-col bf-compare-bad">
-//               <h3>Typical Lead Sites</h3>
-//               <ul>
-//                 <li>
-//                   <XIcon /> Pay upfront for shared leads
-//                 </li>
-//                 <li>
-//                   <XIcon /> Compete with 5 other pros
-//                 </li>
-//                 <li>
-//                   <XIcon /> Tire-kickers &amp; price shoppers
-//                 </li>
-//                 <li>
-//                   <XIcon /> Complicated refunds
-//                 </li>
-//               </ul>
-//             </div>
-//             <div className="bf-compare-col bf-compare-good">
-//               <h3>The BlinqFix Way</h3>
-//               <ul>
-//                 <li>
-//                   <CheckIcon /> Join for Free or Secure a zipcode
-//                 </li>
-//                 <li>
-//                   <CheckIcon /> Accept job assignment first, it&apos;s yours
-//                 </li>
-//                 <li>
-//                   <CheckIcon /> High-intent emergency needs
-//                 </li>
-//                 <li>
-//                   <CheckIcon /> Automated weekly payouts
-//                 </li>
-//               </ul>
-//             </div>
-//           </div>
-//         </section>
-
-//         {/* CTA */}
-//         <section className="bf-cta-final">
-//           <div className="bf-cta-content">
-//             <h2>Ready to fill your schedule?</h2>
-//             <p>Join the network of top-rated pros in South Florida.</p>
-//             <a className="bf-pro-btn bf-pro-btn-primary" href="#app-download">
-//               Apply Now
-//             </a>
-//           </div>
-//         </section>
-
-//         <footer className="bf-footer">
-//           <p>© {new Date().getFullYear()} BlinqFix. Built for the trades.</p>
-//         </footer>
-//       </main>
-//     </>
-//   );
-// };
-
 // export default ServiceProLandingPage;
 
-
-// import React from "react";
-
-// const serviceProStyles = `
-// :root {
-//   /* Brand Colors */
-//   --bf-bg: #020617;
-//   --bf-bg-secondary: #0f172a;
-//   --bf-primary: #06b6d4; /* Cyan 500 */
-//   --bf-primary-glow: #06b6d4;
-//   --bf-accent: #f97316; /* Orange */
-//   --bf-gold: #facc15;
-
-//   /* Text Colors */
-//   --bf-text-main: #f8fafc;
-//   --bf-text-muted: #94a3b8;
-//   --bf-text-dim: #475569;
-
-//   /* Borders & Glass */
-//   --bf-border: rgba(148, 163, 184, 0.1);
-//   --bf-glass: rgba(15, 23, 42, 0.6);
-//   --bf-glass-highlight: rgba(255, 255, 255, 0.03);
-
-//   /* Layout */
-//   --bf-radius: 12px;
-//   --bf-container: 1120px;
-// }
-
-// /* BASE */
-
-// .bf-pro-page {
-//   background-color: var(--bf-bg);
-//   color: var(--bf-text-main);
-//   font-family: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
-//     sans-serif;
-//   min-height: 100vh;
-//   padding: 0 1.5rem;
-//   overflow-x: hidden;
-//   position: relative;
-//   line-height: 1.5;
-// }
-
-// /* Background Ambient Glows */
-
-// .bf-bg-glow {
-//   position: absolute;
-//   width: 500px;
-//   height: 500px;
-//   border-radius: 50%;
-//   filter: blur(100px);
-//   opacity: 0.15;
-//   z-index: 0;
-//   pointer-events: none;
-// }
-
-// .bf-bg-glow-1 {
-//   top: -100px;
-//   left: -100px;
-//   background: var(--bf-primary);
-// }
-
-// .bf-bg-glow-2 {
-//   top: 40%;
-//   right: -200px;
-//   background: #3b82f6;
-// }
-
-// /* Sections Wrapper */
-
-// .bf-pro-hero,
-// .bf-section,
-// .bf-cta-final,
-// .bf-footer {
-//   max-width: var(--bf-container);
-//   margin: 0 auto;
-//   position: relative;
-//   z-index: 1;
-// }
-
-// /* --- HERO SECTION --- */
-
-// .bf-pro-hero {
-//   padding: 5rem 0 4rem;
-//   display: grid;
-//   gap: 3rem;
-//   align-items: center;
-// }
-
-// @media (min-width: 968px) {
-//   .bf-pro-hero {
-//     grid-template-columns: 1.2fr 0.8fr;
-//     padding: 6rem 0 4.5rem;
-//   }
-// }
-
-// .bf-pro-hero-content {
-//   max-width: 34rem;
-// }
-
-// /* Badges */
-
-// .bf-pro-badge-wrapper {
-//   display: flex;
-//   align-items: center;
-//   gap: 1rem;
-//   flex-wrap: wrap;
-//   margin-bottom: 1.5rem;
-//   font-size: 0.85rem;
-//   font-weight: 500;
-// }
-
-// .bf-pro-badge {
-//   display: inline-flex;
-//   align-items: center;
-//   gap: 0.5rem;
-//   padding: 0.4rem 0.8rem;
-//   border-radius: 100px;
-//   background: rgba(6, 182, 212, 0.1);
-//   color: #22d3ee;
-//   border: 1px solid rgba(6, 182, 212, 0.2);
-// }
-
-// .bf-pro-badge-text {
-//   color: var(--bf-text-muted);
-// }
-
-// .bf-pulse {
-//   width: 8px;
-//   height: 8px;
-//   background: #22d3ee;
-//   border-radius: 50%;
-//   box-shadow: 0 0 0 0 rgba(34, 211, 238, 0.7);
-//   animation: pulse-cyan 2s infinite;
-// }
-
-// @keyframes pulse-cyan {
-//   0% {
-//     transform: scale(0.95);
-//     box-shadow: 0 0 0 0 rgba(34, 211, 238, 0.7);
-//   }
-//   70% {
-//     transform: scale(1);
-//     box-shadow: 0 0 0 6px rgba(34, 211, 238, 0);
-//   }
-//   100% {
-//     transform: scale(0.95);
-//     box-shadow: 0 0 0 0 rgba(34, 211, 238, 0);
-//   }
-// }
-
-// /* Hero text */
-
-// .bf-hero-title {
-//   font-size: clamp(2.5rem, 5vw, 4rem);
-//   line-height: 1.1;
-//   font-weight: 800;
-//   letter-spacing: -0.03em;
-//   margin-bottom: 1.2rem;
-// }
-
-// .text-gradient {
-//   background: linear-gradient(135deg, #ffffff 0%, #94a3b8 100%);
-//   -webkit-background-clip: text;
-//   -webkit-text-fill-color: transparent;
-// }
-
-// .bf-pro-subhead {
-//   font-size: 1.125rem;
-//   color: var(--bf-text-muted);
-//   max-width: 540px;
-//   margin-bottom: 2rem;
-// }
-
-// /* Feature List */
-
-// .bf-pro-feature-list {
-//   list-style: none;
-//   padding: 0;
-//   margin: 2rem 0 0;
-//   display: flex;
-//   flex-direction: column;
-//   gap: 0.75rem;
-// }
-
-// .bf-pro-feature-list li {
-//   display: flex;
-//   align-items: center;
-//   gap: 0.75rem;
-//   color: var(--bf-text-main);
-//   font-weight: 500;
-// }
-
-// /* Icon sizes */
-
-// .icon-check {
-//   width: 20px;
-//   height: 20px;
-//   color: var(--bf-primary);
-// }
-
-// .icon-x {
-//   width: 20px;
-//   height: 20px;
-//   color: #ef4444;
-// }
-
-// .icon-bolt {
-//   width: 24px;
-//   height: 24px;
-//   color: #eab308;
-// }
-
-// /* Buttons */
-
-// .bf-pro-cta-row {
-//   display: flex;
-//   gap: 1rem;
-//   flex-wrap: wrap;
-//   margin-bottom: 0.75rem;
-// }
-
-// .bf-pro-btn {
-//   display: inline-flex;
-//   align-items: center;
-//   justify-content: center;
-//   padding: 0.8rem 1.6rem;
-//   border-radius: 99px;
-//   font-weight: 600;
-//   text-decoration: none;
-//   transition: all 0.2s ease;
-// }
-
-// .bf-pro-btn-primary {
-//   background: var(--bf-text-main);
-//   color: var(--bf-bg);
-// }
-
-// .bf-pro-btn-primary:hover {
-//   transform: translateY(-2px);
-//   box-shadow: 0 0 20px rgba(255, 255, 255, 0.3);
-// }
-
-// .bf-pro-btn-secondary {
-//   background: rgba(255, 255, 255, 0.05);
-//   color: var(--bf-text-main);
-//   border: 1px solid var(--bf-border);
-// }
-
-// .bf-pro-btn-secondary:hover {
-//   background: rgba(255, 255, 255, 0.1);
-// }
-
-// /* =========================
-//    APP STORE BADGES + QR
-//    ======================= */
-
-// .bf-app-download {
-//   margin-top: 2rem;
-//   padding-top: 1.5rem;
-//   border-top: 1px dashed var(--bf-border);
-//   display: flex;
-//   flex-direction: column;
-//   align-items: center;
-//   text-align: center;
-// }
-
-// .bf-app-label {
-//   font-size: 0.85rem;
-//   color: var(--bf-text-dim);
-//   margin-bottom: 0.9rem;
-//   text-transform: uppercase;
-//   letter-spacing: 0.06em;
-//   font-weight: 600;
-// }
-
-// /* Row: Apple column + Google column */
-// .bf-badges {
-//   display: flex;
-//   justify-content: center;
-//   align-items: flex-start;
-//   gap: 4rem;
-//   flex-wrap: nowrap;
-// }
-
-// /* Each store column */
-// .bf-store-column {
-//   display: flex;
-//   flex-direction: column;
-//   align-items: center;
-//   max-width: 260px;
-// }
-
-// /* Store badges */
-// .bf-store-link {
-//   display: inline-flex;
-//   height: 48px;
-//   transition: opacity 0.2s, transform 0.15s;
-// }
-
-// .bf-store-link img {
-//   height: 100%;
-//   width: auto;
-//   display: block;
-// }
-
-// .bf-store-link:hover {
-//   opacity: 0.85;
-//   transform: translateY(-1px);
-// }
-
-// /* QR IMAGE */
-// .bf-qr-image {
-//   margin-top: 0.5rem;
-//   width: 90px;
-//   height: 90px;
-//   border-radius: 10px;
-//   background: #ffffff;
-//   padding: 3px;
-//   box-shadow: 0 4px 14px rgba(0, 0, 0, 0.35);
-//   object-fit: contain;
-// }
-
-// /* Placeholder for future Google QR */
-// .bf-qr-placeholder {
-//   margin-top: 0.5rem;
-//   width: 90px;
-//   height: 90px;
-//   border-radius: 10px;
-//   border: 1px dashed var(--bf-border);
-//   display: flex;
-//   align-items: center;
-//   justify-content: center;
-//   font-size: 0.75rem;
-//   color: var(--bf-text-dim);
-//   opacity: 0.9;
-// }
-
-// /* Captions */
-// .bf-qr-caption {
-//   font-size: 0.75rem;
-//   text-transform: uppercase;
-//   letter-spacing: 0.08em;
-//   color: var(--bf-text-muted);
-//   margin-top: 0.35rem;
-// }
-
-// .bf-qr-caption-muted {
-//   color: var(--bf-text-dim);
-// }
-
-// /* --- HERO RIGHT (PROMO + GLASS CARD) --- */
-
-// .bf-pro-hero-visual {
-//   display: flex;
-//   flex-direction: column;
-//   gap: 1.65rem;
-//   align-items: center;
-//   margin-top: -50%;
-// }
-
-// /* NEW GOLD PROMO CARD */
-// .bf-promo-card {
-//   width: 100%;
-//   max-width: 360px;
-//   border-radius: 999px;
-//   padding: 0.75rem 1.1rem;
-//   background: radial-gradient(circle at top left, #1e293b 0, #020617 70%);
-//   border: 1px solid rgba(250, 204, 21, 0.6);
-//   box-shadow: 0 18px 40px rgba(250, 204, 21, 0.25);
-//   display: flex;
-//   align-items: center;
-//   gap: 0.8rem;
-// }
-
-// .bf-promo-dot {
-//   width: 12px;
-//   height: 12px;
-//   border-radius: 999px;
-//   background: var(--bf-gold);
-//   box-shadow: 0 0 0 0 rgba(250, 204, 21, 0.75);
-//   animation: promo-pulse 1.9s infinite;
-// }
-
-// @keyframes promo-pulse {
-//   0% {
-//     transform: scale(0.9);
-//     box-shadow: 0 0 0 0 rgba(250, 204, 21, 0.7);
-//   }
-//   70% {
-//     transform: scale(1);
-//     box-shadow: 0 0 0 10px rgba(250, 204, 21, 0);
-//   }
-//   100% {
-//     transform: scale(0.9);
-//     box-shadow: 0 0 0 0 rgba(250, 204, 21, 0);
-//   }
-// }
-
-// .bf-promo-text-main {
-//   font-size: 1.4rem;
-//   font-weight: 600;
-//   color: #fefce8;
-//   text-align: center;
-// }
-
-// .bf-promo-text-main span {
-//   color: var(--bf-gold);
-  
-// }
-
-// .bf-promo-sub {
-//   font-size: 0.75rem;
-//   color: var(--bf-text-muted);
-//   text-align: center;
-// }
-
-// /* GLASS CARD */
-
-// .bf-glass-card {
-//   background: linear-gradient(
-//     145deg,
-//     rgba(30, 41, 59, 0.7),
-//     rgba(15, 23, 42, 0.8)
-//   );
-//   backdrop-filter: blur(12px);
-//   border: 1px solid var(--bf-border);
-//   border-top: 1px solid rgba(255, 255, 255, 0.1);
-//   border-radius: 20px;
-//   padding: 2rem;
-//   box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
-//   position: relative;
-//   max-width: 360px;
-//   width: 100%;
-// }
-
-// .bf-rotate-card {
-//   transform: rotate(-2deg);
-//   transition: transform 0.3s ease;
-// }
-
-// .bf-rotate-card:hover {
-//   transform: rotate(0deg);
-// }
-
-// .bf-card-header {
-//   display: flex;
-//   gap: 1rem;
-//   align-items: center;
-//   margin-bottom: 1.5rem;
-// }
-
-// .icon-box {
-//   width: 48px;
-//   height: 48px;
-//   background: rgba(234, 179, 8, 0.1);
-//   border-radius: 12px;
-//   display: flex;
-//   align-items: center;
-//   justify-content: center;
-//   color: #eab308;
-// }
-
-// .bf-card-header h3 {
-//   margin: 0;
-//   font-size: 1.1rem;
-// }
-
-// .bf-card-header p {
-//   margin: 0;
-//   color: var(--bf-text-muted);
-//   font-size: 0.9rem;
-// }
-
-// .bf-card-divider {
-//   height: 1px;
-//   background: var(--bf-border);
-//   margin: 0 -2rem 1.5rem;
-// }
-
-// .bf-checklist {
-//   list-style: none;
-//   padding: 0;
-//   margin: 0;
-//   display: flex;
-//   flex-direction: column;
-//   gap: 1rem;
-// }
-
-// .bf-checklist li {
-//   display: flex;
-//   align-items: center;
-//   gap: 0.75rem;
-//   color: var(--bf-text-muted);
-//   font-size: 0.95rem;
-// }
-
-// .bf-checklist strong {
-//   color: var(--bf-text-main);
-// }
-
-// .bf-card-footer {
-//   margin-top: 1.5rem;
-//   font-size: 0.8rem;
-//   color: var(--bf-text-dim);
-//   display: flex;
-//   align-items: center;
-//   gap: 0.5rem;
-// }
-
-// .bf-status-dot {
-//   width: 6px;
-//   height: 6px;
-//   background: #22c55e;
-//   border-radius: 50%;
-//   box-shadow: 0 0 10px #22c55e;
-// }
-
-// /* --- SECTIONS GENERAL --- */
-
-// .bf-section {
-//   margin-bottom: 5rem;
-//   padding-top: 2rem;
-// }
-
-// .bf-section-header {
-//   text-align: center;
-//   margin-bottom: 3rem;
-// }
-
-// .bf-section-header h2 {
-//   font-size: 2rem;
-//   margin-bottom: 0.5rem;
-// }
-
-// .bf-section-header p {
-//   color: var(--bf-text-muted);
-// }
-
-// /* --- STEPS --- */
-
-// .bf-grid-steps {
-//   display: grid;
-//   grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-//   gap: 2rem;
-// }
-
-// .bf-step-card {
-//   background: var(--bf-bg-secondary);
-//   border: 1px solid var(--bf-border);
-//   padding: 2rem;
-//   border-radius: 16px;
-//   transition: border-color 0.2s;
-// }
-
-// .bf-step-card:hover {
-//   border-color: rgba(6, 182, 212, 0.3);
-// }
-
-// .bf-step-num {
-//   font-size: 3rem;
-//   font-weight: 800;
-//   color: rgba(255, 255, 255, 0.15);
-//   line-height: 1;
-//   margin-bottom: 0.5rem;
-// }
-
-// .bf-step-card h3 {
-//   margin-bottom: 0.75rem;
-//   color: var(--bf-primary);
-// }
-
-// .bf-step-card p {
-//   font-size: 0.95rem;
-//   color: var(--bf-text-muted);
-// }
-
-// /* --- TICKETS (EARNINGS) --- */
-
-// .bf-grid-tickets {
-//   display: grid;
-//   grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-//   gap: 1.5rem;
-// }
-
-// .bf-ticket-card {
-//   background: #182030;
-//   border: 1px solid var(--bf-border);
-//   border-radius: 16px;
-//   padding: 1.5rem;
-//   position: relative;
-//   display: flex;
-//   flex-direction: column;
-// }
-
-// .bf-ticket-highlight {
-//   border-color: rgba(249, 115, 22, 0.4);
-//   background: radial-gradient(
-//       circle at top right,
-//       rgba(249, 115, 22, 0.1),
-//       transparent 60%
-//     ),
-//     #182030;
-// }
-
-// .bf-ticket-badge {
-//   position: absolute;
-//   top: -10px;
-//   right: 20px;
-//   background: #f97316;
-//   color: white;
-//   font-size: 0.7rem;
-//   font-weight: 700;
-//   text-transform: uppercase;
-//   padding: 0.2rem 0.6rem;
-//   border-radius: 4px;
-// }
-
-// .bf-ticket-header {
-//   display: flex;
-//   justify-content: space-between;
-//   margin-bottom: 1rem;
-// }
-
-// .bf-tag {
-//   font-size: 0.75rem;
-//   font-weight: 600;
-//   padding: 0.2rem 0.5rem;
-//   border-radius: 4px;
-// }
-
-// .bf-tag-hvac {
-//   background: rgba(34, 211, 238, 0.15);
-//   color: #22d3ee;
-// }
-
-// .bf-tag-plumbing {
-//   background: rgba(59, 130, 246, 0.15);
-//   color: #60a5fa;
-// }
-
-// .bf-tag-elec {
-//   background: rgba(234, 179, 8, 0.15);
-//   color: #facc15;
-// }
-
-// .bf-time {
-//   font-size: 0.8rem;
-//   color: var(--bf-text-dim);
-// }
-
-// .bf-ticket-card h3 {
-//   font-size: 1.1rem;
-//   margin: 0 0 0.5rem;
-// }
-
-// .bf-ticket-desc {
-//   font-size: 0.9rem;
-//   color: var(--bf-text-muted);
-//   margin-bottom: 1.5rem;
-//   flex-grow: 1;
-// }
-
-// .bf-ticket-price {
-//   background: rgba(0, 0, 0, 0.3);
-//   padding: 0.75rem;
-//   border-radius: 8px;
-//   display: flex;
-//   justify-content: space-between;
-//   align-items: center;
-// }
-
-// .bf-ticket-price span {
-//   font-size: 0.8rem;
-//   color: var(--bf-text-muted);
-// }
-
-// .bf-ticket-price strong {
-//   color: #22c55e;
-//   font-size: 1.1rem;
-// }
-
-// /* --- COMPARISON --- */
-
-// .bf-section-compare {
-//   margin-bottom: 4rem;
-// }
-
-// .bf-compare-grid {
-//   display: grid;
-//   grid-template-columns: 1fr;
-//   border-radius: 20px;
-//   overflow: hidden;
-//   border: 1px solid var(--bf-border);
-// }
-
-// @media (min-width: 768px) {
-//   .bf-compare-grid {
-//     grid-template-columns: 1fr 1fr;
-//   }
-// }
-
-// .bf-compare-col {
-//   padding: 3rem 2rem;
-// }
-
-// .bf-compare-bad {
-//   background: rgba(15, 23, 42, 0.6);
-// }
-
-// .bf-compare-good {
-//   background: rgba(6, 182, 212, 0.05);
-//   position: relative;
-// }
-
-// .bf-compare-good::before {
-//   content: "";
-//   position: absolute;
-//   top: 0;
-//   left: 0;
-//   width: 100%;
-//   height: 4px;
-//   background: var(--bf-primary);
-// }
-
-// .bf-compare-col h3 {
-//   margin-top: 0;
-//   margin-bottom: 1.5rem;
-//   font-size: 1.25rem;
-// }
-
-// .bf-compare-col ul {
-//   list-style: none;
-//   padding: 0;
-//   display: flex;
-//   flex-direction: column;
-//   gap: 1rem;
-// }
-
-// .bf-compare-col li {
-//   display: flex;
-//   align-items: center;
-//   gap: 1rem;
-//   color: var(--bf-text-muted);
-// }
-
-// /* --- FINAL CTA & FOOTER --- */
-
-// .bf-cta-final {
-//   text-align: center;
-//   padding: 4rem 1rem;
-//   border-top: 1px solid var(--bf-border);
-// }
-
-// .bf-cta-content h2 {
-//   font-size: 2rem;
-//   margin-bottom: 1rem;
-// }
-
-// .bf-cta-content p {
-//   color: var(--bf-text-muted);
-//   margin-bottom: 2rem;
-// }
-
-// .bf-footer {
-//   text-align: center;
-//   padding: 3rem 0;
-//   border-top: 1px solid var(--bf-border);
-//   font-size: 0.9rem;
-//   color: var(--bf-text-dim);
-// }
-
-// /* -------------------------
-//    RESPONSIVE SMALL SCREENS
-//    ------------------------ */
-
-// @media (max-width: 640px) {
-//   .bf-pro-page {
-//     padding: 0 1rem;
-//   }
-
-//   .bf-hero-title {
-//     font-size: 2.3rem;
-//   }
-
-//   .bf-section-header {
-//     margin-bottom: 2.2rem;
-//   }
-
-//   .bf-compare-col {
-//     padding: 2.3rem 1.6rem;
-//   }
-
-//   .bf-badges {
-//     flex-wrap: wrap;
-//     gap: 1.5rem;
-//   }
-
-//   .bf-store-link {
-//     height: 40px;
-//   }
-
-//   .bf-qr-image,
-//   .bf-qr-placeholder {
-//     width: 70px;
-//     height: 70px;
-//   }
-// }
-// `;
-
-// // Reusable Icon Components
-// const CheckIcon = () => (
-//   <svg
-//     className="icon-check"
-//     viewBox="0 0 24 24"
-//     fill="none"
-//     stroke="currentColor"
-//     strokeWidth="3"
-//     strokeLinecap="round"
-//     strokeLinejoin="round"
-//   >
-//     <polyline points="20 6 9 17 4 12" />
-//   </svg>
-// );
-
-// const XIcon = () => (
-//   <svg
-//     className="icon-x"
-//     viewBox="0 0 24 24"
-//     fill="none"
-//     stroke="currentColor"
-//     strokeWidth="3"
-//     strokeLinecap="round"
-//     strokeLinejoin="round"
-//   >
-//     <line x1="18" y1="6" x2="6" y2="18" />
-//     <line x1="6" y1="6" x2="18" y2="18" />
-//   </svg>
-// );
-
-// const BoltIcon = () => (
-//   <svg className="icon-bolt" viewBox="0 0 24 24" fill="currentColor" stroke="none">
-//     <path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z" />
-//   </svg>
-// );
-
-// const ServiceProLandingPage = () => {
-//   return (
-//     <>
-//       <style>{serviceProStyles}</style>
-
-//       <main className="bf-pro-page">
-//         {/* BACKGROUND EFFECTS */}
-//         <div className="bf-bg-glow bf-bg-glow-1" />
-//         <div className="bf-bg-glow bf-bg-glow-2" />
-
-//         {/* HERO SECTION */}
-//         <section className="bf-pro-hero">
-//           <div className="bf-pro-hero-content">
-//             <div className="bf-pro-badge-wrapper">
-//               <span className="bf-pro-badge">
-//                 <span className="bf-pulse" />
-//                 Emergency Work Only - Miami Dade & Broward - HVAC • Plumbing • Electrical
-//               </span>
-//               <span className="bf-pro-badge-text">
-                
-//               </span>
-//             </div>
-
-//             <h1 className="bf-hero-title">
-//               More emergency jobs,
-//               <br />
-//               <span className="text-gradient">less wasted leads.</span>
-//             </h1>
-
-//             <p className="bf-pro-subhead">
-//               BlinqFix sends you high intent emergency on demand customers ready
-//               to book now. Stop fighting over estimates. You accept the jobs,
-//               you keep the profit. 
-//             </p>
-
-//             <div className="bf-pro-cta-row">
-//               <a className="bf-pro-btn bf-pro-btn-primary" href="#app-download">
-//                 Get the app to join
-//                 <svg
-//                   width="16"
-//                   height="16"
-//                   viewBox="0 0 24 24"
-//                   fill="none"
-//                   stroke="currentColor"
-//                   strokeWidth="2.5"
-//                   strokeLinecap="round"
-//                   strokeLinejoin="round"
-//                   style={{ marginLeft: 8 }}
-//                 >
-//                   <path d="M5 12h14" />
-//                   <path d="m12 5 7 7-7 7" />
-//                 </svg>
-//               </a>
-//               <a className="bf-pro-btn bf-pro-btn-secondary" href="#how-it-works">
-//                 How it works
-//               </a>
-//             </div>
-
-//             <ul className="bf-pro-feature-list">
-//               <li>
-//                 <CheckIcon /> Real emergency tickets, no junk leads.
-//               </li>
-//               <li>
-//                 <CheckIcon /> See photos, address &amp; issue upfront.
-//               </li>
-//               <li>
-//                 <CheckIcon /> Built for serious trade businesses.
-//               </li>
-//             </ul>
-
-//             {/* APP STORE BADGES + QR */}
-//             <div id="app-download" className="bf-app-download">
-//               <p className="bf-app-label">Run your business from the field:</p>
-
-//               <div className="bf-badges">
-//                 {/* APP STORE + QR */}
-//                 <div className="bf-store-column">
-//                   <a
-//                     href="https://apps.apple.com/us/app/blinqfix-app/id6747390132"
-//                     target="_blank"
-//                     rel="noopener noreferrer"
-//                     className="bf-store-link"
-//                   >
-//                     <img
-//                       src="https://developer.apple.com/assets/elements/badges/download-on-the-app-store.svg"
-//                       alt="Download on the App Store"
-//                     />
-//                   </a>
-
-//                   <img
-//                     src="/blinqfix_app_qr.png"
-//                     alt="Scan to download BlinqFix on the App Store"
-//                     className="bf-qr-image"
-//                   />
-//                   <span className="bf-qr-caption">
-//                     Scan with your iOS device
-//                   </span>
-//                 </div>
-
-//                 {/* GOOGLE PLAY + COMING SOON (QR SLOT READY) */}
-//                 <div className="bf-store-column">
-//                   <a
-//                     href="https://play.google.com/store/apps/details?id=com.blinqfix.app"
-//                     target="_blank"
-//                     rel="noopener noreferrer"
-//                     className="bf-store-link"
-//                   >
-//                     <img
-//                       src="https://upload.wikimedia.org/wikipedia/commons/thumb/7/78/Google_Play_Store_badge_EN.svg/250px-Google_Play_Store_badge_EN.svg.png"
-//                       alt="Get it on Google Play"
-//                     />
-//                   </a>
-
-//                   <div className="bf-qr-placeholder">
-//                   <img
-//                     src="/blinqfix_playstore_qr.png"
-//                     alt="Scan to download BlinqFix on the Google PlayStore"
-//                     className="bf-qr-image"
-//                     style={{
-//                       marginTop: "3px"
-//                     }}
-//                   />
-//                     </div>
-//                   <span className="bf-qr-caption">
-//                     Scan with your Android device
-                   
-//                   </span>
-//                 </div>
-//               </div>
-//             </div>
-//           </div>
-
-//           {/* HERO RIGHT: PROMO + VALUE CARD */}
-//           <aside className="bf-pro-hero-visual">
-//             {/* NEW GOLD PROMO */}
-//             <div className="bf-promo-card">
-//               <div className="bf-promo-dot" />
-//               <div>
-//                 <div className="bf-promo-text-main">
-//                   First <span>50 Service Pros</span>
-//                 </div>
-//                 <div className="bf-promo-sub">
-//                   Get the <strong>Gold subscription</strong> FREE for{" "}
-//                   <strong>12 months</strong>.
-//                 </div>
-//               </div>
-//             </div>
-
-//             {/* Built for Trades card */}
-//             {/* <div className="bf-glass-card bf-rotate-card">
-//               <div className="bf-card-header">
-//                 <div className="icon-box">
-//                   <BoltIcon />
-//                 </div>
-//                 <div>
-//                   <h3>Built for Trades</h3>
-//                   <p>Designed for the field, not the office.</p>
-//                 </div>
-//               </div>
-//               <div className="bf-card-divider" />
-//               <ul className="bf-checklist">
-//                 <li>
-//                   <CheckIcon />{" "}
-//                   <span>
-//                     <strong>Zero</strong> upfront lead costs
-//                   </span>
-//                 </li>
-//                 <li>
-//                   <CheckIcon />{" "}
-//                   <span>
-//                     <strong>Exclusive</strong> zip code targeting
-//                   </span>
-//                 </li>
-//                 <li>
-//                   <CheckIcon />{" "}
-//                   <span>
-//                     <strong>Instant</strong> payout options
-//                   </span>
-//                 </li>
-//               </ul>
-//               <div className="bf-card-footer">
-//                 <span className="bf-status-dot" /> Live in Miami-Dade
-//                 &amp; Broward
-//               </div>
-//             </div> */}
-//             <div className="bf-glass-card bf-rotate-card">
-//   <div className="bf-card-header">
-//     <div className="icon-box">
-//       <BoltIcon />
-//     </div>
-//     <div>
-//       <h3>Built for On-Demand Jobs</h3>
-//       <p>Designed for the field, not the office.</p>
-//     </div>
-//   </div>
-
-//   <div className="bf-card-divider" />
-
-//   <ul className="bf-checklist">
-//     <li>
-//       <CheckIcon />{" "}
-//       <span>
-//         <strong>Zero</strong> upfront lead costs
-//       </span>
-//     </li>
-//     <li>
-//       <CheckIcon />{" "}
-//       <span>
-//         <strong>Free tier</strong> available to start taking jobs
-//       </span>
-//     </li>
-//     <li>
-//       <CheckIcon />{" "}
-//       <span>
-//         <strong>Gold subscription</strong> just <strong>$49/mo</strong> per zip code
-//       </span>
-//     </li>
-//     <li>
-//       <CheckIcon />{" "}
-//       <span>
-//         <strong>Only 7 pros</strong> per zip code per trade
-//       </span>
-//     </li>
-//     <li>
-//       <CheckIcon />{" "}
-//       <span>
-//         <strong>No contracts</strong> — cancel anytime
-//       </span>
-//     </li>
-//     <li>
-//       <CheckIcon />{" "}
-//       <span>
-//         <strong>Subscribers</strong> get notified about new jobs first
-//       </span>
-//     </li>
-//     <li>
-//       <CheckIcon />{" "}
-//       <span>
-//         <strong>Earn 93% of the job</strong>
-//       </span>
-//     </li>
-//   </ul>
-
-//   <div className="bf-card-footer">
-//     <span className="bf-status-dot" /> Live in Miami-Dade &amp; Broward
-//   </div>
-// </div>
-
-//           </aside>
-//         </section>
-
-      
-
-//         {/* HOW IT WORKS */}
-//         <section id="how-it-works" className="bf-section">
-//           <div className="bf-section-header">
-//             <h2>How BlinqFix works</h2>
-//             <p>A streamlined workflow designed to get you paid faster.</p>
-//           </div>
-
-//           <div className="bf-grid-steps">
-//             <div className="bf-step-card">
-//               <div className="bf-step-num">1</div>
-//               <h3>Create Profile</h3>
-//               <p>
-//                 Upload your license, insurance, and logo. Tell us your trade
-//                 and set your coverage zones.
-//               </p>
-//             </div>
-//             <div className="bf-step-card">
-//               <div className="bf-step-num">2</div>
-//               <h3>Set Schedule</h3>
-//               <p>
-//                 Toggle your availability for emergency calls. Nights, weekends,
-//                 or 24/7 — you control the flow.
-//               </p>
-//             </div>
-//             <div className="bf-step-card">
-//               <div className="bf-step-num">3</div>
-//               <h3>Accept Jobs</h3>
-//               <p>
-//                 Review the issue, photos, and price. Accept the ticket
-//                 instantly and head to the site.
-//               </p>
-//             </div>
-//           </div>
-//         </section>
-
-//         {/* LIVE TICKETS PREVIEW */}
-//         <section className="bf-section">
-//           <div className="bf-section-header">
-//             <h2>Real tickets. Real revenue.</h2>
-//             <p>No bidding wars. Here is what typical emergency tickets look like.</p>
-//           </div>
-
-//           <div className="bf-grid-tickets">
-//             {/* Ticket 1 */}
-//             <article className="bf-ticket-card">
-//               <div className="bf-ticket-header">
-//                 <span className="bf-tag bf-tag-hvac">HVAC</span>
-//                 <span className="bf-time">8:45pm • Miami</span>
-//               </div>
-//               <h3>AC System Failure / No Cool</h3>
-//               <p className="bf-ticket-desc">
-//                 Customer reports unit freezing up. Photos of condenser included.
-//               </p>
-//               <div className="bf-ticket-price">
-//                 <span>Est. Payout</span>
-//                 <strong>$275 – $450</strong>
-//               </div>
-//             </article>
-
-//             {/* Ticket 2 */}
-//             <article className="bf-ticket-card bf-ticket-highlight">
-//               <div className="bf-ticket-badge">High Demand</div>
-//               <div className="bf-ticket-header">
-//                 <span className="bf-tag bf-tag-plumbing">Plumbing</span>
-//                 <span className="bf-time">7:10pm • Ft. Lauderdale</span>
-//               </div>
-//               <h3>Burst Pipe / Active Leak</h3>
-//               <p className="bf-ticket-desc">
-//                 Main water shutoff failed. Flooding in kitchen. Urgent response
-//                 needed.
-//               </p>
-//               <div className="bf-ticket-price">
-//                 <span>Est. Payout</span>
-//                 <strong>$350 – $650</strong>
-//               </div>
-//             </article>
-
-//             {/* Ticket 3 */}
-//             <article className="bf-ticket-card">
-//               <div className="bf-ticket-header">
-//                 <span className="bf-tag bf-tag-elec">Electrical</span>
-//                 <span className="bf-time">3:30pm • Hollywood</span>
-//               </div>
-//               <h3>Breaker Trips / Burning Smell</h3>
-//               <p className="bf-ticket-desc">
-//                 Panel is hot to touch. Partial power outage in master bed.
-//               </p>
-//               <div className="bf-ticket-price">
-//                 <span>Est. Payout</span>
-//                 <strong>$250 – $400</strong>
-//               </div>
-//             </article>
-//           </div>
-//         </section>
-
-//         {/* COMPARISON */}
-//         <section className="bf-section bf-section-compare">
-//           <div className="bf-compare-grid">
-//             <div className="bf-compare-col bf-compare-bad">
-//               <h3>Typical Lead Sites</h3>
-//               <ul>
-//                 <li>
-//                   <XIcon /> Pay upfront for shared leads
-//                 </li>
-//                 <li>
-//                   <XIcon /> Compete with 25 other pros
-//                 </li>
-//                 <li>
-//                   <XIcon /> Tire-kickers &amp; price shoppers
-//                 </li>
-//                 <li>
-//                   <XIcon /> Complicated refunds
-//                 </li>
-//               </ul>
-//             </div>
-//             <div className="bf-compare-col bf-compare-good">
-//               <h3>The BlinqFix Way</h3>
-//               <ul>
-//                 <li>
-//                   <CheckIcon /> Join for Free or Secure a zipcode
-//                 </li>
-//                 <li>
-//                   <CheckIcon /> Accept job assignment first, it&apos;s yours
-//                 </li>
-//                 <li>
-//                   <CheckIcon /> High-intent emergency needs
-//                 </li>
-//                 <li>
-//                   <CheckIcon /> Automated weekly payouts
-//                 </li>
-//               </ul>
-//             </div>
-//           </div>
-//         </section>
-
-//         {/* CTA */}
-//         <section className="bf-cta-final">
-//           <div className="bf-cta-content">
-//             <h2>Ready to fill your schedule?</h2>
-//             <p>Join the network of top-rated pros in South Florida.</p>
-//             <a className="bf-pro-btn bf-pro-btn-primary" href="/providers/apply">
-//               Apply Now
-//             </a>
-//           </div>
-//         </section>
-
-//         <footer className="bf-footer">
-//           <p>© {new Date().getFullYear()} BlinqFix. Built for the trades.</p>
-//         </footer>
-//       </main>
-//     </>
-//   );
-// };
-
-// export default ServiceProLandingPage;
-
-import React from "react";
+import React, { useEffect } from "react";
+import { Link } from "react-router-dom";
 import PricingSection from "../sections/PricingSection";
-
-const serviceProStyles = `
-:root {
-  /* Brand Colors */
-  --bf-bg: #020617;
-  --bf-bg-secondary: #0f172a;
-  --bf-primary: #06b6d4; /* Cyan 500 */
-  --bf-primary-glow: #06b6d4;
-  --bf-accent: #f97316; /* Orange */
-  --bf-gold: #facc15;
-
-  /* Text Colors */
-  --bf-text-main: #f8fafc;
-  --bf-text-muted: #94a3b8;
-  --bf-text-dim: #475569;
-
-  /* Borders & Glass */
-  --bf-border: rgba(148, 163, 184, 0.1);
-  --bf-glass: rgba(15, 23, 42, 0.6);
-  --bf-glass-highlight: rgba(255, 255, 255, 0.03);
-
-  /* Layout */
-  --bf-radius: 12px;
-  --bf-container: 1120px;
-}
-
-/* BASE */
-
-.bf-pro-page {
-  background-color: var(--bf-bg);
-  color: var(--bf-text-main);
-  font-family: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
-    sans-serif;
-  min-height: 100vh;
-  padding: 0 1.5rem;
-  overflow-x: hidden;
-  position: relative;
-  line-height: 1.5;
-}
-
-/* Background Ambient Glows */
-
-.bf-bg-glow {
-  position: absolute;
-  width: 500px;
-  height: 500px;
-  border-radius: 50%;
-  filter: blur(100px);
-  opacity: 0.15;
-  z-index: 0;
-  pointer-events: none;
-}
-
-.bf-bg-glow-1 {
-  top: -100px;
-  left: -100px;
-  background: var(--bf-primary);
-}
-
-.bf-bg-glow-2 {
-  top: 40%;
-  right: -200px;
-  background: #3b82f6;
-}
-
-/* Sections Wrapper */
-
-.bf-pro-hero,
-.bf-section,
-.bf-cta-final,
-.bf-footer {
-  max-width: var(--bf-container);
-  margin: 0 auto;
-  position: relative;
-  z-index: 1;
-}
-
-/* --- HERO SECTION --- */
-
-.bf-pro-hero {
-  padding: 5rem 0 4rem;
-  display: grid;
-  gap: 3rem;
-  align-items: start;
-}
-
-@media (min-width: 968px) {
-  .bf-pro-hero {
-    grid-template-columns: 1.2fr 0.8fr;
-    padding: 6rem 0 4.5rem;
-    align-items: center;
-  }
-}
-
-.bf-pro-hero-content {
-  max-width: 34rem;
-}
-
-/* Badges */
-
-.bf-pro-badge-wrapper {
-  display: flex;
-  align-items: center;
-  gap: 1rem;
-  flex-wrap: wrap;
-  margin-bottom: 1.5rem;
-  font-size: 0.85rem;
-  font-weight: 500;
-}
-
-.bf-pro-badge {
-  display: inline-flex;
-  align-items: center;
-  gap: 0.5rem;
-  padding: 0.4rem 0.8rem;
-  border-radius: 100px;
-  background: rgba(6, 182, 212, 0.1);
-  color: #22d3ee;
-  border: 1px solid rgba(6, 182, 212, 0.2);
-}
-
-.bf-pro-badge-text {
-  color: var(--bf-text-muted);
-}
-
-.bf-pulse {
-  width: 8px;
-  height: 8px;
-  background: #22d3ee;
-  border-radius: 50%;
-  box-shadow: 0 0 0 0 rgba(34, 211, 238, 0.7);
-  animation: pulse-cyan 2s infinite;
-}
-
-@keyframes pulse-cyan {
-  0% {
-    transform: scale(0.95);
-    box-shadow: 0 0 0 0 rgba(34, 211, 238, 0.7);
-  }
-  70% {
-    transform: scale(1);
-    box-shadow: 0 0 0 6px rgba(34, 211, 238, 0);
-  }
-  100% {
-    transform: scale(0.95);
-    box-shadow: 0 0 0 0 rgba(34, 211, 238, 0);
-  }
-}
-
-/* Hero text */
-
-.bf-hero-title {
-  font-size: clamp(2.3rem, 5vw, 4rem);
-  line-height: 1.1;
-  font-weight: 800;
-  letter-spacing: -0.03em;
-  margin-bottom: 1.2rem;
-}
-
-.text-gradient {
-  background: linear-gradient(135deg, #ffffff 0%, #94a3b8 100%);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-}
-
-.bf-pro-subhead {
-  font-size: 1.125rem;
-  color: var(--bf-text-muted);
-  max-width: 540px;
-  margin-bottom: 2rem;
-}
-
-/* Feature List */
-
-.bf-pro-feature-list {
-  list-style: none;
-  padding: 0;
-  margin: 2rem 0 0;
-  display: flex;
-  flex-direction: column;
-  gap: 0.75rem;
-}
-
-.bf-pro-feature-list li {
-  display: flex;
-  align-items: center;
-  gap: 0.75rem;
-  color: var(--bf-text-main);
-  font-weight: 500;
-}
-
-/* Icon sizes */
-
-.icon-check {
-  width: 20px;
-  height: 20px;
-  color: var(--bf-primary);
-}
-
-.icon-x {
-  width: 20px;
-  height: 20px;
-  color: #ef4444;
-}
-
-.icon-bolt {
-  width: 24px;
-  height: 24px;
-  color: #eab308;
-}
-
-/* Buttons */
-
-.bf-pro-cta-row {
-  display: flex;
-  gap: 1rem;
-  flex-wrap: wrap;
-  margin-bottom: 0.75rem;
-}
-
-.bf-pro-btn {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  padding: 0.8rem 1.6rem;
-  border-radius: 99px;
-  font-weight: 600;
-  text-decoration: none;
-  transition: all 0.2s ease;
-}
-
-.bf-pro-btn-primary {
-  background: var(--bf-text-main);
-  color: var(--bf-bg);
-}
-
-.bf-pro-btn-primary:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 0 20px rgba(255, 255, 255, 0.3);
-}
-
-.bf-pro-btn-secondary {
-  background: rgba(255, 255, 255, 0.05);
-  color: var(--bf-text-main);
-  border: 1px solid var(--bf-border);
-}
-
-.bf-pro-btn-secondary:hover {
-  background: rgba(255, 255, 255, 0.1);
-}
-
-/* =========================
-   APP STORE BADGES + QR
-   ======================= */
-
-.bf-app-download {
-  margin-top: 2rem;
-  padding-top: 1.5rem;
-  border-top: 1px dashed var(--bf-border);
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  text-align: center;
-}
-
-.bf-app-label {
-  font-size: 0.85rem;
-  color: var(--bf-text-dim);
-  margin-bottom: 0.9rem;
-  text-transform: uppercase;
-  letter-spacing: 0.06em;
-  font-weight: 600;
-}
-
-/* Row: Apple column + Google column */
-.bf-badges {
-  display: flex;
-  justify-content: center;
-  align-items: flex-start;
-  gap: 2.25rem;
-  flex-wrap: wrap;
-}
-
-/* Each store column */
-.bf-store-column {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  width: min(260px, 45vw);
-}
-
-/* Store badges */
-.bf-store-link {
-  display: inline-flex;
-  height: 48px;
-  transition: opacity 0.2s, transform 0.15s;
-}
-
-.bf-store-link img {
-  height: 100%;
-  width: auto;
-  display: block;
-}
-
-.bf-store-link:hover {
-  opacity: 0.85;
-  transform: translateY(-1px);
-}
-
-/* QR IMAGE */
-.bf-qr-image {
-  margin-top: 0.65rem;
-  width: 96px;
-  height: 96px;
-  border-radius: 12px;
-  background: #ffffff;
-  padding: 6px;
-  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.35);
-  object-fit: contain;
-}
-
-/* Captions */
-.bf-qr-caption {
-  font-size: 0.72rem;
-  text-transform: uppercase;
-  letter-spacing: 0.08em;
-  color: var(--bf-text-muted);
-  margin-top: 0.45rem;
-}
-
-/* --- HERO RIGHT (PROMO + GLASS CARD) --- */
-
-.bf-pro-hero-visual {
-  display: flex;
-  flex-direction: column;
-  gap: 1.25rem;
-  align-items: center;
-  justify-content: flex-start;
-  margin-top: 0; /* IMPORTANT: remove negative margin that breaks mobile */
-}
-
-/* NEW GOLD PROMO CARD */
-.bf-promo-card {
-  width: 100%;
-  max-width: 360px;
-  border-radius: 999px;
-  padding: 0.75rem 1.1rem;
-  background: radial-gradient(circle at top left, #1e293b 0, #020617 70%);
-  border: 1px solid rgba(250, 204, 21, 0.6);
-  box-shadow: 0 18px 40px rgba(250, 204, 21, 0.25);
-  display: flex;
-  align-items: center;
-  gap: 0.8rem;
-}
-
-.bf-promo-dot {
-  width: 12px;
-  height: 12px;
-  border-radius: 999px;
-  background: var(--bf-gold);
-  box-shadow: 0 0 0 0 rgba(250, 204, 21, 0.75);
-  animation: promo-pulse 1.9s infinite;
-}
-
-@keyframes promo-pulse {
-  0% {
-    transform: scale(0.9);
-    box-shadow: 0 0 0 0 rgba(250, 204, 21, 0.7);
-  }
-  70% {
-    transform: scale(1);
-    box-shadow: 0 0 0 10px rgba(250, 204, 21, 0);
-  }
-  100% {
-    transform: scale(0.9);
-    box-shadow: 0 0 0 0 rgba(250, 204, 21, 0);
-  }
-}
-
-.bf-promo-text-main {
-  font-size: 1.35rem;
-  font-weight: 600;
-  color: #fefce8;
-  text-align: left;
-}
-
-.bf-promo-text-main span {
-  color: var(--bf-gold);
-}
-
-.bf-promo-sub {
-  font-size: 0.78rem;
-  color: var(--bf-text-muted);
-  text-align: left;
-}
-
-/* GLASS CARD */
-
-.bf-glass-card {
-  background: linear-gradient(
-    145deg,
-    rgba(30, 41, 59, 0.7),
-    rgba(15, 23, 42, 0.8)
-  );
-  backdrop-filter: blur(12px);
-  border: 1px solid var(--bf-border);
-  border-top: 1px solid rgba(255, 255, 255, 0.1);
-  border-radius: 20px;
-  padding: 2rem;
-  box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
-  position: relative;
-  max-width: 360px;
-  width: 100%;
-}
-
-.bf-rotate-card {
-  transform: rotate(-2deg);
-  transition: transform 0.3s ease;
-}
-
-.bf-rotate-card:hover {
-  transform: rotate(0deg);
-}
-
-.bf-card-header {
-  display: flex;
-  gap: 1rem;
-  align-items: center;
-  margin-bottom: 1.5rem;
-}
-
-.icon-box {
-  width: 48px;
-  height: 48px;
-  background: rgba(234, 179, 8, 0.1);
-  border-radius: 12px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  color: #eab308;
-}
-
-.bf-card-header h3 {
-  margin: 0;
-  font-size: 1.1rem;
-}
-
-.bf-card-header p {
-  margin: 0;
-  color: var(--bf-text-muted);
-  font-size: 0.9rem;
-}
-
-.bf-card-divider {
-  height: 1px;
-  background: var(--bf-border);
-  margin: 0 -2rem 1.5rem;
-}
-
-.bf-checklist {
-  list-style: none;
-  padding: 0;
-  margin: 0;
-  display: flex;
-  flex-direction: column;
-  gap: 1rem;
-}
-
-.bf-checklist li {
-  display: flex;
-  align-items: flex-start;
-  gap: 0.75rem;
-  color: var(--bf-text-muted);
-  font-size: 0.95rem;
-}
-
-.bf-checklist strong {
-  color: var(--bf-text-main);
-}
-
-.bf-card-footer {
-  margin-top: 1.5rem;
-  font-size: 0.8rem;
-  color: var(--bf-text-dim);
-  display: flex;
-  align-items: center;
-  gap: 0.5rem;
-}
-
-.bf-status-dot {
-  width: 6px;
-  height: 6px;
-  background: #22c55e;
-  border-radius: 50%;
-  box-shadow: 0 0 10px #22c55e;
-}
-
-/* --- SECTIONS GENERAL --- */
-
-.bf-section {
-  margin-bottom: 5rem;
-  padding-top: 2rem;
-}
-
-.bf-section-header {
-  text-align: center;
-  margin-bottom: 3rem;
-}
-
-.bf-section-header h2 {
-  font-size: 2rem;
-  margin-bottom: 0.5rem;
-}
-
-.bf-section-header p {
-  color: var(--bf-text-muted);
-}
-
-/* --- STEPS --- */
-
-.bf-grid-steps {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-  gap: 2rem;
-}
-
-.bf-step-card {
-  background: var(--bf-bg-secondary);
-  border: 1px solid var(--bf-border);
-  padding: 2rem;
-  border-radius: 16px;
-  transition: border-color 0.2s;
-}
-
-.bf-step-card:hover {
-  border-color: rgba(6, 182, 212, 0.3);
-}
-
-.bf-step-num {
-  font-size: 3rem;
-  font-weight: 800;
-  color: rgba(255, 255, 255, 0.15);
-  line-height: 1;
-  margin-bottom: 0.5rem;
-}
-
-.bf-step-card h3 {
-  margin-bottom: 0.75rem;
-  color: var(--bf-primary);
-}
-
-.bf-step-card p {
-  font-size: 0.95rem;
-  color: var(--bf-text-muted);
-}
-
-/* --- TICKETS (EARNINGS) --- */
-
-.bf-grid-tickets {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-  gap: 1.5rem;
-}
-
-.bf-ticket-card {
-  background: #182030;
-  border: 1px solid var(--bf-border);
-  border-radius: 16px;
-  padding: 1.5rem;
-  position: relative;
-  display: flex;
-  flex-direction: column;
-}
-
-.bf-ticket-highlight {
-  border-color: rgba(249, 115, 22, 0.4);
-  background: radial-gradient(
-      circle at top right,
-      rgba(249, 115, 22, 0.1),
-      transparent 60%
-    ),
-    #182030;
-}
-
-.bf-ticket-badge {
-  position: absolute;
-  top: -10px;
-  right: 20px;
-  background: #f97316;
-  color: white;
-  font-size: 0.7rem;
-  font-weight: 700;
-  text-transform: uppercase;
-  padding: 0.2rem 0.6rem;
-  border-radius: 4px;
-}
-
-.bf-ticket-header {
-  display: flex;
-  justify-content: space-between;
-  margin-bottom: 1rem;
-}
-
-.bf-tag {
-  font-size: 0.75rem;
-  font-weight: 600;
-  padding: 0.2rem 0.5rem;
-  border-radius: 4px;
-}
-
-.bf-tag-hvac {
-  background: rgba(34, 211, 238, 0.15);
-  color: #22d3ee;
-}
-
-.bf-tag-plumbing {
-  background: rgba(59, 130, 246, 0.15);
-  color: #60a5fa;
-}
-
-.bf-tag-elec {
-  background: rgba(234, 179, 8, 0.15);
-  color: #facc15;
-}
-
-.bf-time {
-  font-size: 0.8rem;
-  color: var(--bf-text-dim);
-}
-
-.bf-ticket-card h3 {
-  font-size: 1.1rem;
-  margin: 0 0 0.5rem;
-}
-
-.bf-ticket-desc {
-  font-size: 0.9rem;
-  color: var(--bf-text-muted);
-  margin-bottom: 1.5rem;
-  flex-grow: 1;
-}
-
-.bf-ticket-price {
-  background: rgba(0, 0, 0, 0.3);
-  padding: 0.75rem;
-  border-radius: 8px;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-}
-
-.bf-ticket-price span {
-  font-size: 0.8rem;
-  color: var(--bf-text-muted);
-}
-
-.bf-ticket-price strong {
-  color: #22c55e;
-  font-size: 1.1rem;
-}
-
-/* --- COMPARISON --- */
-
-.bf-section-compare {
-  margin-bottom: 4rem;
-}
-
-.bf-compare-grid {
-  display: grid;
-  grid-template-columns: 1fr;
-  border-radius: 20px;
-  overflow: hidden;
-  border: 1px solid var(--bf-border);
-}
-
-@media (min-width: 768px) {
-  .bf-compare-grid {
-    grid-template-columns: 1fr 1fr;
-  }
-}
-
-.bf-compare-col {
-  padding: 3rem 2rem;
-}
-
-.bf-compare-bad {
-  background: rgba(15, 23, 42, 0.6);
-}
-
-.bf-compare-good {
-  background: rgba(6, 182, 212, 0.05);
-  position: relative;
-}
-
-.bf-compare-good::before {
-  content: "";
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 4px;
-  background: var(--bf-primary);
-}
-
-.bf-compare-col h3 {
-  margin-top: 0;
-  margin-bottom: 1.5rem;
-  font-size: 1.25rem;
-}
-
-.bf-compare-col ul {
-  list-style: none;
-  padding: 0;
-  display: flex;
-  flex-direction: column;
-  gap: 1rem;
-}
-
-.bf-compare-col li {
-  display: flex;
-  align-items: center;
-  gap: 1rem;
-  color: var(--bf-text-muted);
-}
-
-/* --- FINAL CTA & FOOTER --- */
-
-.bf-cta-final {
-  text-align: center;
-  padding: 4rem 1rem;
-  border-top: 1px solid var(--bf-border);
-}
-
-.bf-cta-content h2 {
-  font-size: 2rem;
-  margin-bottom: 1rem;
-}
-
-.bf-cta-content p {
-  color: var(--bf-text-muted);
-  margin-bottom: 2rem;
-}
-
-.bf-footer {
-  text-align: center;
-  padding: 3rem 0;
-  border-top: 1px solid var(--bf-border);
-  font-size: 0.9rem;
-  color: var(--bf-text-dim);
-}
-
-/* -------------------------
-   RESPONSIVE SMALL SCREENS
-   ------------------------ */
-
-@media (max-width: 640px) {
-  .bf-pro-page {
-    padding: 0 1rem;
-  }
-
-  .bf-pro-hero {
-    padding: 3.25rem 0 3rem;
-    gap: 2rem;
-  }
-
-  .bf-pro-hero-content {
-    max-width: 100%;
-  }
-
-  /* Make CTAs full-width for thumbs */
-  .bf-pro-cta-row {
-    flex-direction: column;
-    align-items: stretch;
-  }
-
-  .bf-pro-btn {
-    width: 100%;
-  }
-
-  .bf-pro-subhead {
-    font-size: 1.05rem;
-  }
-
-  /* Keep the right side cards from overlapping anything */
-  .bf-pro-hero-visual {
-    margin-top: 0;
-  }
-
-  .bf-promo-card {
-    max-width: 100%;
-    border-radius: 24px;
-    padding: 0.9rem 1rem;
-  }
-
-  .bf-glass-card {
-    max-width: 100%;
-    padding: 1.5rem;
-  }
-
-  .bf-card-divider {
-    margin: 0 -1.5rem 1.25rem;
-  }
-
-  /* Reduce rotation on mobile for cleaner layout */
-  .bf-rotate-card {
-    transform: none;
-  }
-
-  .bf-rotate-card:hover {
-    transform: none;
-  }
-
-  .bf-compare-col {
-    padding: 2.25rem 1.5rem;
-  }
-
-  /* App badges / QR: wrap cleanly */
-  .bf-badges {
-    gap: 1.25rem;
-  }
-
-  .bf-store-link {
-    height: 40px;
-  }
-
-  .bf-qr-image {
-    width: 86px;
-    height: 86px;
-    padding: 5px;
-  }
-}
+import blinqfixLogo from "../assets/blinqfix_logo.jpeg";
+import AppBanner from "../sections/AppBanner";
+
+const PAGE_CSS = `
+*{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --orange:#F4520C;--orange-light:#FFF0EA;--orange-dark:#C23D06;
+  --navy:#0B1628;--navy-mid:#1B2B45;--slate:#4A5872;--slate-light:#8A96A8;
+  --cream:#FAFAF7;--white:#FFFFFF;--border:#E5E7EC;
+  --green:#1A7F4B;--green-light:#EAF5EF;
+  --radius:12px;--radius-lg:20px;
+  --shadow:0 2px 16px rgba(11,22,40,.08);--shadow-lg:0 8px 40px rgba(11,22,40,.14)
+}
+html{scroll-behavior:smooth}
+body{font-family:'DM Sans',sans-serif;font-size:16px;color:var(--navy);background:var(--cream);line-height:1.6}
+h1,h2,h3,h4,h5{font-family:'Syne',sans-serif;line-height:1.15}
+a{text-decoration:none}
+img{max-width:100%;display:block}
+button{font:inherit}
+.getjobs-shell{background:var(--cream);color:var(--navy)}
+nav{position:sticky;top:0;z-index:100;background:rgba(255,255,255,.96);backdrop-filter:blur(10px);border-bottom:1px solid var(--border);padding:0 2rem}
+.nav-inner{max-width:1160px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;height:64px;gap:2rem}
+.logo{display:flex;align-items:center;line-height:0}
+.logo img{height:40px;width:auto;object-fit:contain;display:block;filter:brightness(0) saturate(100%)}
+.nav-tabs{display:flex;border:1px solid var(--border);border-radius:8px;overflow:hidden}
+.nav-tab{padding:6px 20px;font-size:.85rem;font-weight:500;border:none;cursor:pointer;font-family:'DM Sans',sans-serif;color:var(--slate);background:var(--white);display:inline-block}
+.nav-tab.active{background:var(--navy);color:var(--white)}
+.btn-app{display:flex;align-items:center;gap:6px;padding:8px 18px;border-radius:8px;background:var(--orange);color:var(--white);font-size:.85rem;font-weight:500;border:none;font-family:'DM Sans',sans-serif}
+.btn-app:hover{background:var(--orange-dark)}
+.pro-hero{position:relative;overflow:hidden;isolation:isolate;background:
+radial-gradient(circle at 14% 18%, rgba(244,82,12,.28), transparent 28%),
+radial-gradient(circle at 82% 16%, rgba(56,189,248,.2), transparent 24%),
+linear-gradient(180deg, #223554 0%, var(--navy-mid) 58%, #142238 100%);padding:5rem 2rem}
+.pro-hero::before{content:"";position:absolute;inset:0;background:
+radial-gradient(circle at 12% 26%, rgba(255,255,255,.42) 0 2px, transparent 3px),
+radial-gradient(circle at 30% 60%, rgba(244,82,12,.55) 0 2.5px, transparent 3.5px),
+radial-gradient(circle at 48% 34%, rgba(255,255,255,.32) 0 2px, transparent 3px),
+radial-gradient(circle at 70% 22%, rgba(56,189,248,.46) 0 2.5px, transparent 3.5px),
+radial-gradient(circle at 84% 52%, rgba(255,255,255,.24) 0 2px, transparent 3px),
+linear-gradient(121deg, transparent 18%, rgba(244,82,12,.16) 18.4%, rgba(244,82,12,.16) 18.9%, transparent 19.2%),
+linear-gradient(148deg, transparent 46%, rgba(56,189,248,.12) 46.3%, rgba(56,189,248,.12) 46.8%, transparent 47.1%),
+linear-gradient(96deg, transparent 67%, rgba(255,255,255,.09) 67.2%, rgba(255,255,255,.09) 67.5%, transparent 67.8%);
+opacity:.9;mask-image:radial-gradient(circle at center, white 0%, rgba(255,255,255,.94) 60%, transparent 88%);pointer-events:none}
+.pro-hero::after{content:"";position:absolute;inset:-12% -10% auto;height:78%;background:
+radial-gradient(circle at 18% 18%, rgba(244,82,12,.24), transparent 34%),
+radial-gradient(circle at 78% 20%, rgba(56,189,248,.18), transparent 30%),
+radial-gradient(circle at 56% 100%, rgba(255,255,255,.08), transparent 30%);
+filter:blur(20px);opacity:.95;pointer-events:none}
+.pro-hero-inner{position:relative;z-index:1;max-width:1160px;margin:0 auto;display:grid;grid-template-columns:1fr 1fr;gap:3rem;align-items:center}
+.hero-badge{display:inline-flex;align-items:center;gap:6px;background:rgba(244,82,12,.2);color:#FF8152;padding:5px 14px;border-radius:100px;font-size:.8rem;font-weight:500;margin-bottom:1.25rem}
+.badge-dot{width:7px;height:7px;background:var(--orange);border-radius:50%;animation:pulse 2s infinite}
+@keyframes pulse{0%,100%{opacity:1;transform:scale(1)}50%{opacity:.6;transform:scale(1.3)}}
+.pro-hero h1{font-size:clamp(2.2rem,4vw,3.4rem);color:var(--white);font-weight:800;margin-bottom:1.25rem}
+.pro-hero h1 em{color:var(--orange);font-style:normal}
+.hero-sub{font-size:1.05rem;color:#9CAABF;margin-bottom:2rem;max-width:520px;line-height:1.7}
+.hero-cta{display:flex;gap:12px;flex-wrap:wrap}
+.btn-primary{padding:14px 28px;border-radius:10px;background:var(--orange);color:var(--white);font-size:1rem;font-weight:600;border:none;cursor:pointer;font-family:'Syne',sans-serif;display:inline-block}
+.btn-primary:hover{background:var(--orange-dark)}
+.btn-secondary{padding:14px 28px;border-radius:10px;background:transparent;color:var(--white);font-size:1rem;font-weight:500;border:1.5px solid rgba(255,255,255,.25);cursor:pointer;font-family:'DM Sans',sans-serif;display:inline-block}
+.btn-secondary:hover{border-color:rgba(255,255,255,.5)}
+.quick-stats{display:flex;gap:2rem;margin-top:2rem;flex-wrap:wrap}
+.qs-num{font-size:1.4rem;font-weight:800;color:var(--white);font-family:'Syne',sans-serif}
+.qs-num.accent{color:var(--orange)}
+.qs-label{font-size:.78rem;color:#A8B3C5}
+.income-card{text-align:center;background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.1);border-radius:var(--radius-lg);padding:2rem}
+.income-label{font-size:1.9rem;color:#9CAABF;margin-bottom:6px}
+.income-amt{font-family:'Syne',sans-serif;font-size:3.8rem;font-weight:800;color:var(--white)}
+.income-sub{font-size:.82rem;color:#9CAABF;margin-top:4px;margin-bottom:1.25rem}
+.month-labels{display:flex;justify-content:space-between;font-size:.75rem;color:#9CAABF;margin-bottom:6px}
+.bars-row{display:flex;gap:4px}
+.bar-wrap{flex:1;background:rgba(255,255,255,.08);border-radius:100px;height:8px;overflow:hidden}
+.bar-fill{height:8px;border-radius:100px;background:var(--orange)}
+.bar-fill.dim{background:#374151}
+.earnings-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:1.25rem}
+.earn-box{background:rgba(255,255,255,.05);border-radius:10px;padding:12px}
+.earn-label{font-size:.7rem;color:#9CAABF}
+.earn-val{font-size:1.1rem;font-weight:700;color:var(--white)}
+.app-download{margin-top:1.75rem;padding-top:1.25rem;border-top:1px solid rgba(255,255,255,.12)}
+.app-download-title{font-size:.8rem;color:#A8B3C5;text-transform:uppercase;letter-spacing:.08em;margin-bottom:.85rem}
+.store-row{display:flex;gap:1.5rem;flex-wrap:wrap}
+.store-col{display:flex;flex-direction:column;align-items:center;gap:.45rem}
+.store-link img{height:44px;width:auto}
+.qr-image{width:88px;height:88px;border-radius:10px;background:#fff;padding:4px;object-fit:contain;box-shadow:0 4px 14px rgba(0,0,0,.2)}
+.qr-caption{font-size:.72rem;color:#A8B3C5;text-transform:uppercase;letter-spacing:.06em}
+.section{padding:5rem 2rem}
+.section.alt{background:var(--white)}
+.section-inner{max-width:1160px;margin:0 auto}
+.section-label{font-size:.78rem;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:var(--orange);margin-bottom:.75rem}
+.section-title{font-size:clamp(1.8rem,3vw,2.6rem);font-weight:800;color:var(--navy);margin-bottom:1rem}
+.section-sub{font-size:1.05rem;color:var(--slate);max-width:100%;line-height:1.7;text-align:center}
+.steps-grid{text-align:center;display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:2rem;margin-top:3rem}
+.step-card{background:var(--white);border:1px solid var(--border);border-radius:var(--radius-lg);padding:2rem 1.5rem;transition:box-shadow .2s}
+.step-card:hover{box-shadow:var(--shadow-lg)}
+.step-num{width:44px;height:44px;border-radius:12px;background:var(--orange-light);color:var(--orange);font-family:'Syne',sans-serif;font-size:1.1rem;font-weight:800;display:flex;align-items:center;justify-content:center;margin-bottom:1.25rem}
+.step-icon{font-size:4.4rem;margin-bottom:.75rem}
+.step-title{font-size:1.05rem;font-weight:700;margin-bottom:.5rem;color:var(--navy)}
+.step-desc{font-size:.9rem;color:var(--slate);line-height:1.65}
+.features-grid{text-align:center;display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:1.25rem;margin-top:3rem}
+.feat-card{text-align:center;background:var(--white);border:1px solid var(--border);border-radius:var(--radius-lg);padding:1.75rem}
+.feat-icon{font-size:1.6rem;margin-bottom:1rem;}
+.feat-title{text-align:center;font-size:1rem;font-weight:700;color:var(--navy);margin-bottom:.5rem}
+.feat-desc{text-align:center;font-size:.88rem;color:var(--slate);line-height:1.65}
+.testi-section{background:var(--white);padding:5rem 2rem}
+.testi-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:1.5rem;margin-top:2.5rem}
+.testi-card{background:var(--cream);border:1px solid var(--border);border-radius:var(--radius-lg);padding:1.75rem}
+.testi-stars{color:#F59E0B;font-size:.9rem;margin-bottom:.75rem}
+.testi-quote{font-size:.95rem;color:var(--navy);line-height:1.65;margin-bottom:1.25rem;font-style:italic}
+.testi-author{display:flex;align-items:center;gap:10px}
+.testi-avatar{width:36px;height:36px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:.75rem;font-weight:700;color:var(--white)}
+.testi-name{font-size:.88rem;font-weight:600;color:var(--navy)}
+.testi-location{font-size:.76rem;color:var(--slate)}
+.cta-band{background:var(--orange);padding:4rem 2rem;text-align:center}
+.cta-band h2{font-size:clamp(1.8rem,3vw,2.4rem);color:var(--white);font-weight:800;margin-bottom:1rem}
+.cta-band p{font-size:1rem;color:rgba(255,255,255,.8);margin-bottom:2rem}
+.cta-btns{display:flex;justify-content:center;gap:1rem;flex-wrap:wrap}
+.btn-white{padding:14px 28px;border-radius:10px;background:var(--white);color:var(--orange);font-size:1rem;font-weight:700;border:none;cursor:pointer;font-family:'Syne',sans-serif;display:inline-block}
+.btn-white:hover{box-shadow:0 6px 20px rgba(0,0,0,.15)}
+.btn-outline-white{padding:14px 28px;border-radius:10px;background:transparent;color:var(--white);font-size:1rem;font-weight:500;border:2px solid rgba(255,255,255,.5);cursor:pointer;font-family:'DM Sans',sans-serif;display:inline-block}
+.btn-outline-white:hover{border-color:var(--white)}
+.page-footer{background:var(--navy);padding:3rem 2rem 2rem}
+.footer-inner{max-width:1160px;margin:0 auto}
+.footer-top{display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:2rem;margin-bottom:2.5rem}
+.footer-logo{display:flex;align-items:center;line-height:0}
+.footer-logo img{height:34px;width:auto;object-fit:contain;display:block}
+.footer-brand p{font-size:.88rem;color:#6B7280;margin-top:.75rem;max-width:260px;line-height:1.65}
+.footer-col h4{font-size:.8rem;font-weight:700;color:#9CAABF;text-transform:uppercase;letter-spacing:.08em;margin-bottom:1rem}
+.footer-col a{display:block;font-size:.88rem;color:#6B7280;text-decoration:none;margin-bottom:.5rem;transition:color .15s}
+.footer-col a:hover{color:var(--white)}
+.footer-bottom{border-top:1px solid rgba(255,255,255,.08);padding-top:1.5rem;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:1rem}
+.footer-bottom p{font-size:.8rem;color:#6B7280}
+.footer-links{display:flex;gap:1.5rem;flex-wrap:wrap}
+.footer-links a{font-size:.8rem;color:#6B7280;text-decoration:none}
+.footer-links a:hover{color:#9CAABF}
+@media(max-width:900px){.pro-hero-inner{grid-template-columns:1fr}.store-row{justify-content:center}}
+@media(max-width:768px){.footer-top{grid-template-columns:1fr 1fr}.nav-tabs{display:none}}
+@media(max-width:640px){nav,.pro-hero,.section,.testi-section,.cta-band,.page-footer{padding-left:1rem;padding-right:1rem}.footer-top{grid-template-columns:1fr}.earnings-grid{grid-template-columns:1fr}.quick-stats{gap:1rem}}
 `;
 
-// Reusable Icon Components
-const CheckIcon = () => (
-  <svg
-    className="icon-check"
-    viewBox="0 0 24 24"
-    fill="none"
-    stroke="currentColor"
-    strokeWidth="3"
-    strokeLinecap="round"
-    strokeLinejoin="round"
-  >
-    <polyline points="20 6 9 17 4 12" />
-  </svg>
-);
+const steps = [
+  {
+    num: "1",
+    icon: "📱",
+    title: "Create Your Profile",
+    desc: "Set up your trade profile, service area, and availability so jobs can reach you faster.",
+  },
+  {
+    num: "2",
+    icon: "⚡",
+    title: "Get Job Alerts",
+    desc: "Receive incoming opportunities and review the job details before deciding whether to take them.",
+  },
+  {
+    num: "3",
+    icon: "💵",
+    title: "Complete the Work",
+    desc: "Handle the job, keep communication organized, and get paid through the platform flow.",
+  },
+];
 
-const XIcon = () => (
-  <svg
-    className="icon-x"
-    viewBox="0 0 24 24"
-    fill="none"
-    stroke="currentColor"
-    strokeWidth="3"
-    strokeLinecap="round"
-    strokeLinejoin="round"
-  >
-    <line x1="18" y1="6" x2="6" y2="18" />
-    <line x1="6" y1="6" x2="18" y2="18" />
-  </svg>
-);
+const features = [
+  {
+    icon: "🚫",
+    title: "No Lead-Fee Chaos",
+    desc: "Built to avoid the usual pay-per-lead scramble and reduce wasted time chasing cold prospects.",
+  },
+  {
+    icon: "📸",
+    title: "Job Details Upfront",
+    desc: "See the address, issue summary, and photos when available so you can prepare before you go.",
+  },
+  {
+    icon: "🗓️",
+    title: "Run It From the Field",
+    desc: "Use the mobile flow to review jobs, stay organized, and keep the day moving without office overhead.",
+  },
+  {
+    icon: "🏆",
+    title: "Early-Adopter Offer",
+    desc: "The first 50 service pros can access the Gold subscription free for 12 months.",
+  },
+];
 
-const BoltIcon = () => (
-  <svg className="icon-bolt" viewBox="0 0 24 24" fill="currentColor" stroke="none">
-    <path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z" />
-  </svg>
-);
+const testimonials = [
+  {
+    stars: "★★★★★",
+    quote:
+      "I set my availability each morning and jobs start rolling in. It has become a much cleaner pipeline than chasing random leads.",
+    initials: "JM",
+    bg: "#1A7F4B",
+    name: "James M. — HVAC Tech",
+    location: "Atlanta, GA · Member since 2023",
+  },
+  {
+    stars: "★★★★★",
+    quote:
+      "What I like is the speed. The jobs feel more direct, and I am not wasting energy competing on every little estimate request.",
+    initials: "AR",
+    bg: "#185FA5",
+    name: "Anthony R. — Plumber",
+    location: "Miami, FL · Member since 2024",
+  },
+  {
+    stars: "★★★★★",
+    quote:
+      "The app flow is easier than juggling texts, calls, and spreadsheets. It feels more like actual dispatch than a lead site.",
+    initials: "KL",
+    bg: "#854F0B",
+    name: "Kevin L. — Electrician",
+    location: "Fort Lauderdale, FL · Member since 2024",
+  },
+];
+
+function ensureMeta(selector, attrs, tagName = "meta") {
+  let el = document.head.querySelector(selector);
+  if (!el) {
+    el = document.createElement(tagName);
+    document.head.appendChild(el);
+  }
+  Object.entries(attrs).forEach(([key, value]) => el.setAttribute(key, value));
+}
 
 const ServiceProLandingPage = () => {
+  useEffect(() => {
+    document.title =
+      "BlinqFix for Pros | Get Local Jobs & Grow Your Contractor Business";
+
+    ensureMeta('meta[name="description"]', {
+      name: "description",
+      content:
+        "Explore BlinqFix for service pros. Learn how the platform helps pros review jobs, manage work from the field, and grow with less lead-site friction.",
+    });
+    ensureMeta('meta[name="robots"]', {
+      name: "robots",
+      content: "index, follow",
+    });
+    ensureMeta('meta[property="og:type"]', {
+      property: "og:type",
+      content: "website",
+    });
+    ensureMeta('meta[property="og:url"]', {
+      property: "og:url",
+      content: "https://www.blinqfix.com/getjobs",
+    });
+    ensureMeta('meta[property="og:title"]', {
+      property: "og:title",
+      content: "BlinqFix for Pros | Get Local Jobs & Grow Your Business",
+    });
+    ensureMeta('meta[property="og:description"]', {
+      property: "og:description",
+      content:
+        "Explore how BlinqFix works for service pros and why it is designed differently from typical lead sites.",
+    });
+    ensureMeta('meta[name="twitter:card"]', {
+      name: "twitter:card",
+      content: "summary_large_image",
+    });
+    ensureMeta('meta[name="twitter:title"]', {
+      name: "twitter:title",
+      content: "BlinqFix for Pros | Get Local Contractor Jobs",
+    });
+    ensureMeta('meta[name="twitter:description"]', {
+      name: "twitter:description",
+      content:
+        "Explore how BlinqFix works for service pros and why it is designed differently from typical lead sites.",
+    });
+    ensureMeta(
+      'link[rel="canonical"]',
+      {
+        rel: "canonical",
+        href: "https://www.blinqfix.com/getjobs",
+      },
+      "link"
+    );
+
+    const scriptId = "blinqfix-getjobs-schema";
+    let schema = document.getElementById(scriptId);
+    if (!schema) {
+      schema = document.createElement("script");
+      schema.type = "application/ld+json";
+      schema.id = scriptId;
+      document.head.appendChild(schema);
+    }
+    schema.textContent = JSON.stringify({
+      "@context": "https://schema.org",
+      "@type": "WebPage",
+      name: "BlinqFix for Service Pros",
+      url: "https://www.blinqfix.com/getjobs",
+      description:
+        "Information page for service pros interested in using the BlinqFix platform.",
+      mainEntity: {
+        "@type": "Service",
+        name: "BlinqFix Pro Network",
+        serviceType: [
+          "Plumbing",
+          "Electrical",
+          "HVAC",
+          "Handyman",
+          "Roofing",
+          "Locksmith",
+        ],
+        areaServed: { "@type": "Country", name: "United States" },
+      },
+      publisher: {
+        "@type": "Organization",
+        name: "BlinqFix",
+        url: "https://www.blinqfix.com",
+      },
+    });
+
+    return () => {
+      const existing = document.getElementById(scriptId);
+      if (existing) existing.remove();
+    };
+  }, []);
+
   return (
-    <>
-      <style>{serviceProStyles}</style>
+    <div className="getjobs-shell">
+      <style>{PAGE_CSS}</style>
 
-      <main className="bf-pro-page">
-        {/* BACKGROUND EFFECTS */}
-        <div className="bf-bg-glow bf-bg-glow-1" />
-        <div className="bf-bg-glow bf-bg-glow-2" />
-
-        {/* HERO SECTION */}
-        <section className="bf-pro-hero">
-          <div className="bf-pro-hero-content">
-            <div className="bf-pro-badge-wrapper">
-              <span className="bf-pro-badge">
-                <span className="bf-pulse" />
-                Emergency Work Only - Miami Dade & Broward - HVAC • Plumbing • Electrical
-              </span>
-              <span className="bf-pro-badge-text"></span>
-            </div>
-
-            <h1 className="bf-hero-title">
-              More emergency jobs,
-              <br />
-              <span className="text-gradient">less wasted leads.</span>
-            </h1>
-
-            <p className="bf-pro-subhead">
-              BlinqFix sends you high intent emergency on demand customers ready to book now.
-              Stop fighting over estimates. You accept the jobs, you keep the profit.
-            </p>
-
-            <div className="bf-pro-cta-row">
-              <a className="bf-pro-btn bf-pro-btn-primary" href="#app-download">
-                Get the app to join
-                <svg
-                  width="16"
-                  height="16"
-                  viewBox="0 0 24 24"
-                  fill="none"
-                  stroke="currentColor"
-                  strokeWidth="2.5"
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  style={{ marginLeft: 8 }}
-                >
-                  <path d="M5 12h14" />
-                  <path d="m12 5 7 7-7 7" />
-                </svg>
-              </a>
-              <a className="bf-pro-btn bf-pro-btn-secondary" href="#how-it-works">
-                How it works
-              </a>
-            </div>
-
-            <ul className="bf-pro-feature-list">
-              <li>
-                <CheckIcon /> Real emergency tickets, no junk leads.
-              </li>
-              <li>
-                <CheckIcon /> See photos, address &amp; issue upfront.
-              </li>
-              <li>
-                <CheckIcon /> Built for serious trade businesses.
-              </li>
-            </ul>
-
-            {/* APP STORE BADGES + QR */}
-            <div id="app-download" className="bf-app-download">
-              <p className="bf-app-label">Run your business from the field:</p>
-
-              <div className="bf-badges">
-                {/* APP STORE + QR */}
-                <div className="bf-store-column">
-                  <a
-                    href="https://apps.apple.com/us/app/blinqfix-app/id6747390132"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="bf-store-link"
-                  >
-                    <img
-                      src="https://developer.apple.com/assets/elements/badges/download-on-the-app-store.svg"
-                      alt="Download on the App Store"
-                    />
-                  </a>
-
-                  <img
-                    src="/blinqfix_app_qr.png"
-                    alt="Scan to download BlinqFix on the App Store"
-                    className="bf-qr-image"
-                  />
-                  <span className="bf-qr-caption">Scan with your iOS device</span>
-                </div>
-
-                {/* GOOGLE PLAY + QR */}
-                <div className="bf-store-column">
-                  <a
-                    href="https://play.google.com/store/apps/details?id=com.blinqfix.app"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="bf-store-link"
-                  >
-                    <img
-                      src="https://upload.wikimedia.org/wikipedia/commons/thumb/7/78/Google_Play_Store_badge_EN.svg/250px-Google_Play_Store_badge_EN.svg.png"
-                      alt="Get it on Google Play"
-                    />
-                  </a>
-
-                  {/* IMPORTANT: no placeholder wrapper (it was breaking mobile spacing) */}
-                  <img
-                    src="/blinqfix_playstore_qr.png"
-                    alt="Scan to download BlinqFix on Google Play"
-                    className="bf-qr-image"
-                  />
-                  <span className="bf-qr-caption">Scan with your Android device</span>
-                </div>
-              </div>
-            </div>
+      <nav>
+        <div className="nav-inner">
+          <Link to="/" className="logo" aria-label="BlinqFix home">
+            <img src={blinqfixLogo} alt="BlinqFix" />
+          </Link>
+          <div className="nav-tabs">
+            <Link to="/" className="nav-tab">
+              For Homeowners
+            </Link>
+            <Link to="/getjobs" className="nav-tab active">
+              For Service Pros
+            </Link>
           </div>
+          <Link to="/gettheapp" className="btn-app">
+            📱 Get the App
+          </Link>
+        </div>
+      </nav>
 
-          {/* HERO RIGHT: PROMO + VALUE CARD */}
-          <aside className="bf-pro-hero-visual">
-            {/* GOLD PROMO */}
-            <div className="bf-promo-card">
-              <div className="bf-promo-dot" />
-              <div>
-                <div className="bf-promo-text-main">
-                  First <span>50 Service Pros</span>
-                </div>
-                <div className="bf-promo-sub">
-                  Get the <strong>Gold subscription</strong> FREE for <strong>12 months</strong>.
-                </div>
+      <main>
+        <section className="pro-hero">
+          <div className="pro-hero-inner">
+            <div>
+              <div className="hero-badge">
+                <span className="badge-dot"></span> Jobs Available in Your Area
+                Right Now
               </div>
-            </div>
-
-            {/* Built for On-Demand Jobs card */}
-            <div className="bf-glass-card bf-rotate-card">
-              <div className="bf-card-header">
-                <div className="icon-box">
-                  <BoltIcon />
+              <h1>
+                Grow Your Business.
+                <br />
+                More Jobs, <em>Less Leads.</em>
+              </h1>
+              <p className="hero-sub">
+                BlinqFix is built for service pros who want a cleaner way to
+                review jobs, work from the field, and spend less time fighting
+                over weak leads.
+              </p>
+              <div className="hero-cta">
+                <a href="#banner-inner2" className="btn-primary">
+                  Get the App to Join
+                </a>
+                <a href="#how-pros-work" className="btn-secondary">
+                  How It Works
+                </a>
+              </div>
+              <div className="quick-stats">
+                <div>
+                  <div className="qs-num accent">First 50</div>
+                  <div className="qs-label">
+                    Pros get Gold free for 12 months
+                  </div>
                 </div>
                 <div>
-                  <h3>Built for On-Demand Jobs</h3>
-                  <p>Designed for the field, not the office.</p>
+                  <div className="qs-num">Field-Ready</div>
+                  <div className="qs-label">Built to manage work on the go</div>
+                </div>
+                <div>
+                  <div className="qs-num">Less Noise</div>
+                  <div className="qs-label">
+                    Designed to reduce junk lead friction
+                  </div>
                 </div>
               </div>
 
-              <div className="bf-card-divider" />
+              <div id="app-download" className="app-download">
+                <div className="app-download-title">
+                  Run your business from the field
+                </div>
+                {/* <AppBanner /> */}
+                {/* <div className="store-row">
+                  <div className="store-col">
+                    <a
+                      href="https://apps.apple.com/us/app/blinqfix-app/id6747390132"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="store-link"
+                    >
+                      <img
+                        src="https://developer.apple.com/assets/elements/badges/download-on-the-app-store.svg"
+                        alt="Download on the App Store"
+                      />
+                    </a>
+                    <img src="/blinqfix_app_qr_IOS.png" alt="Scan to download BlinqFix on the App Store" className="qr-image" />
+                    <span className="qr-caption">Scan with your iOS device</span>
+                  </div>
 
-              <ul className="bf-checklist">
-                <li>
-                  <CheckIcon /> <span><strong>Zero</strong> upfront lead costs</span>
-                </li>
-                <li>
-                  <CheckIcon /> <span><strong>Free tier</strong> available to start taking jobs</span>
-                </li>
-                <li>
-                  <CheckIcon /> <span><strong>Gold subscription</strong> just <strong>$49/mo</strong> per zip code</span>
-                </li>
-                <li>
-                  <CheckIcon /> <span><strong>Only 7 pros</strong> per zip code per trade</span>
-                </li>
-                <li>
-                  <CheckIcon /> <span><strong>No contracts</strong> — cancel anytime</span>
-                </li>
-                <li>
-                  <CheckIcon /> <span><strong>Subscribers</strong> get notified about new jobs first</span>
-                </li>
-                <li>
-                  <CheckIcon /> <span><strong>Earn 93% of the job</strong></span>
-                </li>
-              </ul>
-
-              <div className="bf-card-footer">
-                <span className="bf-status-dot" /> Live in Miami-Dade &amp; Broward
+                  <div className="store-col">
+                    <a
+                      href="https://play.google.com/store/apps/details?id=com.blinqfix.app"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="store-link"
+                    >
+                      <img
+                        src="https://upload.wikimedia.org/wikipedia/commons/thumb/7/78/Google_Play_Store_badge_EN.svg/250px-Google_Play_Store_badge_EN.svg.png"
+                        alt="Get it on Google Play"
+                      />
+                    </a>
+                    <img src="/blinqfix_playstore_qr.png" alt="Scan to download BlinqFix on Google Play" className="qr-image" />
+                    <span className="qr-caption">Scan with your Android device</span>
+                  </div>
+                </div> */}
               </div>
             </div>
-          </aside>
-        </section>
 
-        {/* HOW IT WORKS */}
-        <section id="how-it-works" className="bf-section">
-          <div className="bf-section-header">
-            <h2>How BlinqFix works</h2>
-            <p>A streamlined workflow designed to get you paid faster.</p>
-          </div>
-
-          <div className="bf-grid-steps">
-            <div className="bf-step-card">
-              <div className="bf-step-num">1</div>
-              <h3>Create Profile</h3>
-              <p>
-                Upload your license, insurance, and logo. Tell us your trade and set your
-                coverage zones.
-              </p>
+            <div className="income-card">
+              <div className="income-label">
+                Potential Weekly Payout Snapshot
+              </div>
+              {/* <div className="income-amt">$2,450</div> */}
+              <div className="income-sub">
+                Illustrative example based on multiple completed jobs — not a
+                guaranteed result.
+              </div>
+              <div className="month-labels">
+                <span>Mon</span>
+                <span>Tue</span>
+                <span>Wed</span>
+                <span>Thu</span>
+                <span>Fri</span>
+                <span>Sat</span>
+              </div>
+              <div className="bars-row">
+                <div className="bar-wrap">
+                  <div className="bar-fill" style={{ width: "55%" }}></div>
+                </div>
+                <div className="bar-wrap">
+                  <div className="bar-fill" style={{ width: "82%" }}></div>
+                </div>
+                <div className="bar-wrap">
+                  <div className="bar-fill" style={{ width: "64%" }}></div>
+                </div>
+                <div className="bar-wrap">
+                  <div className="bar-fill" style={{ width: "88%" }}></div>
+                </div>
+                <div className="bar-wrap">
+                  <div className="bar-fill" style={{ width: "71%" }}></div>
+                </div>
+                <div className="bar-wrap">
+                  <div className="bar-fill dim" style={{ width: "46%" }}></div>
+                </div>
+              </div>
+              <div className="earnings-grid">
+                <div className="earn-box">
+                  <div className="earn-label">Top Ticket</div>
+                  <div className="earn-val">$780</div>
+                </div>
+                <div className="earn-box">
+                  <div className="earn-label">Average Job</div>
+                  <div className="earn-val">$245</div>
+                </div>
+                <div className="earn-box">
+                  <div className="earn-label">High-Intent Jobs</div>
+                  <div className="earn-val">Clearer fit</div>
+                </div>
+                <div className="earn-box">
+                  <div className="earn-label">Mobile Access</div>
+                  <div className="earn-val">iOS + Android</div>
+                </div>
+              </div>
             </div>
-            <div className="bf-step-card">
-              <div className="bf-step-num">2</div>
-              <h3>Set Schedule</h3>
-              <p>
-                Toggle your availability for emergency calls. Nights, weekends, or 24/7 — you
-                control the flow.
-              </p>
-            </div>
-            <div className="bf-step-card">
-              <div className="bf-step-num">3</div>
-              <h3>Accept Jobs</h3>
-              <p>
-                Review the issue, photos, and price. Accept the ticket instantly and head to the
-                site.
-              </p>
-            </div>
-          </div>
-        </section>
-
-        {/* LIVE TICKETS PREVIEW */}
-        <section className="bf-section">
-          <div className="bf-section-header">
-            <h2>Real tickets. Real revenue.</h2>
-            <p>No bidding wars. Here is what typical emergency tickets look like.</p>
-          </div>
-
-          <div className="bf-grid-tickets">
-            <article className="bf-ticket-card">
-              <div className="bf-ticket-header">
-                <span className="bf-tag bf-tag-hvac">HVAC</span>
-                <span className="bf-time">8:45pm • Miami</span>
-              </div>
-              <h3>AC System Failure / No Cool</h3>
-              <p className="bf-ticket-desc">
-                Customer reports unit freezing up. Photos of condenser included.
-              </p>
-              <div className="bf-ticket-price">
-                <span>Est. Payout</span>
-                <strong>$275 – $450</strong>
-              </div>
-            </article>
-
-            <article className="bf-ticket-card bf-ticket-highlight">
-              <div className="bf-ticket-badge">High Demand</div>
-              <div className="bf-ticket-header">
-                <span className="bf-tag bf-tag-plumbing">Plumbing</span>
-                <span className="bf-time">7:10pm • Ft. Lauderdale</span>
-              </div>
-              <h3>Burst Pipe / Active Leak</h3>
-              <p className="bf-ticket-desc">
-                Main water shutoff failed. Flooding in kitchen. Urgent response needed.
-              </p>
-              <div className="bf-ticket-price">
-                <span>Est. Payout</span>
-                <strong>$350 – $650</strong>
-              </div>
-            </article>
-
-            <article className="bf-ticket-card">
-              <div className="bf-ticket-header">
-                <span className="bf-tag bf-tag-elec">Electrical</span>
-                <span className="bf-time">3:30pm • Hollywood</span>
-              </div>
-              <h3>Breaker Trips / Burning Smell</h3>
-              <p className="bf-ticket-desc">
-                Panel is hot to touch. Partial power outage in master bed.
-              </p>
-              <div className="bf-ticket-price">
-                <span>Est. Payout</span>
-                <strong>$250 – $400</strong>
-              </div>
-            </article>
           </div>
         </section>
 
-        {/* COMPARISON */}
-        <section className="bf-section bf-section-compare">
-          <div className="bf-compare-grid">
-            <div className="bf-compare-col bf-compare-bad">
-              <h3>Typical Lead Sites</h3>
-              <ul>
-                <li>
-                  <XIcon /> Pay upfront for shared leads
-                </li>
-                <li>
-                  <XIcon /> Compete with 25 other pros
-                </li>
-                <li>
-                  <XIcon /> Tire-kickers &amp; price shoppers
-                </li>
-                <li>
-                  <XIcon /> Complicated refunds
-                </li>
-              </ul>
+        <section className="section" id="how-pros-work">
+          <div className="section-inner">
+            <p className="section-label">How Pros Use BlinqFix</p>
+            <h2 className="section-title">
+              A Simpler Flow for Service Businesses
+            </h2>
+            <p className="section-sub">
+              The goal is to help serious tradespeople move faster from alert to
+              completed job without getting buried in lead-site nonsense.
+            </p>
+            <div className="steps-grid">
+              {steps.map((step) => (
+                <div className="step-card" key={step.num}>
+                  <div className="step-num">{step.num}</div>
+                  <div className="step-icon">{step.icon}</div>
+                  <h3 className="step-title">{step.title}</h3>
+                  <p className="step-desc">{step.desc}</p>
+                </div>
+              ))}
             </div>
-            <div className="bf-compare-col bf-compare-good">
-              <h3>The BlinqFix Way</h3>
-              <ul>
-                <li>
-                  <CheckIcon /> Join for Free or Secure a zipcode
-                </li>
-                <li>
-                  <CheckIcon /> Accept job assignment first, it&apos;s yours
-                </li>
-                <li>
-                  <CheckIcon /> High-intent emergency needs
-                </li>
-                <li>
-                  <CheckIcon /> Automated weekly payouts
-                </li>
-              </ul>
+          </div>
+        </section>
+
+        <section className="section alt">
+          <div className="section-inner">
+            <p className="section-label">Why It Feels Different</p>
+            <h2 className="section-title">
+              Built Around Real Work, Not Lead Spam
+            </h2>
+            <p className="section-sub">
+              The pro-side experience should help you evaluate opportunities
+              faster and manage the day from your phone.
+            </p>
+            <div className="features-grid">
+              {features.map((feature) => (
+                <div className="feat-card" key={feature.title}>
+                  <div className="feat-icon">{feature.icon}</div>
+                  <h3 className="feat-title">{feature.title}</h3>
+                  <p className="feat-desc">{feature.desc}</p>
+                </div>
+              ))}
             </div>
           </div>
         </section>
 
         <PricingSection
-        ctaCustomerHref="/CustomerDashboard"
-        ctaProHref="/providers/apply"
+          ctaCustomerHref="/CustomerDashboard"
+          ctaProHref="/providers/apply"
         />
-
-        {/* CTA */}
-        <section className="bf-cta-final">
-          <div className="bf-cta-content">
-            <h2>Ready to fill your schedule?</h2>
-            <p>Join the network of top-rated pros in South Florida.</p>
-            {/* <a className="bf-pro-btn bf-pro-btn-primary" href="/providers/apply">
-              Apply Now
-            </a> */}
+        <AppBanner />
+        <section className="testi-section">
+          <div className="section-inner">
+            <p className="section-label">Pro Feedback</p>
+            <h2 className="section-title">What Service Pros Say</h2>
+            {/* <p className="section-sub">Examples of the kind of feedback this page is trying to communicate — cleaner workflow, better focus, less wasted energy.</p> */}
+            <div className="testi-grid">
+              {testimonials.map((item) => (
+                <div className="testi-card" key={item.name}>
+                  <div className="testi-stars">{item.stars}</div>
+                  <p className="testi-quote">“{item.quote}”</p>
+                  <div className="testi-author">
+                    <div
+                      className="testi-avatar"
+                      style={{ background: item.bg }}
+                    >
+                      {item.initials}
+                    </div>
+                    <div>
+                      <div className="testi-name">{item.name}</div>
+                      <div className="testi-location">{item.location}</div>
+                    </div>
+                  </div>
+                </div>
+              ))}
+            </div>
           </div>
         </section>
 
-        <footer className="bf-footer">
-          <p>© {new Date().getFullYear()} BlinqFix. Built for the trades.</p>
-        </footer>
+        <div className="cta-band">
+          <h2>Ready to Fill Your Calendar?</h2>
+          <p>
+            Explore the app, review the pro flow, and decide whether BlinqFix
+            fits your business.
+          </p>
+          <div className="cta-btns">
+            <Link to="/getjobs" className="btn-white">
+              Join as a Pro — It’s Free
+            </Link>
+            <Link to="/gettheapp" className="btn-outline-white">
+              Are You a Homeowner?
+            </Link>
+          </div>
+        </div>
       </main>
-    </>
+
+      <footer className="page-footer">
+        <div className="footer-inner">
+          <div className="footer-top">
+            <div className="footer-brand">
+              <div className="footer-logo">
+                <img src={blinqfixLogo} alt="BlinqFix" />
+              </div>
+              <p>
+                Emergency and scheduled home services with a cleaner booking
+                flow for homeowners and service pros.
+              </p>
+            </div>
+            {/* <div className="footer-col">
+              <h4>Homeowners</h4>
+              <Link to="/">Book a Pro</Link>
+              <Link to="/#how-it-works">How It Works</Link>
+              <Link to="/gettheapp">Download App</Link>
+              <Link to="/faq">FAQ</Link>
+            </div>
+            <div className="footer-col">
+              <h4>Service Pros</h4>
+              <Link to="/getjobs">Join as a Pro</Link>
+              <a href="#how-pros-work">How Pros Earn</a>
+              <Link to="/providers/apply">Apply</Link>
+              <Link to="/gettheapp">Get the App</Link>
+            </div>
+            <div className="footer-col">
+              <h4>Company</h4>
+              <Link to="/privacypolicy">Privacy Policy</Link>
+              <Link to="/termsandconditions">Terms of Service</Link>
+              <Link to="/faq">FAQ</Link>
+            </div> */}
+          </div>
+          <div className="footer-bottom">
+            <p>© {new Date().getFullYear()} BlinqFix. All rights reserved.</p>
+            <div className="footer-links">
+              <Link to="/privacypolicy">Privacy Policy</Link>
+              <Link to="/termsandconditions">Terms of Service</Link>
+              <Link to="/faq">FAQ</Link>
+            </div>
+          </div>
+        </div>
+      </footer>
+    </div>
   );
 };
 

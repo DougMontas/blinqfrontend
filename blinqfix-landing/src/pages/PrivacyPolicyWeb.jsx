@@ -1,164 +1,3 @@
-// import React from "react";
-// import { useNavigate } from "react-router-dom";
-// import {
-//   ArrowLeft, FileText, Shield, ClipboardList, Settings,
-//   Share2, CheckSquare, Lock, AlertTriangle, RefreshCw, Mail
-// } from "lucide-react"; // ✅ web icons
-
-// const Section = ({ title, icon: Icon, children }) => (
-//   <section style={styles.sectionCard}>
-//     <div style={styles.sectionGradient}>
-//       <div style={styles.sectionHeader}>
-//         <Icon size={20} color="#60a5fa" />
-//         <h3 style={styles.sectionTitle}>{title}</h3>
-//       </div>
-//       {children}
-//     </div>
-//   </section>
-// );
-
-// const Paragraph = ({ children }) => <p style={styles.paragraph}>{children}</p>;
-// const ListItem  = ({ children }) => <div style={styles.listItem}>• {children}</div>;
-
-// export default function PrivacyPolicyWeb() {
-//   const nav = useNavigate();
-
-//   return (
-//     <div style={styles.container}>
-//       <main style={styles.contentWrap}>
-//         <header style={styles.header}>
-//           <button onClick={() => nav(-1)} style={styles.backButton} aria-label="Go back">
-//             <ArrowLeft size={24} color="#fff" />
-//           </button>
-
-//           <div style={styles.headerCenter}>
-//             <div style={styles.headerBadge}>
-//               <FileText size={16} color="#e0e7ff" />
-//               <span style={styles.headerBadgeText}>Legal</span>
-//             </div>
-//             <h1 style={styles.headerTitle}>Privacy Policy</h1>
-//           </div>
-
-//           <div style={{ width: 44 }} />
-//         </header>
-
-//         <div style={styles.introCard}>
-//           <div style={styles.introGradient}>
-//             <div style={styles.introHeader}>
-//               <Shield size={32} color="#22c55e" />
-//               <h2 style={styles.introTitle}>Privacy Policy for BlinqFix Official App</h2>
-//             </div>
-//             <p style={styles.effectiveDate}>Effective Date: 5/1/2025</p>
-//           </div>
-//         </div>
-
-//         <Section title="1. Introduction" icon={FileText}>
-//           <Paragraph>
-//             BlinqFix (“we,” “our,” or “us”) explains how we collect, use, disclose, and safeguard
-//             your information when you use the BlinqFix official application.
-//           </Paragraph>
-//         </Section>
-
-//         <Section title="2. Information We Collect" icon={ClipboardList}>
-//           <Paragraph>We may collect:</Paragraph>
-//           <ListItem>Personal information (name, email, phone, payment info)</ListItem>
-//           <ListItem>Device information (IP, OS, usage data)</ListItem>
-//           <ListItem>Location data (with your consent)</ListItem>
-//           <ListItem>User content (photos, videos, messages)</ListItem>
-//         </Section>
-
-//         <Section title="3. How We Use Your Information" icon={Settings}>
-//           <ListItem>Provide and manage services</ListItem>
-//           <ListItem>Process transactions and confirmations</ListItem>
-//           <ListItem>Communicate about your account or services</ListItem>
-//           <ListItem>Improve the app and experience</ListItem>
-//           <ListItem>Comply with legal obligations</ListItem>
-//         </Section>
-
-//         <Section title="4. Sharing Your Information" icon={Share2}>
-//           <ListItem>Service providers (on our behalf)</ListItem>
-//           <ListItem>Business partners (features & delivery)</ListItem>
-//           <ListItem>Law enforcement (as required by law)</ListItem>
-//         </Section>
-
-//         <Section title="5. Your Choices" icon={CheckSquare}>
-//           <ListItem>Access/correct your info in the app</ListItem>
-//           <ListItem>Control location in device settings</ListItem>
-//           <ListItem>Opt out of marketing messages</ListItem>
-//         </Section>
-
-//         <Section title="6. Data Security" icon={Lock}>
-//           <Paragraph>We apply appropriate safeguards; no system is 100% secure.</Paragraph>
-//         </Section>
-
-//         <Section title="7. Children’s Privacy" icon={AlertTriangle}>
-//           <Paragraph>Not intended for children under 13.</Paragraph>
-//         </Section>
-
-//         <Section title="8. Changes to This Policy" icon={RefreshCw}>
-//           <Paragraph>We may update this policy and the Effective Date.</Paragraph>
-//         </Section>
-
-//         <Section title="9. Contact Us" icon={Mail}>
-//           <Paragraph>
-//             Questions? Email <a href="mailto:support@blinqfix.com" style={styles.mailLink}>support@blinqfix.com</a>.
-//           </Paragraph>
-//         </Section>
-//       </main>
-//     </div>
-//   );
-// }
-
-// /* inline styles */
-// const styles = {
-//   container: {
-//     minHeight: "100vh",
-//     background: "linear-gradient(180deg, #0f172a, #1e3a8a 50%, #312e81)",
-//   },
-//   contentWrap: {
-//     maxWidth: 980,
-//     margin: "0 auto",
-//     padding: "40px 20px 64px",
-//     color: "#e0e7ff",
-//   },
-//   header: { display: "flex", alignItems: "center", justifyContent: "space-between", paddingBottom: 20 },
-//   backButton: {
-//     background: "rgba(255,255,255,0.12)", width: 44, height: 44, border: 0, borderRadius: 999,
-//     display: "grid", placeItems: "center", cursor: "pointer",
-//   },
-//   headerCenter: { display: "flex", alignItems: "center", flex: 1 },
-//   headerBadge: {
-//     display: "inline-flex", alignItems: "center", gap: 8, background: "rgba(255,255,255,0.1)",
-//     padding: "6px 12px", borderRadius: 16, margin: "0 auto 8px",
-//   },
-//   headerBadgeText: { color: "#fff", fontSize: 12, fontWeight: 500 },
-//   headerTitle: { fontSize: 24, fontWeight: 700, color: "#fff", margin: 0, textAlign: "center" },
-//   introCard: { marginBottom: 24, borderRadius: 16, overflow: "hidden" },
-//   introGradient: {
-//     padding: 24,
-//     background: "linear-gradient(180deg, rgba(34,197,94,0.15), rgba(16,185,129,0.05))",
-//     border: "1px solid rgba(255,255,255,0.1)",
-//   },
-//   introHeader: { display: "flex", alignItems: "center", marginBottom: 12, gap: 12 },
-//   introTitle: { margin: 0, fontSize: 20, fontWeight: 700, color: "#fff", lineHeight: "28px" },
-//   effectiveDate: { margin: 0, fontSize: 14, color: "#e0e7ff", textAlign: "center", fontStyle: "italic" },
-//   sectionCard: { marginBottom: 16, borderRadius: 16, overflow: "hidden" },
-//   sectionGradient: {
-//     padding: 20,
-//     background: "linear-gradient(180deg, rgba(255,255,255,0.05), rgba(255,255,255,0.02))",
-//     border: "1px solid rgba(255,255,255,0.1)",
-//   },
-//   sectionHeader: {
-//     display: "flex", alignItems: "center", gap: 12, paddingBottom: 8, marginBottom: 12,
-//     borderBottom: "1px solid rgba(255,255,255,0.08)",
-//   },
-//   sectionTitle: { margin: 0, fontSize: 16, fontWeight: 700, color: "#fff" },
-//   paragraph: { fontSize: 15, lineHeight: "22px", color: "#e0e7ff", margin: "0 0 10px" },
-//   listItem: { fontSize: 15, lineHeight: "22px", color: "#e0e7ff", margin: "0 0 8px 8px" },
-//   mailLink: { color: "#93c5fd", textDecoration: "underline" },
-// };
-
-
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import {
@@ -166,6 +5,7 @@ import {
   Share2, CheckSquare, Lock, AlertTriangle, RefreshCw, Mail,
   Eye, Database, Users, MessageSquare
 } from "lucide-react";
+import { applyPageSeo } from "../utils/seo";
 
 /* ============================ STYLES ============================ */
 const styles = {
@@ -443,6 +283,39 @@ const ListContainer = ({ children }) => (
 export default function PrivacyPolicy() {
   const navigate = useNavigate();
   const [backButtonHovered, setBackButtonHovered] = useState(false);
+
+  React.useEffect(() => {
+    return applyPageSeo({
+      title: "Privacy Policy | BlinqFix",
+      description:
+        "Review the BlinqFix privacy policy covering data collection, account information, communications, service usage, and your privacy rights.",
+      canonical: "https://www.blinqfix.com/privacypolicy",
+      og: {
+        url: "https://www.blinqfix.com/privacypolicy",
+        title: "Privacy Policy | BlinqFix",
+        description:
+          "How BlinqFix collects, uses, stores, and protects personal information.",
+      },
+      twitter: {
+        title: "BlinqFix Privacy Policy",
+        description:
+          "Read how BlinqFix handles personal information, account data, and user rights.",
+      },
+      schema: [
+        {
+          id: "blinqfix-privacy-schema",
+          data: {
+            "@context": "https://schema.org",
+            "@type": "WebPage",
+            name: "BlinqFix Privacy Policy",
+            url: "https://www.blinqfix.com/privacypolicy",
+            description:
+              "Privacy policy page describing how BlinqFix handles personal information.",
+          },
+        },
+      ],
+    });
+  }, []);
 
   return (
     <div style={styles.container}>

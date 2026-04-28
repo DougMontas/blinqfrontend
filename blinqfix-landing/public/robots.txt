@@ -9,5 +9,3 @@ Disallow: /admin/
 
 # Point bots to your canonical sitemap
 Sitemap: https://www.blinqfix.com/sitemap.xml
-# Optional alias copy for any integrations that expect /site.xml
-Sitemap: https://www.blinqfix.com/site.xml

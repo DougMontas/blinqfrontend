@@ -1,24 +1,106 @@
-import React, { useEffect, useRef, useState } from "react";
+import React, { useEffect, useMemo, useRef, useState } from "react";
 import { Globe } from "lucide-react";
+
+const GOOGLE_ELEMENT_ID = "google_translate_element_singleton";
+
+const LANGUAGES = [
+  { code: "en", label: "English" },
+  { code: "es", label: "Español" },
+  { code: "fr", label: "Français" },
+  { code: "pt", label: "Português" },
+  { code: "ht", label: "Kreyòl Ayisyen" },
+  { code: "it", label: "Italiano" },
+  { code: "de", label: "Deutsch" },
+  { code: "ru", label: "Русский" },
+  { code: "zh-CN", label: "中文(简体)" },
+  { code: "ar", label: "العربية" },
+];
+
+function getCookie(name) {
+  const escaped = name.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
+  const match = document.cookie.match(new RegExp(`(?:^|; )${escaped}=([^;]*)`));
+  return match ? decodeURIComponent(match[1]) : "";
+}
+
+function setGoogleTranslateCookie(value) {
+  const hostname = window.location.hostname;
+  const secure = window.location.protocol === "https:" ? ";Secure" : "";
+  const maxAge = 60 * 60 * 24 * 365;
+
+  const base = `googtrans=${encodeURIComponent(value)};path=/;max-age=${maxAge};SameSite=Lax${secure}`;
+  document.cookie = base;
+
+  if (hostname && hostname !== "localhost") {
+    const parts = hostname.split(".");
+    if (parts.length >= 2) {
+      const rootDomain = `.${parts.slice(-2).join(".")}`;
+      document.cookie = `${base};domain=${rootDomain}`;
+      document.cookie = `${base};domain=${hostname}`;
+    }
+  }
+}
+
+function clearGoogleTranslateCookie() {
+  const hostname = window.location.hostname;
+  const secure = window.location.protocol === "https:" ? ";Secure" : "";
+
+  const expired = `googtrans=;path=/;expires=Thu, 01 Jan 1970 00:00:00 GMT;SameSite=Lax${secure}`;
+  document.cookie = expired;
+
+  if (hostname && hostname !== "localhost") {
+    const parts = hostname.split(".");
+    if (parts.length >= 2) {
+      const rootDomain = `.${parts.slice(-2).join(".")}`;
+      document.cookie = `${expired};domain=${rootDomain}`;
+      document.cookie = `${expired};domain=${hostname}`;
+    }
+  }
+}
+
+function getCurrentLanguage() {
+  const raw = getCookie("googtrans");
+  if (!raw) return "en";
+
+  const parts = raw.split("/");
+  const target = parts[2];
+  return target || "en";
+}
 
 export default function TranslateButton() {
   const [open, setOpen] = useState(false);
-  const ref = useRef();
+  const [currentLang, setCurrentLang] = useState("en");
+  const rootRef = useRef(null);
+
+  const currentLabel = useMemo(() => {
+    return LANGUAGES.find((l) => l.code === currentLang)?.label || "Language";
+  }, [currentLang]);
 
   useEffect(() => {
-    console.log("[TranslateButton] Mounting...");
+    setCurrentLang(getCurrentLanguage());
 
-    // Initialize only once
     if (!window.googleTranslateElementInit) {
       window.googleTranslateElementInit = () => {
-        console.log("[TranslateButton] Initializing Google Translate...");
-        if (!document.querySelector(".goog-te-combo")) {
+        const container = document.getElementById(GOOGLE_ELEMENT_ID);
+        const alreadyMounted =
+          container &&
+          (container.childNodes.length > 0 ||
+            document.querySelector(`#${GOOGLE_ELEMENT_ID} .goog-te-combo`));
+
+        if (
+          window.google &&
+          window.google.translate &&
+          window.google.translate.TranslateElement &&
+          container &&
+          !alreadyMounted
+        ) {
           new window.google.translate.TranslateElement(
             {
               pageLanguage: "en",
-              layout: window.google.translate.TranslateElement.InlineLayout.SIMPLE,
+              autoDisplay: false,
+              layout:
+                window.google.translate.TranslateElement.InlineLayout.SIMPLE,
             },
-            "google_translate_element"
+            GOOGLE_ELEMENT_ID
           );
         }
       };
@@ -28,84 +110,135 @@ export default function TranslateButton() {
     if (!existingScript) {
       const script = document.createElement("script");
       script.id = "google-translate-script";
-      script.src = "//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit";
+      script.src =
+        "https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit";
       script.async = true;
       document.body.appendChild(script);
-      console.log("[TranslateButton] Script injected");
+    } else if (
+      window.google &&
+      window.google.translate &&
+      window.google.translate.TranslateElement &&
+      window.googleTranslateElementInit
+    ) {
+      window.googleTranslateElementInit();
     }
 
     const handleClickOutside = (event) => {
-      if (ref.current && !ref.current.contains(event.target)) {
+      if (rootRef.current && !rootRef.current.contains(event.target)) {
         setOpen(false);
       }
     };
+
     document.addEventListener("mousedown", handleClickOutside);
-    return () => document.removeEventListener("mousedown", handleClickOutside);
+    document.addEventListener("touchstart", handleClickOutside);
+
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside);
+      document.removeEventListener("touchstart", handleClickOutside);
+    };
   }, []);
 
-  useEffect(() => {
-    // Hide duplicate select boxes on open
-    if (open) {
-      const combos = document.querySelectorAll(".goog-te-combo");
-      if (combos.length > 1) {
-        for (let i = 1; i < combos.length; i++) {
-          combos[i].style.display = "none";
-        }
-      }
+  const applyLanguage = (langCode) => {
+    setOpen(false);
+
+    if (langCode === "en") {
+      clearGoogleTranslateCookie();
+      setCurrentLang("en");
+      window.location.reload();
+      return;
     }
-  }, [open]);
+
+    setGoogleTranslateCookie(`/en/${langCode}`);
+    setCurrentLang(langCode);
+    window.location.reload();
+  };
 
   return (
     <div
-      ref={ref}
+      ref={rootRef}
       style={{
-        position: "fixed",
-        top: 24,
-        right: 24,
-        zIndex: 999,
-        background: "rgba(30, 41, 59, 0.5)",
-        padding: "8px 16px",
-        borderRadius: "20px",
-        backdropFilter: "blur(10px)",
-        border: "1px solid rgba(51, 65, 85, 0.5)",
-        overflow: "hidden",
+        display: "inline-flex",
+        flexDirection: "column",
+        alignItems: "center",
+        width: "100%",
+        position: "relative",
       }}
     >
       <button
-        onClick={() => {
-          console.log("[TranslateButton] Toggle pressed");
-          setOpen(!open);
-        }}
+        type="button"
+        onClick={() => setOpen((prev) => !prev)}
+        aria-expanded={open}
+        aria-label="Toggle language options"
         style={{
-          display: 'flex',
+          display: "flex",
           alignItems: "center",
-          gap: "8px",
+          gap: 8,
           background: "#161b22",
           color: "#c9d1d9",
           padding: "10px 16px",
-          borderRadius: "50px",
+          borderRadius: 999,
           border: "1px solid #30363d",
           cursor: "pointer",
           boxShadow: "0 4px 12px rgba(0,0,0,0.3)",
-          transition: "all 0.2s ease-in-out",
-          fontWeight: 500,
+          fontWeight: 600,
+          minWidth: 170,
+          justifyContent: "center",
         }}
       >
         <Globe size={18} />
-        <span style={{ marginLeft: 6, fontSize: 12 }}>Language</span>
+        <span style={{ fontSize: 12 }}>{currentLabel}</span>
       </button>
 
+      {open && (
+        <div
+          style={{
+            marginTop: 8,
+            background: "rgba(15, 23, 42, 0.98)",
+            border: "1px solid rgba(255,255,255,0.12)",
+            borderRadius: 12,
+            minWidth: 220,
+            maxHeight: 260,
+            overflowY: "auto",
+            boxShadow: "0 12px 28px rgba(0,0,0,0.35)",
+            padding: 8,
+          }}
+        >
+          {LANGUAGES.map((lang) => {
+            const active = currentLang === lang.code;
+            return (
+              <button
+                key={lang.code}
+                type="button"
+                onClick={() => applyLanguage(lang.code)}
+                style={{
+                  width: "100%",
+                  textAlign: "left",
+                  background: active ? "rgba(244,82,12,0.14)" : "transparent",
+                  color: "#e5e7eb",
+                  border: "none",
+                  borderRadius: 10,
+                  padding: "10px 12px",
+                  cursor: "pointer",
+                  fontSize: 14,
+                  fontWeight: active ? 700 : 500,
+                }}
+              >
+                {lang.label}
+              </button>
+            );
+          })}
+        </div>
+      )}
+
       <div
-        id="google_translate_element"
+        id={GOOGLE_ELEMENT_ID}
         style={{
-          marginTop: 8,
-          display: open ? "block" : "none",
-          backgroundColor: "rgba(15, 23, 42, 0.9)",
-          padding: 6,
-          borderRadius: 8,
-          maxWidth: 200,
-          overflowX: "auto",
-          whiteSpace: "nowrap",
+          position: "absolute",
+          width: 1,
+          height: 1,
+          overflow: "hidden",
+          opacity: 0,
+          pointerEvents: "none",
         }}
       />
     </div>

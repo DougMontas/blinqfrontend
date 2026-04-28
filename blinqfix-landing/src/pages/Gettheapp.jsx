@@ -1,1014 +1,948 @@
-import React, { useState } from "react";
+import React, { useEffect } from "react";
+import { Link } from "react-router-dom";
 import PricingSection from "../sections/PricingSection";
+import blinqfixLogo from "../assets/blinqfix_logo.jpeg";
 
-const emergencyStyles = `
-:root {
-  --bf-bg: #050816;
-  --bf-bg-soft: #0b1020;
-  --bf-accent: #22d3ee;
-  --bf-accent-soft: rgba(34, 211, 238, 0.12);
-  --bf-text: #f9fafb;
-  --bf-muted: #9ca3af;
-  --bf-border: #1f2933;
-  --bf-radius-lg: 1.5rem;
-  --bf-radius-md: 0.9rem;
-  --bf-shadow-soft: 0 20px 40px rgba(0, 0, 0, 0.45);
-  --bf-max-width: 1120px;
+const PAGE_CSS = `
+*{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --orange:#F4520C;--orange-light:#FFF0EA;--orange-dark:#C23D06;
+  --navy:#0B1628;--navy-mid:#1B2B45;--slate:#4A5872;--slate-light:#8A96A8;
+  --cream:#FAFAF7;--white:#FFFFFF;--border:#E5E7EC;
+  --green:#1A7F4B;
+  --radius:12px;--radius-lg:20px;
+  --shadow:0 2px 16px rgba(11,22,40,.08);--shadow-lg:0 8px 40px rgba(11,22,40,.14)
 }
-
-/* PAGE WRAPPER */
-
-.bf-em-page {
-  min-height: 100vh;
-  background: radial-gradient(circle at top, #1e293b 0, #020617 50%, #000 100%);
-  color: var(--bf-text);
-  font-family: system-ui, -apple-system, BlinkMacSystemFont, "SF Pro Text",
-    "Helvetica Neue", Arial, sans-serif;
-  padding: 2.5rem 1.25rem 3rem;
+body{
+  font-family:'DM Sans',sans-serif;
+  font-size:16px;
+  color:var(--navy);
+  background:var(--cream);
+  line-height:1.6
 }
+h1,h2,h3,h4,h5{font-family:'Syne',sans-serif;line-height:1.15}
+a{text-decoration:none}
+img{max-width:100%;display:block}
+button{font:inherit}
+.gettheapp-shell{background:var(--cream);color:var(--navy)}
 
-/* Constrain content width */
-.bf-em-page > section,
-.bf-em-footer {
-  max-width: var(--bf-max-width);
-  margin: 0 auto 3rem;
+nav{
+  position:sticky;
+  top:0;
+  z-index:100;
+  background:rgba(255,255,255,.96);
+  backdrop-filter:blur(10px);
+  border-bottom:1px solid var(--border);
+  padding:0 2rem
+}
+.nav-inner{
+  max-width:1160px;
+  margin:0 auto;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  height:64px;
+  gap:2rem
+}
+.logo{
+  display:flex;
+  align-items:center;
+  line-height:0
+}
+.logo img{
+  height:40px;
+  width:auto;
+  object-fit:contain;
+  display:block;
+  filter:brightness(0) saturate(100%);
+}
+.nav-tabs{
+  display:flex;
+  border:1px solid var(--border);
+  border-radius:8px;
+  overflow:hidden
+}
+.nav-tab{
+  padding:6px 20px;
+  font-size:.85rem;
+  font-weight:500;
+  border:none;
+  cursor:pointer;
+  font-family:'DM Sans',sans-serif;
+  color:var(--slate);
+  background:var(--white);
+  display:inline-block
+}
+.nav-tab.active-pro{
+  background:var(--navy);
+  color:var(--white)
+}
+.btn-app-nav{
+  display:flex;
+  align-items:center;
+  gap:6px;
+  padding:8px 18px;
+  border-radius:8px;
+  background:var(--orange);
+  color:var(--white);
+  font-size:.85rem;
+  font-weight:500;
+  border:none;
+  font-family:'DM Sans',sans-serif
 }
 
 /* HERO */
-
-.bf-em-hero {
-  display: grid;
-  gap: 2.5rem;
-  align-items: stretch;
-  text-align: center;
+.app-hero{
+  position:relative;
+  overflow:hidden;
+  isolation:isolate;
+  background:
+    radial-gradient(circle at 16% 18%, rgba(244,82,12,.26), transparent 26%),
+    radial-gradient(circle at 84% 20%, rgba(59,130,246,.18), transparent 24%),
+    linear-gradient(180deg, #13233c 0%, var(--navy) 62%, #091120 100%);
+  padding:5rem 2rem;
+  text-align:center
+}
+.app-hero-inner{
+  position:relative;
+  z-index:1;
+  max-width:920px;
+  margin:0 auto
+}
+.app-hero::before{
+  content:"";
+  position:absolute;
+  inset:0;
+  background:
+    radial-gradient(circle at 14% 24%, rgba(255,255,255,.42) 0 2px, transparent 3px),
+    radial-gradient(circle at 31% 58%, rgba(244,82,12,.52) 0 2.5px, transparent 3.5px),
+    radial-gradient(circle at 50% 34%, rgba(255,255,255,.32) 0 2px, transparent 3px),
+    radial-gradient(circle at 71% 24%, rgba(59,130,246,.44) 0 2.5px, transparent 3.5px),
+    radial-gradient(circle at 85% 54%, rgba(255,255,255,.24) 0 2px, transparent 3px),
+    linear-gradient(121deg, transparent 18%, rgba(244,82,12,.15) 18.4%, rgba(244,82,12,.15) 18.9%, transparent 19.2%),
+    linear-gradient(149deg, transparent 45%, rgba(59,130,246,.12) 45.3%, rgba(59,130,246,.12) 45.8%, transparent 46.1%),
+    linear-gradient(95deg, transparent 67%, rgba(255,255,255,.08) 67.2%, rgba(255,255,255,.08) 67.5%, transparent 67.8%);
+  opacity:.9;
+  mask-image:radial-gradient(circle at center, white 0%, rgba(255,255,255,.94) 60%, transparent 88%);
+  pointer-events:none
+}
+.app-hero::after{
+  content:"";
+  position:absolute;
+  inset:-12% -10% auto;
+  height:78%;
+  background:
+    radial-gradient(circle at 18% 18%, rgba(244,82,12,.22), transparent 34%),
+    radial-gradient(circle at 80% 18%, rgba(59,130,246,.16), transparent 28%),
+    radial-gradient(circle at 55% 100%, rgba(255,255,255,.08), transparent 30%);
+  filter:blur(22px);
+  opacity:.95;
+  pointer-events:none
+}
+.hero-badge{
+  display:inline-flex;
+  align-items:center;
+  gap:6px;
+  background:rgba(244,82,12,.15);
+  color:#FF8152;
+  padding:5px 14px;
+  border-radius:100px;
+  font-size:.8rem;
+  font-weight:500;
+  margin-bottom:1.25rem
+}
+.badge-dot{
+  width:7px;
+  height:7px;
+  background:var(--orange);
+  border-radius:50%;
+  animation:pulse 2s infinite
+}
+@keyframes pulse{
+  0%,100%{opacity:1;transform:scale(1)}
+  50%{opacity:.6;transform:scale(1.3)}
+}
+.app-hero h1{
+  font-size:clamp(2rem,4vw,3.2rem);
+  color:var(--white);
+  font-weight:800;
+  margin-bottom:1rem
+}
+.app-hero h1 em{
+  color:var(--orange);
+  font-style:normal
+}
+.app-hero p{
+  font-size:1.1rem;
+  color:#D1DAE7;
+  max-width:640px;
+  margin:0 auto 2.5rem;
+  line-height:1.7
+}
+.store-btns{
+  display:flex;
+  justify-content:center;
+  gap:1rem;
+  flex-wrap:wrap;
+  margin-bottom:1rem
+}
+.store-btn{
+  display:flex;
+  align-items:center;
+  gap:12px;
+  background:var(--white);
+  border-radius:12px;
+  padding:12px 24px;
+  transition:all .2s;
+  border:none;
+  cursor:pointer
+}
+.store-btn:hover{
+  transform:translateY(-2px);
+  box-shadow:0 8px 24px rgba(0,0,0,.2)
+}
+.store-icon{
+  font-size:1.4rem;
+  line-height:1;
+  width:1.4rem;
+  text-align:center;
+  flex-shrink:0
+}
+.store-text{text-align:left}
+.store-sub{font-size:.7rem;color:var(--slate)}
+.store-name{
+  font-size:1rem;
+  font-weight:700;
+  color:var(--navy);
+  font-family:'Syne',sans-serif
+}
+.app-meta{
+  font-size:.82rem;
+  color:#D8E0EA;
+  margin-top:1.25rem
 }
 
-@media (min-width: 900px) {
-  .bf-em-hero {
-    grid-template-columns: minmax(0, 1.4fr) minmax(0, 1fr);
-  }
+/* RATING STRIP */
+.rating-strip{
+  background:var(--navy-mid);
+  border-top:1px solid rgba(255,255,255,.08);
+  padding:1.5rem 2rem;
+  text-align:center
 }
-
-.bf-em-hero-content h1 {
-  font-size: clamp(2.4rem, 3.2vw + 1.2rem, 3.4rem);
-  line-height: 1.05;
-  letter-spacing: -0.03em;
-  margin: 0.5rem 0 0.75rem;
+.rating-strip-inner{
+  max-width:780px;
+  margin:0 auto;
+  display:flex;
+  justify-content:center;
+  gap:3rem;
+  flex-wrap:wrap
 }
-
-.bf-em-subhead {
-  font-size: 1.02rem;
-  line-height: 1.6;
-  color: var(--bf-muted);
-  max-width: 36rem;
-  margin-left: 10%;
+.rating-item{text-align:center}
+.rating-num{
+  font-size:1.35rem;
+  font-weight:800;
+  color:var(--white);
+  font-family:'Syne',sans-serif
 }
-
-/* BADGE */
-
-.bf-em-badge {
-  display: inline-flex;
-  flex-direction: column;
-  align-items: flex-start;
-  gap: 0.25rem;
-  padding: 0.6rem 0.9rem;
-  border-radius: 999px;
-  border: 1px solid rgba(148, 163, 184, 0.4);
-  background: rgba(15, 23, 42, 0.9);
-  font-size: 0.78rem;
-  text-transform: uppercase;
-  letter-spacing: 0.12em;
-  color: #e5e7eb;
-}
-
-.bf-em-badge-highlight {
-  text-transform: none;
-  letter-spacing: 0.03em;
-  font-weight: 700;
-  color: var(--bf-accent);
-  margin-left: 35%;
-  font-size: 1rem;
-}
-
-/* BUTTONS */
-
-.bf-em-cta-row {
-  display: flex;
-  justify-content: center;
-  flex-wrap: wrap;
-  gap: 0.75rem;
-  margin: 1.6rem 0 1.9rem;
-}
-
-.bf-em-btn {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  padding: 0.8rem 1.4rem;
-  border-radius: 999px;
-  font-weight: 600;
-  font-size: 0.95rem;
-  border: 1px solid transparent;
-  cursor: pointer;
-  text-decoration: none;
-  transition: transform 0.1s ease, box-shadow 0.1s ease, background 0.15s ease,
-    border-color 0.15s ease;
-  white-space: nowrap;
-}
-
-.bf-em-btn-large {
-  font-size: 1.4rem;
-  padding: 1rem 2rem;
-}
-
-.bf-em-btn-primary {
-  background: linear-gradient(135deg, #22d3ee, #0ea5e9);
-  color: #020617;
-  box-shadow: 0 15px 30px rgba(56, 189, 248, 0.4);
-}
-
-.bf-em-btn-primary:hover {
-  transform: translateY(-1px);
-  box-shadow: 0 18px 36px rgba(56, 189, 248, 0.5);
-}
-
-.bf-em-btn-secondary {
-  background: rgba(15, 23, 42, 0.9);
-  color: var(--bf-text);
-  border-color: rgba(148, 163, 184, 0.6);
-}
-
-.bf-em-btn-secondary:hover {
-  background: rgba(15, 23, 42, 0.98);
-  transform: translateY(-1px);
-}
-
-.bf-em-btn-ghost {
-  background: transparent;
-  border-color: rgba(148, 163, 184, 0.6);
-  color: var(--bf-text);
-}
-
-.bf-em-btn-ghost:hover {
-  background: rgba(15, 23, 42, 0.7);
-}
-
-.bf-em-btn-light {
-  background: #f9fafb;
-  color: #020617;
-}
-
-.bf-em-btn-light:hover {
-  background: #e5e7eb;
-  transform: translateY(-1px);
-}
-
-/* TEXT ME THE APP */
-
-.bf-em-textlink {
-  margin-bottom: 1.4rem;
-}
-
-.bf-em-textlink-label {
-  display: block;
-  font-size: 0.82rem;
-  color: var(--bf-muted);
-  margin-bottom: 0.35rem;
-}
-
-.bf-em-textlink-row {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 0.6rem;
-}
-
-.bf-em-textlink-row input {
-  flex: 1 1 10rem;
-  min-width: 0;
-  padding: 0.7rem 0.9rem;
-  border-radius: 999px;
-  border: 1px solid rgba(148, 163, 184, 0.7);
-  background: rgba(15, 23, 42, 0.85);
-  color: var(--bf-text);
-  font-size: 0.9rem;
-}
-
-.bf-em-textlink-row input::placeholder {
-  color: #6b7280;
-}
-
-.bf-em-textlink-row input:focus {
-  outline: none;
-  border-color: var(--bf-accent);
-  box-shadow: 0 0 0 1px rgba(34, 211, 238, 0.7);
-}
-
-.bf-em-textlink-confirm {
-  font-size: 0.8rem;
-  color: var(--bf-muted);
-  margin-top: 0.35rem;
-}
-
-/* QUICK POINTS */
-
-.bf-em-quick-points {
-  list-style: none;
-  padding: 0;
-  margin: 1.1rem 0 0;
-  display: flex;
-  flex-wrap: wrap;
-  gap: 2.5rem;
-  justify-content: center;
-}
-
-.bf-em-quick-points li {
-  position: relative;
-  flex: 0 1 210px;
-  text-align: center;
-  font-size: 0.99rem;
-  color: var(--bf-muted);
-  line-height: 1.5;
-  padding-top: 1.3rem;
-}
-
-/* Star icon + glow */
-.bf-em-quick-points li::before {
-  content: "★";
-  position: absolute;
-  top: 0;
-  left: 50%;
-  margin-top: -20px;
-  transform: translateX(-50%);
-  font-size: 1.3rem;
-  color: var(--bf-accent);
-  text-shadow: 0 0 12px rgba(34, 211, 238, 0.9);
-}
-
-/* HERO ASIDE */
-
-.bf-em-hero-aside {
-  display: flex;
-  align-items: stretch;
-}
-
-.bf-em-hero-card {
-  border-radius: var(--bf-radius-lg);
-  border: 1px solid rgba(148, 163, 184, 0.5);
-  background: linear-gradient(
-    150deg,
-    rgba(15, 23, 42, 0.95),
-    rgba(15, 23, 42, 0.85),
-    rgba(15, 23, 42, 0.98)
-  );
-  padding: 1.6rem 1.6rem 1.8rem;
-  box-shadow: var(--bf-shadow-soft);
-}
-
-.bf-em-hero-card h2 {
-  font-size: 1.2rem;
-  margin-top: 0;
-  margin-bottom: 0.5rem;
-  text-align: center;
-}
-
-.bf-em-small-heading {
-  font-size: 0.9rem;
-  font-weight: 500;
-  color: var(--bf-muted);
-}
-
-.bf-em-small-heading span {
-  color: var(--bf-accent);
-}
-
-.bf-em-hero-card p {
-  font-size: 0.92rem;
-  color: var(--bf-muted);
-  text-align: center;
-}
-
-.bf-em-hero-list {
-  list-style: none;
-  padding: 0;
-  margin: 1rem 0 0.7rem;
-  font-size: 0.9rem;
-  text-align: center;
-}
-
-.bf-em-hero-list li {
-  margin-bottom: 0.35rem;
-}
-
-.bf-em-hero-note {
-  font-size: 0.8rem;
-  color: #e5e7eb;
-  margin-top: 0.75rem;
-}
-
-/* Banner inside hero card */
-
-.banner-inner {
-  margin-top: 3.5rem;
-  padding-top: 3rem;
-  border-top: 1px solid rgba(148, 163, 184, 0.35);
-}
-
-.banner-inner .section-title {
-  font-size: 1rem;
-  font-weight: 600;
-  margin: 0;
-}
-
-.banner-inner .hero-sub {
-  font-size: 0.9rem;
-  color: var(--bf-muted);
-  margin: 0.15rem 0 0;
-}
-
-/* APP STORE BADGES + QR (inside hero card) */
-
-.bf-em-store-row {
-  display: flex;
-  justify-content: center;
-  align-items: flex-start;
-  gap: 2.5rem;
-  margin-top: 1.4rem;
-  flex-wrap: nowrap;
-}
-
-.bf-em-store-column {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  max-width: 220px;
-}
-
-.bf-em-store-link {
-  display: inline-flex;
-  height: 42px;
-  transition: opacity 0.2s, transform 0.15s;
-}
-
-.bf-em-store-link img {
-  height: 100%;
-  width: auto;
-  display: block;
-}
-
-.bf-em-store-link:hover {
-  opacity: 0.85;
-  transform: translateY(-1px);
-}
-
-.bf-em-qr-image {
-  margin-top: 0.5rem;
-  width: 80px;
-  height: 80px;
-  border-radius: 10px;
-  background: #ffffff;
-  padding: 3px;
-  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.35);
-  object-fit: contain;
-}
-
-.bf-em-qr-placeholder {
-  margin-top: 0.5rem;
-  width: 80px;
-  height: 80px;
-  border-radius: 10px;
-  border: 1px dashed var(--bf-border);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 0.75rem;
-  color: var(--bf-muted);
-  text-align: center;
-  padding: 0.25rem;
-  opacity: 0.9;
-}
-
-.bf-em-qr-caption {
-  font-size: 0.75rem;
-  text-transform: uppercase;
-  letter-spacing: 0.08em;
-  color: var(--bf-muted);
-  margin-top: 0.35rem;
-  text-align: center;
-}
-
-.bf-em-qr-caption-muted {
-  color: var(--bf-border);
-}
-
-/* On small phones, allow wrapping/centering */
-
-@media (max-width: 480px) {
-  .bf-em-store-row {
-    flex-wrap: wrap;
-    gap: 1.75rem;
-  }
-
-  .bf-em-subhead {
-    margin-left: 0;
-  }
+.rating-label{
+  font-size:.76rem;
+  color:#B8C5D7
 }
 
 /* SECTIONS */
-
-.bf-em-section {
-  border-radius: var(--bf-radius-lg);
-  border: 1px solid rgba(15, 23, 42, 0.9);
-  background: radial-gradient(circle at top left, #0b1220 0, #020617 55%);
-  padding: 1.9rem 1.7rem 2rem;
-  box-shadow: 0 16px 36px rgba(0, 0, 0, 0.5);
+.section{padding:5rem 2rem}
+.section.alt{background:var(--white)}
+.section-inner{max-width:1160px;margin:0 auto}
+.section-label{
+  font-size:.78rem;
+  font-weight:600;
+  letter-spacing:.1em;
+  text-transform:uppercase;
+  color:var(--orange);
+  margin-bottom:.75rem
+}
+.section-title{
+  font-size:clamp(1.8rem,3vw,2.6rem);
+  font-weight:800;
+  color:var(--navy);
+  margin-bottom:1rem
+}
+.section-sub{
+  font-size:1.05rem;
+  color:var(--slate);
+  max-width:100%;
+  line-height:1.7;
+  text-align: center
 }
 
-.bf-em-section h2 {
-  font-size: 1.5rem;
-  margin: 0 0 0.4rem;
-  text-align: center;
+/* FEATURES */
+.app-features-grid{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
+  gap:1.5rem;
+  margin-top:3rem
+}
+.app-feat{
+  background:var(--white);
+  border:1px solid var(--border);
+  border-radius:var(--radius-lg);
+  padding:2rem;
+  text-align:center
+}
+.app-feat-icon{font-size:2rem;margin-bottom:1rem}
+.app-feat-title{
+  font-size:1rem;
+  font-weight:700;
+  color:var(--navy);
+  margin-bottom:.5rem
+}
+.app-feat-desc{
+  font-size:.88rem;
+  color:var(--slate);
+  line-height:1.65
 }
 
-.bf-em-section-sub {
-  font-size: 0.92rem;
-  color: var(--bf-muted);
-  max-width: 36rem;
-  margin-left: 25%;
+/* DUAL CTA */
+.dual-cta{
+  padding:5rem 2rem;
+  background:var(--white)
+}
+.dual-cta-inner{
+  max-width:900px;
+  margin:0 auto;
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:1.5rem
+}
+.cta-card{
+  border-radius:var(--radius-lg);
+  padding:2.5rem;
+  position:relative;
+  overflow:hidden
+}
+.cta-card.homeowner{background:var(--navy)}
+.cta-card.pro{background:var(--orange)}
+.cta-card h3{
+  font-size:1.4rem;
+  color:var(--white);
+  font-weight:800;
+  margin-bottom:.75rem
+}
+.cta-card p{
+  font-size:.95rem;
+  color:rgba(255,255,255,.9);
+  margin-bottom:1.5rem;
+  line-height:1.65
+}
+.cta-card .badge{
+  display:inline-block;
+  font-size:.72rem;
+  font-weight:700;
+  padding:3px 10px;
+  border-radius:100px;
+  margin-bottom:1rem;
+  background:rgba(255,255,255,.12);
+  color:rgba(255,255,255,.95)
+}
+.btn-card{
+  display:inline-block;
+  padding:12px 24px;
+  border-radius:10px;
+  font-size:.95rem;
+  font-weight:700;
+  font-family:'Syne',sans-serif;
+  border:none;
+  cursor:pointer;
+  background:var(--white)
+}
+.btn-card.homeowner{color:var(--navy)}
+.btn-card.pro{color:var(--orange)}
+
+/* QR SECTION */
+.qr-section{
+  background:var(--cream);
+  padding:4rem 2rem;
+  text-align:center
+}
+.qr-grid{
+  max-width:760px;
+  margin:2rem auto 0;
+  display:grid;
+  grid-template-columns:repeat(2,minmax(0,1fr));
+  gap:1.5rem
+}
+.qr-box{
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  justify-content:flex-start;
+  background:var(--white);
+  border:1px solid var(--border);
+  border-radius:var(--radius-lg);
+  padding:2rem 1.5rem;
+  gap:1rem;
+  box-shadow:var(--shadow);
+  min-height:100%
+}
+.qr-frame{
+  width:172px;
+  height:172px;
+  flex-shrink:0;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  background:#ffffff;
+  border:1px solid #DDE5EF;
+  border-radius:16px;
+  padding:10px;
+  box-shadow:0 8px 20px rgba(11,22,40,.08);
+  overflow:hidden
+}
+.qr-image{
+  width:152px;
+  height:152px;
+  border-radius:8px;
+  object-fit:contain;
+  image-rendering:auto
+}
+.qr-title{
+  font-size:1rem;
+  font-weight:700;
+  color:var(--navy);
+  font-family:'Syne',sans-serif
+}
+.qr-label{
+  font-size:.9rem;
+  color:var(--slate);
+  max-width:240px;
+  text-align:center;
+  line-height:1.55
+}
+.qr-helper{
+  font-size:.8rem;
+  font-weight:700;
+  color:var(--navy-mid);
+  text-align:center;
+  letter-spacing:.02em
 }
 
-/* GRID & CARDS */
-
-.bf-em-grid {
-  display: grid;
-  gap: 1.1rem;
-  margin-top: 1.4rem;
+/* CTA BAND */
+.cta-band{
+  background:var(--orange);
+  padding:4rem 2rem;
+  text-align:center
 }
-
-@media (min-width: 720px) {
-  .bf-em-grid {
-    grid-template-columns: repeat(3, minmax(0, 1fr));
-  }
+.cta-band h2{
+  font-size:clamp(1.8rem,3vw,2.4rem);
+  color:var(--white);
+  font-weight:800;
+  margin-bottom:1rem
 }
-
-.bf-em-card {
-  border-radius: var(--bf-radius-md);
-  border: 1px solid var(--bf-border);
-  background: rgba(15, 23, 42, 0.9);
-  padding: 1rem 1.1rem 1.1rem;
+.cta-band p{
+  font-size:1rem;
+  color:rgba(255,255,255,.9);
+  margin-bottom:2rem
 }
-
-.bf-em-card-primary {
-  border-color: rgba(34, 211, 238, 0.5);
-  background: radial-gradient(circle at top left, #0f172a, #020617);
+.cta-btns{
+  display:flex;
+  justify-content:center;
+  gap:1rem;
+  flex-wrap:wrap
 }
-
-.bf-em-card h3 {
-  margin: 0 0 0.4rem;
-  font-size: 1rem;
+.btn-white{
+  padding:14px 28px;
+  border-radius:10px;
+  background:var(--white);
+  color:var(--orange);
+  font-size:1rem;
+  font-weight:700;
+  border:none;
+  cursor:pointer;
+  font-family:'Syne',sans-serif;
+  display:inline-block
 }
-
-.bf-em-card p {
-  font-size: 0.9rem;
-  color: var(--bf-muted);
+.btn-white:hover{box-shadow:0 6px 20px rgba(0,0,0,.15)}
+.btn-outline-white{
+  padding:14px 28px;
+  border-radius:10px;
+  background:transparent;
+  color:var(--white);
+  font-size:1rem;
+  font-weight:500;
+  border:2px solid rgba(255,255,255,.7);
+  cursor:pointer;
+  font-family:'DM Sans',sans-serif;
+  display:inline-block
 }
-
-/* HOW IT WORKS (if used later) */
-
-.bf-em-steps {
-  display: grid;
-  gap: 1.1rem;
-  margin-top: 1.4rem;
-}
-
-@media (min-width: 720px) {
-  .bf-em-steps {
-    grid-template-columns: repeat(3, minmax(0, 1fr));
-  }
-}
-
-.bf-em-step {
-  border-radius: var(--bf-radius-md);
-  border: 1px solid var(--bf-border);
-  background: rgba(15, 23, 42, 0.95);
-  padding: 1rem 1.1rem;
-}
-
-.bf-em-step-number {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  width: 1.5rem;
-  height: 1.5rem;
-  border-radius: 999px;
-  background: var(--bf-accent-soft);
-  color: var(--bf-accent);
-  font-size: 0.8rem;
-  font-weight: 700;
-  margin-bottom: 0.4rem;
-}
-
-.bf-em-step h3 {
-  margin: 0 0 0.25rem;
-  font-size: 1rem;
-}
-
-.bf-em-step p {
-  font-size: 0.9rem;
-  color: var(--bf-muted);
-}
-
-/* TRUST */
-
-.bf-em-trust-grid {
-  margin-top: 1.1rem;
-}
-
-/* SOCIAL PROOF */
-
-.bf-em-social {
-  text-align: left;
-}
-
-.bf-em-rating-summary {
-  margin-top: 0.7rem;
-  font-size: 0.92rem;
-}
-
-.bf-em-stars {
-  font-size: 1.2rem;
-  letter-spacing: 0.04em;
-  color: #facc15;
-}
-
-.bf-em-reviews-grid {
-  margin-top: 1.1rem;
-}
-
-.bf-em-review {
-  border-radius: var(--bf-radius-md);
-  border: 1px solid var(--bf-border);
-  background: rgba(15, 23, 42, 0.95);
-  padding: 1rem 1.1rem;
-  font-size: 0.9rem;
-}
-
-.bf-em-review-text {
-  margin: 0 0 0.5rem;
-  color: var(--bf-text);
-}
-
-.bf-em-review-meta {
-  margin: 0;
-  color: var(--bf-muted);
-  font-size: 0.8rem;
-}
-
-/* FAQ */
-
-.bf-em-faq-list {
-  margin-top: 1rem;
-  display: grid;
-  gap: 0.9rem;
-}
-
-.bf-em-faq-item h3 {
-  margin: 0 0 0.25rem;
-  font-size: 0.98rem;
-}
-
-.bf-em-faq-item p {
-  margin: 0;
-  font-size: 0.9rem;
-  color: var(--bf-muted);
-}
-
-.bf-em-faq-link {
-  margin-top: 1rem;
-  font-size: 0.88rem;
-  color: var(--bf-muted);
-}
-
-.bf-em-faq-link a {
-  color: var(--bf-accent);
-  text-decoration: none;
-}
-
-.bf-em-faq-link a:hover {
-  text-decoration: underline;
-}
-
-/* PRO CTA */
-
-.bf-em-pro-cta {
-  background: linear-gradient(135deg, #0f172a, #020617);
-  border-color: rgba(34, 211, 238, 0.4);
-}
-
-.bf-em-pro-cta-inner {
-  display: flex;
-  flex-direction: column;
-  gap: 0.6rem;
-  align-items: flex-start;
-}
-
-.bf-em-pro-cta-inner p {
-  font-size: 0.92rem;
-  color: var(--bf-muted);
-}
+.btn-outline-white:hover{border-color:var(--white)}
 
 /* FOOTER */
+.page-footer{
+  background:var(--navy);
+  padding:3rem 2rem 2rem
+}
+.footer-inner{max-width:1160px;margin:0 auto}
+.footer-top{
+  display:grid;
+  grid-template-columns:2fr 1fr 1fr 1fr;
+  gap:2rem;
+  margin-bottom:2.5rem
+}
+.footer-logo{
+  display:flex;
+  align-items:center;
+  line-height:0
+}
+.footer-logo img{
+  height:34px;
+  width:auto;
+  object-fit:contain;
+  display:block
+}
+.footer-brand p{
+  font-size:.88rem;
+  color:#AAB8CA;
+  margin-top:.75rem;
+  max-width:260px;
+  line-height:1.65
+}
+.footer-col h4{
+  font-size:.8rem;
+  font-weight:700;
+  color:#D7E0EC;
+  text-transform:uppercase;
+  letter-spacing:.08em;
+  margin-bottom:1rem
+}
+.footer-col a{
+  display:block;
+  font-size:.88rem;
+  color:#B8C5D4;
+  text-decoration:none;
+  margin-bottom:.5rem;
+  transition:color .15s
+}
+.footer-col a:hover{color:var(--white)}
+.footer-bottom{
+  border-top:1px solid rgba(255,255,255,.08);
+  padding-top:1.5rem;
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  flex-wrap:wrap;
+  gap:1rem
+}
+.footer-bottom p{
+  font-size:.8rem;
+  color:#AAB8CA
+}
+.footer-links{
+  display:flex;
+  gap:1.5rem;
+  flex-wrap:wrap
+}
+.footer-links a{
+  font-size:.8rem;
+  color:#B8C5D4;
+  text-decoration:none
+}
+.footer-links a:hover{color:#FFFFFF}
 
-.bf-em-footer {
-  border-top: 1px solid rgba(31, 41, 55, 0.9);
-  padding-top: 1.4rem;
-  font-size: 0.8rem;
-  color: var(--bf-muted);
-  text-align: center;
+@media(max-width:768px){
+  .dual-cta-inner,.qr-grid{grid-template-columns:1fr}
+  .rating-strip-inner{gap:1.5rem}
+  .footer-top{grid-template-columns:1fr 1fr}
+  .nav-tabs{display:none}
+}
+@media(max-width:640px){
+  nav,.app-hero,.rating-strip,.section,.dual-cta,.qr-section,.cta-band,.page-footer{
+    padding-left:1rem;
+    padding-right:1rem
+  }
+  .footer-top{grid-template-columns:1fr}
+  .qr-frame{
+    width:154px;
+    height:154px
+  }
+  .qr-image{
+    width:134px;
+    height:134px
+  }
 }
 `;
 
-const EmergencyMiamiPage = () => {
-  const [phone, setPhone] = useState("");
-  const [submitted, setSubmitted] = useState(false);
+const features = [
+  {
+    icon: "⚡",
+    title: "Fast Booking",
+    desc: "Request help quickly for emergency and scheduled home repairs without the usual phone tag.",
+  },
+  {
+    icon: "📍",
+    title: "Live Tracking",
+    desc: "Follow job progress and arrival updates in one place instead of waiting around for vague windows.",
+  },
+  {
+    icon: "💬",
+    title: "In-App Messaging",
+    desc: "Share photos, job details, and updates inside the same conversation thread tied to the repair.",
+  },
+  {
+    icon: "🧾",
+    title: "Receipts & Records",
+    desc: "Keep a clearer history of repairs, payments, and home-service activity in one app.",
+  },
+];
 
-  const handleTextLinkSubmit = (e) => {
-    e.preventDefault();
-    if (phone.trim()) {
-      setSubmitted(true);
+function ensureMeta(selector, attrs, tagName = "meta") {
+  let el = document.head.querySelector(selector);
+  if (!el) {
+    el = document.createElement(tagName);
+    document.head.appendChild(el);
+  }
+  Object.entries(attrs).forEach(([key, value]) => el.setAttribute(key, value));
+}
+
+const GetTheAppPage = () => {
+  useEffect(() => {
+    document.title = "Download BlinqFix App | iOS & Android Home Services App";
+
+    ensureMeta('meta[name="description"]', {
+      name: "description",
+      content:
+        "Download the BlinqFix app for iOS or Android to request home-service help fast or explore the platform as a service pro.",
+    });
+    ensureMeta('meta[name="robots"]', {
+      name: "robots",
+      content: "index, follow",
+    });
+    ensureMeta('meta[property="og:type"]', {
+      property: "og:type",
+      content: "website",
+    });
+    ensureMeta('meta[property="og:url"]', {
+      property: "og:url",
+      content: "https://www.blinqfix.com/gettheapp",
+    });
+    ensureMeta('meta[property="og:title"]', {
+      property: "og:title",
+      content: "Download BlinqFix | Home Services App for iOS & Android",
+    });
+    ensureMeta('meta[property="og:description"]', {
+      property: "og:description",
+      content:
+        "Download BlinqFix and request home-service help fast on iOS or Android.",
+    });
+    ensureMeta('meta[name="twitter:card"]', {
+      name: "twitter:card",
+      content: "summary_large_image",
+    });
+    ensureMeta('meta[name="twitter:title"]', {
+      name: "twitter:title",
+      content: "Download BlinqFix | Home Services App",
+    });
+    ensureMeta('meta[name="twitter:description"]', {
+      name: "twitter:description",
+      content:
+        "Download BlinqFix and request home-service help fast on iOS or Android.",
+    });
+    ensureMeta(
+      'link[rel="canonical"]',
+      {
+        rel: "canonical",
+        href: "https://www.blinqfix.com/gettheapp",
+      },
+      "link"
+    );
+
+    const scriptId = "blinqfix-gettheapp-schema";
+    let schema = document.getElementById(scriptId);
+    if (!schema) {
+      schema = document.createElement("script");
+      schema.type = "application/ld+json";
+      schema.id = scriptId;
+      document.head.appendChild(schema);
     }
-  };
+    schema.textContent = JSON.stringify({
+      "@context": "https://schema.org",
+      "@type": "MobileApplication",
+      name: "BlinqFix",
+      url: "https://www.blinqfix.com/gettheapp",
+      description:
+        "Mobile app for requesting home-service help and managing repair jobs.",
+      applicationCategory: "LifestyleApplication",
+      operatingSystem: "iOS, Android",
+      offers: { "@type": "Offer", price: "0", priceCurrency: "USD" },
+      publisher: {
+        "@type": "Organization",
+        name: "BlinqFix",
+        url: "https://www.blinqfix.com",
+      },
+    });
+
+    return () => {
+      const existing = document.getElementById("blinqfix-gettheapp-schema");
+      if (existing) existing.remove();
+    };
+  }, []);
 
   return (
-    <>
-      <style>{emergencyStyles}</style>
+    <div className="gettheapp-shell">
+      <style>{PAGE_CSS}</style>
 
-      <main className="bf-em-page">
-        {/* HERO */}
-        <section className="bf-em-hero">
-          <div className="bf-em-hero-content">
-            <p className="bf-em-badge">
-              Emergency HVAC &amp; Plumbing &amp; more • Miami-Dade &amp; Broward
-              <span className="bf-em-badge-highlight">Get a service pro fast!</span>
+      <nav>
+        <div className="nav-inner">
+          <Link to="/" className="logo" aria-label="BlinqFix home">
+            <img src={blinqfixLogo} alt="BlinqFix" />
+          </Link>
+          <div className="nav-tabs">
+            <Link to="/gettheapp" className="nav-tab">
+              For Homeowners
+            </Link>
+            <Link to="/getjobs" className="nav-tab">
+              For Service Pros
+            </Link>
+          </div>
+          <Link to="/gettheapp" className="btn-app-nav">
+            📱 Get the App
+          </Link>
+        </div>
+      </nav>
+
+      <main>
+        <section className="app-hero">
+          <div className="app-hero-inner">
+            <div className="hero-badge">
+              <span className="badge-dot"></span> Available on iOS & Android
+            </div>
+            <h1>Get the BlinqFix App</h1>
+            <p>
+              Book or accept jobs on the go. Download BlinqFix for iOS and
+              Android.
             </p>
 
-            <h1>Emergency home repairs in minutes, not days.</h1>
-
-            <p className="bf-em-subhead">
-              Burst pipes, AC failure, leaks, and more. Get vetted pros
-              on-demand with the BlinqFix app. Request help in a few taps and
-              track your pro in real time.
-            </p>
-
-            <div className="bf-em-cta-row">
+            <div className="store-btns">
               <a
-                className="bf-em-btn bf-em-btn-primary bf-em-btn-large"
-                href="blinqfix://open/emergency"
+                href="https://apps.apple.com/us/app/blinqfix-app/id6747390132"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="store-btn"
+                aria-label="Download on the App Store"
               >
-                Get the app today. It&apos;s FREE!
+                <span className="store-icon">&#63743;</span>
+                <div className="store-text">
+                  <div className="store-sub">Download on the</div>
+                  <div className="store-name">App Store</div>
+                </div>
+              </a>
+
+              <a
+                href="https://play.google.com/store/apps/details?id=com.blinqfix.app"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="store-btn"
+                aria-label="Get it on Google Play"
+              >
+                <span className="store-icon">&#9654;</span>
+                <div className="store-text">
+                  <div className="store-sub">Get it on</div>
+                  <div className="store-name">Google Play</div>
+                </div>
               </a>
             </div>
 
-            {/* Optional text-me-the-app form */}
-            {/* <form className="bf-em-textlink" onSubmit={handleTextLinkSubmit}>
-              <label htmlFor="phone" className="bf-em-textlink-label">
-                Prefer a text? We’ll send you the app link:
-              </label>
-              <div className="bf-em-textlink-row">
-                <input
-                  id="phone"
-                  type="tel"
-                  placeholder="(305) 555-1234"
-                  value={phone}
-                  onChange={(e) => setPhone(e.target.value)}
-                />
-                <button type="submit" className="bf-em-btn bf-em-btn-ghost">
-                  Text me the app
-                </button>
-              </div>
-              {submitted && (
-                <p className="bf-em-textlink-confirm">
-                  Thanks! (Demo) You’d now receive a text with the app link.
-                </p>
-              )}
-            </form> */}
-
-            <ul className="bf-em-quick-points">
-              <li>No calling five different contractors.</li>
-              <li>Clear, smart estimates before work starts.</li>
-              <li>Secure payment and receipts in one app.</li>
-            </ul>
+            <p className="app-meta">
+              Free to download · iOS and Android · Use it to request service or
+              explore the platform
+            </p>
           </div>
+        </section>
 
-          <aside className="bf-em-hero-aside">
-            <div className="bf-em-hero-card">
-              <h2 className="bf-em-small-heading">
-                Get more details at <span>www.blinqfix.com</span>
-              </h2>
+        <div className="rating-strip">
+          <div className="rating-strip-inner">
+            <div className="rating-item">
+              <div className="rating-num">iOS</div>
+              <div className="rating-label">Available now</div>
+            </div>
+            <div className="rating-item">
+              <div className="rating-num">Android</div>
+              <div className="rating-label">Available now</div>
+            </div>
+            <div className="rating-item">
+              <div className="rating-num">1 App</div>
+              <div className="rating-label">From request to payment</div>
+            </div>
+            <div className="rating-item">
+              <div className="rating-num">Fast</div>
+              <div className="rating-label">Better than phone tag</div>
+            </div>
+          </div>
+        </div>
 
-              <h2>Built for real on-demand jobs</h2>
-              <p>
-                When the AC dies in August or a pipe bursts at 10:30 pm,
-                BlinqFix helps you move from panic to a clear plan.
-              </p>
-              <ul className="bf-em-hero-list">
-                <li>Vetted &amp; insured pros</li>
-                <li>Transparent, smart pricing</li>
-                <li>Live status and ETA tracking</li>
-              </ul>
+        <section className="section">
+          <div className="section-inner">
+            <p className="section-label">App Features</p>
+            <h2 className="section-title">Everything You Need in One Place</h2>
+            <p className="section-sub">
+              Built for homeowners who need repairs handled faster and with less
+              friction.
+            </p>
 
-              <div className="banner-inner">
-                <h3 className="section-title" style={{ marginBottom: "0.5rem" }}>
-                  Get the BlinqFix app
-                </h3>
-                <p className="hero-sub" style={{ maxWidth: "22rem" }}>
-                  Book or accept jobs on the go. Download BlinqFix for iOS and
-                  Android
-                </p>
-
-                <div className="bf-em-store-row">
-                  {/* APPLE */}
-                  <div className="bf-em-store-column">
-                    <a
-                      href="https://apps.apple.com/us/app/blinqfix-app/id6747390132"
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="bf-em-store-link"
-                    >
-                      <img
-                        src="https://developer.apple.com/assets/elements/badges/download-on-the-app-store.svg"
-                        alt="Download on the App Store"
-                      />
-                    </a>
-
-                    <img
-                      src="/blinqfix_app_qr.png"
-                      alt="Scan to download BlinqFix on the App Store"
-                      className="bf-em-qr-image"
-                    />
-                    <span className="bf-em-qr-caption">
-                      Scan with your iOS device
-                    </span>
-                  </div>
-
-                  {/* GOOGLE (placeholder QR for now) */}
-                  <div className="bf-em-store-column">
-                    <a
-                      href="https://play.google.com/store/apps/details?id=com.blinqfix.app"
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="bf-em-store-link"
-                    >
-                      <img
-                        src="https://upload.wikimedia.org/wikipedia/commons/thumb/7/78/Google_Play_Store_badge_EN.svg/250px-Google_Play_Store_badge_EN.svg.png"
-                        alt="Get it on Google Play"
-                      />
-                    </a>
-
-                    <div className="bf-em-qr-placeholder">
-                      <img
-                      src="/blinqfix_playstore_qr.png"
-                      alt="Scan to download BlinqFix on the Google PlayStore"
-                      className="bf-em-qr-image"
-                      style={{
-                        marginTop: "2px"
-                      }}
-                    />
-                    </div>
-                    <span className="bf-em-qr-caption"
-                    
-                    >
-                      
-                      Scan with your Android device
-                    </span>
-                  </div>
+            <div className="app-features-grid">
+              {features.map((feature) => (
+                <div className="app-feat" key={feature.title}>
+                  <div className="app-feat-icon">{feature.icon}</div>
+                  <h3 className="app-feat-title">{feature.title}</h3>
+                  <p className="app-feat-desc">{feature.desc}</p>
                 </div>
+              ))}
+            </div>
+          </div>
+        </section>
+
+        <PricingSection ctaCustomerHref="/customer" ctaProHref="/pro" />
+
+        <section className="dual-cta">
+          <div className="dual-cta-inner">
+            <div className="cta-card homeowner">
+              <span className="badge">For Homeowners</span>
+              <h3>Need a Repair?</h3>
+              <p>
+                Use the app to request help, track progress, and keep
+                communication and payment in one place.
+              </p>
+              <Link to="/gettheapp" className="btn-card homeowner">
+                I'm a Homeowner →
+              </Link>
+            </div>
+
+            <div className="cta-card pro">
+              <span className="badge">For Service Pros</span>
+              <h3>Want Real Jobs?</h3>
+              <p>
+                Explore how BlinqFix works for service pros and see whether the
+                platform fits your trade and market.
+              </p>
+              <Link to="/getjobs" className="btn-card pro">
+                I'm a Pro →
+              </Link>
+            </div>
+          </div>
+        </section>
+
+        <section className="qr-section">
+          <div className="section-inner">
+            <p className="section-label">Scan to Download</p>
+            <h2 className="section-title">Download from Your Phone</h2>
+            <p className="section-sub" style={{ textAlign: "center" }}>
+              Use the store links above or scan the QR code that matches your
+              device.
+            </p>
+
+            <div className="qr-grid">
+              <div className="qr-box">
+                <div className="qr-frame">
+                  <img
+                    src="/blinqfix_app_qr.png"
+                    alt="Scan to download BlinqFix on the App Store"
+                    className="qr-image"
+                    width="152"
+                    height="152"
+                  />
+                </div>
+                <p className="qr-title">iPhone / iPad</p>
+                <p className="qr-label">
+                  Point your camera at this code to open the App Store download
+                  page.
+                </p>
+                <p className="qr-helper">iOS App Store QR</p>
               </div>
 
-              <p className="bf-em-hero-note">
-                Currently serving Miami-Dade &amp; Broward County
-              </p>
+              <div className="qr-box">
+                <div className="qr-frame">
+                  <img
+                    src="/blinqfix_playstore_qr.png"
+                    alt="Scan to download BlinqFix on Google Play"
+                    className="qr-image"
+                    width="152"
+                    height="152"
+                  />
+                </div>
+                <p className="qr-title">Android</p>
+                <p className="qr-label">
+                  Point your camera at this code to open the Google Play
+                  download page.
+                </p>
+                <p className="qr-helper">Google Play QR</p>
+              </div>
             </div>
-          </aside>
+          </div>
         </section>
 
-        {/* EMERGENCIES WE HANDLE */}
-        <section className="bf-em-section bf-em-emergencies">
-          <h2>Emergencies we handle in South Florida</h2>
-          <p className="bf-em-section-sub">
-            Priority focus today: HVAC and plumbing emergencies across
-            Miami-Dade Broward.
+        <div className="cta-band">
+          <h2>
+            Whether You Own a Home or Swing a Wrench — BlinqFix Has You Covered.
+          </h2>
+          <p>
+            Choose the homeowner flow if you need help now, or visit the pro
+            page to learn how the platform works for service pros.
           </p>
-          <p style={{textAlign: "center"}} className="bf-em-section-sub">
-           Additional trades coming online over time.
-          </p>
-
-          <div className="bf-em-grid">
-            <article className="bf-em-card bf-em-card-primary">
-              <h3>HVAC – No cool / no heat</h3>
-              <p>
-                AC not cooling, system dead, or blowing warm air during peak
-                heat. We prioritize HVAC when temperatures make it unsafe or
-                unlivable.
-              </p>
-            </article>
-
-            <article className="bf-em-card bf-em-card-primary">
-              <h3>Plumbing – Burst or leaking pipes</h3>
-              <p>
-                Active leaks, burst pipes, overflowing toilets, and clogged main
-                lines. Upload photos so your plumber arrives prepared.
-              </p>
-            </article>
-
-            <article className="bf-em-card">
-              <h3>Leaks &amp; water intrusion</h3>
-              <p>
-                Ceiling leaks, flooding around doors or windows, and
-                storm-related water issues that can damage floors and walls.
-              </p>
-            </article>
-
-            <article className="bf-em-card">
-              <h3>Electrical concerns</h3>
-              <p>
-                Burning smells, sparks, partial outages, and unsafe fixtures. We
-                help route you to qualified electricians where available.
-              </p>
-            </article>
-
-            <article className="bf-em-card">
-              <h3>Roof leaks &amp; storm damage</h3>
-              <p>
-                Sudden leaks, missing shingles, or storm damage that can worsen
-                quickly if left untreated.
-              </p>
-            </article>
-
-            <article className="bf-em-card">
-              <h3>Business-critical issues</h3>
-              <p>
-                Emergencies in small businesses like cafés, salons, and offices
-                where HVAC or plumbing problems can shut you down.
-              </p>
-            </article>
+          <div className="cta-btns">
+            <Link to="/gettheapp" className="btn-white">
+              I'm a Homeowner
+            </Link>
+            <Link to="/getjobs" className="btn-outline-white">
+              I'm a Service Pro
+            </Link>
           </div>
-        </section>
-
-        {/* TRUST SECTION */}
-        <section className="bf-em-section bf-em-trust">
-          <h2>Why Miami-Dade &amp; Broward trust BlinqFix</h2>
-
-          <div className="bf-em-grid bf-em-trust-grid">
-            <article className="bf-em-card">
-              <h3>Vetted &amp; insured pros</h3>
-              <p>
-                We work with licensed, insured providers and collect key
-                documentation so you’re not rolling the dice in an emergency.
-              </p>
-            </article>
-            <article className="bf-em-card">
-              <h3>Transparent, smart pricing</h3>
-              <p>
-                Estimates are based on a smart pricing matrix built for
-                emergency work — not random guesswork on the phone.
-              </p>
-            </article>
-            <article className="bf-em-card">
-              <h3>Real-time tracking &amp; updates</h3>
-              <p>
-                See when a pro accepts your job, track their arrival on a map,
-                and get notified at each step until the work is done.
-              </p>
-            </article>
-          </div>
-        </section>
-
-        {/* SOCIAL PROOF */}
-        <section className="bf-em-section bf-em-social">
-          <h2>From panic to fixed  Real Stories</h2>
-
-          <div className="bf-em-rating-summary">
-            <div className="bf-em-stars" aria-hidden="true">
-              ★★★★★
-            </div>
-            <p>
-              <strong>4.9 / 5 average rating</strong> • Dozens of emergency jobs
-              completed across South Florida.
-            </p>
-          </div>
-
-          <div className="bf-em-grid bf-em-reviews-grid">
-            <article className="bf-em-review">
-              <p className="bf-em-review-text">
-                “Our AC died on a Sunday afternoon. We requested help through
-                BlinqFix and had a tech on the way in under an hour.”
-              </p>
-              <p className="bf-em-review-meta">— Homeowner in Kendall</p>
-            </article>
-
-            <article className="bf-em-review">
-              <p className="bf-em-review-text">
-                “A pipe burst in our duplex. Instead of calling around, I used
-                BlinqFix and tracked the plumber’s ETA from my phone.”
-              </p>
-              <p className="bf-em-review-meta">— Landlord in Fort Lauderdale</p>
-            </article>
-
-            <article className="bf-em-review">
-              <p className="bf-em-review-text">
-                “I run a small café. When a plumbing issue shut us down,
-                BlinqFix helped me get someone out fast so we could reopen.”
-              </p>
-              <p className="bf-em-review-meta">— Café owner in Miami Beach</p>
-            </article>
-          </div>
-        </section>
-
-        {/* FAQ */}
-        <section className="bf-em-section bf-em-faq">
-          <h2>Emergency FAQ</h2>
-
-          <div className="bf-em-faq-list">
-            <article className="bf-em-faq-item">
-              <h3>How fast can someone come?</h3>
-              <p>
-                Response times vary by location, time of day, and demand, but
-                BlinqFix is built for emergency and urgent jobs first. The app
-                shows you when a provider accepts your job and their estimated
-                arrival time. Usually between 15 and 30 minutes.
-              </p>
-            </article>
-
-            <article className="bf-em-faq-item">
-              <h3>What’s considered an emergency?</h3>
-              <p>
-                Active leaks, burst pipes, no-cool/no-heat HVAC, dangerous
-                electrical issues, and sudden water intrusion all qualify as
-                emergencies. If you consider it an emergency, then it&apos;s an
-                emergency.
-              </p>
-            </article>
-
-            <article className="bf-em-faq-item">
-              <h3>How much does it cost?</h3>
-              <p>
-                Pricing depends on the issue, time, and location. You’ll see an
-                upfront estimate based on our pricing algorithm. If the provider
-                discovers additional work on-site, they’ll explain any changes
-                before proceeding whenever possible.
-              </p>
-            </article>
-
-            <article className="bf-em-faq-item">
-              <h3>How do I pay?</h3>
-              <p>
-                All payments are handled securely through the BlinqFix app using
-                our payment partner Stripe.
-              </p>
-            </article>
-
-            <article className="bf-em-faq-item">
-              <h3>Is BlinqFix available in my area?</h3>
-              <p>
-                We’re currently focused on Miami-Dade and Broward County, with
-                more Florida markets coming soon. The app will tell you if we
-                serve your address.
-              </p>
-            </article>
-          </div>
-
-          <p className="bf-em-faq-link">
-            Want more details? Visit our full help center at{" "}
-            <a href="/help/faq">blinqfix.com/help/faq</a>.
-          </p>
-        </section>
-
-        <PricingSection 
-        ctaCustomerHref="/CustomerDashboard"
-        ctaProHref="/providers/apply"
-        />
-
-        {/* SERVICE PROS CTA */}
-        <section className="bf-em-section bf-em-pro-cta">
-          <div className="bf-em-pro-cta-inner">
-            <h2>Are you an HVAC or Plumbing pro in South Florida?</h2>
-            <p>
-              BlinqFix sends you real emergency jobs, not endless quote
-              requests. Choose your tier, get high intent jobs, and keep your
-              crew busy.
-            </p>
-            <a className="bf-em-btn bf-em-btn-light" href="/pro">
-              Learn more about BlinqFix for pros
-            </a>
-          </div>
-        </section>
-
-        <footer className="bf-em-footer">
-          <p>© {new Date().getFullYear()} BlinqFix. Emergency repairs, handled.</p>
-        </footer>
+        </div>
       </main>
-    </>
+
+      <footer className="page-footer">
+        <div className="footer-inner">
+          <div className="footer-top">
+            <div className="footer-brand">
+              <div className="footer-logo">
+                <img src={blinqfixLogo} alt="BlinqFix" />
+              </div>
+              <p>
+                Emergency and scheduled home services with a cleaner booking
+                flow for homeowners and service pros.
+              </p>
+            </div>
+            {/* <div className="footer-col">
+              <h4>Homeowners</h4>
+              <Link to="/customer">Book a Pro</Link>
+              <Link to="/">Home</Link>
+              <Link to="/gettheapp">Download App</Link>
+              <Link to="/faq">FAQ</Link>
+            </div>
+            <div className="footer-col">
+              <h4>Service Pros</h4>
+              <Link to="/getjobs">Join as a Pro</Link>
+              <Link to="/pro">Pro Sign Up</Link>
+              <Link to="/getjobs">How Pros Earn</Link>
+              <Link to="/gettheapp">Get the App</Link>
+            </div> */}
+            {/* <div className="footer-col">
+              <h4>Company</h4>
+              <Link to="/privacypolicy">Privacy Policy</Link>
+              <Link to="/termsandconditions">Terms of Service</Link>
+              <Link to="/faq">FAQ</Link>
+            </div> */}
+          </div>
+          <div className="footer-bottom">
+            <p>© {new Date().getFullYear()} BlinqFix. All rights reserved.</p>
+            <div className="footer-links">
+              <Link to="/privacypolicy">Privacy Policy</Link>
+              <Link to="/termsandconditions">Terms of Service</Link>
+              <Link to="/faq">FAQ</Link>
+            </div>
+          </div>
+        </div>
+      </footer>
+    </div>
   );
 };
 
-export default EmergencyMiamiPage;
+export default GetTheAppPage;

@@ -1,38 +1,32 @@
-// /onboarding-success/page.js
-// import { useEffect } from "react";
-
-// export default function SuccessRedirect() {
-//   useEffect(() => {
-//     const timeout = setTimeout(() => {
-//       window.location.href = "blinqfix://onboarding-success";
-//     }, 300); // small delay for hydration
-
-//     return () => clearTimeout(timeout);
-//   }, []);
-
-//   return (
-//     <>
-//       <head>
-//         <title>Redirecting...</title>
-//         <meta httpEquiv="refresh" content="0;url=blinqfix://onboarding-success" />
-//       </head>
-//       <body>
-//         <p>Redirecting you back to the BlinqFix app...</p>
-//       </body>
-//     </>
-//   );
-// }
-
-
 import { useEffect } from "react";
+import { applyPageSeo } from "../utils/seo";
 
 export default function SuccessRedirect() {
   useEffect(() => {
+    const cleanupSeo = applyPageSeo({
+      title: "Onboarding Success Redirect | BlinqFix",
+      description: "Redirecting back to the BlinqFix app after onboarding.",
+      canonical: "https://www.blinqfix.com/",
+      robots: "noindex, nofollow",
+      og: {
+        url: "https://www.blinqfix.com/",
+        title: "Onboarding Success Redirect | BlinqFix",
+        description: "Utility redirect for the BlinqFix onboarding success flow.",
+      },
+      twitter: {
+        title: "Onboarding Success Redirect | BlinqFix",
+        description: "Utility redirect for the BlinqFix onboarding success flow.",
+      },
+    });
+
     const timeout = setTimeout(() => {
       window.location.href = "blinqfix://onboarding-success";
     }, 300); // 300ms delay to allow hydration or fallback
 
-    return () => clearTimeout(timeout);
+    return () => {
+      clearTimeout(timeout);
+      cleanupSeo();
+    };
   }, []);
 
   return (

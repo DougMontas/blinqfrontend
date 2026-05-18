@@ -1025,6 +1025,159 @@ footer{
   .stat-row{grid-template-columns:1fr}
   .services-grid{grid-template-columns:1fr}
 }
+
+/* HERO TRUST LINE */
+.hero-trust-line{
+  font-size:.8rem;
+  color:rgba(255,255,255,.55);
+  margin-top:.85rem;
+  display:flex;
+  align-items:center;
+  gap:6px;
+  flex-wrap:wrap
+}
+.hero-trust-line .tl-dot{color:rgba(255,255,255,.25)}
+.hero-licensed-badge{
+  display:inline-flex;
+  align-items:center;
+  gap:5px;
+  background:rgba(26,127,75,.22);
+  border:1px solid rgba(26,127,75,.4);
+  color:#4ADE80;
+  padding:4px 12px;
+  border-radius:100px;
+  font-size:.75rem;
+  font-weight:600;
+  margin-top:.6rem
+}
+
+/* SCARCITY */
+.scarcity-msg{
+  font-size:.78rem;
+  font-weight:600;
+  color:#FCD34D;
+  margin-top:.5rem;
+  display:flex;
+  align-items:center;
+  gap:5px
+}
+
+/* SCROLL CUE */
+.scroll-cue{
+  background:var(--navy);
+  display:flex;
+  justify-content:center;
+  padding:.5rem 0 1.25rem
+}
+.scroll-cue-inner{
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  gap:3px;
+  color:rgba(255,255,255,.28);
+  font-size:.62rem;
+  letter-spacing:.09em;
+  text-transform:uppercase;
+  animation:bounce 2.2s infinite
+}
+.scroll-cue-inner svg{
+  width:18px;
+  height:18px;
+  stroke:rgba(255,255,255,.28);
+  fill:none
+}
+
+/* LICENSED PROS BANNER */
+.licensed-banner{
+  background:var(--navy-mid);
+  border-top:1px solid rgba(255,255,255,.07);
+  border-bottom:1px solid rgba(255,255,255,.07);
+  padding:3rem 2rem
+}
+.licensed-banner-inner{
+  max-width:1160px;
+  margin:0 auto;
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  text-align:center;
+  gap:.75rem
+}
+.licensed-banner h2{
+  font-family:'Syne',sans-serif;
+  font-size:clamp(1.35rem,2.2vw,1.8rem);
+  font-weight:800;
+  color:var(--white)
+}
+.licensed-banner p{
+  font-size:.95rem;
+  color:#9CAABF;
+  max-width:600px;
+  line-height:1.7
+}
+.licensed-pillars{
+  display:flex;
+  gap:1rem;
+  flex-wrap:wrap;
+  justify-content:center;
+  margin-top:.5rem
+}
+.licensed-pillar{
+  display:flex;
+  align-items:center;
+  gap:6px;
+  background:rgba(255,255,255,.06);
+  border:1px solid rgba(255,255,255,.1);
+  border-radius:100px;
+  padding:7px 16px;
+  font-size:.82rem;
+  font-weight:600;
+  color:var(--white)
+}
+@media(max-width:640px){
+  .licensed-banner{padding:2.5rem 1rem}
+}
+
+/* COMPACT REVIEWS STRIP */
+.reviews-strip{
+  background:var(--white);
+  border-bottom:1px solid var(--border);
+  padding:2.5rem 2rem
+}
+.reviews-strip-inner{max-width:1160px;margin:0 auto}
+.reviews-strip-hd{text-align:center;margin-bottom:1.5rem}
+.reviews-strip-hd h3{
+  font-family:'Syne',sans-serif;
+  font-size:1.25rem;
+  font-weight:800;
+  color:var(--navy);
+  margin-bottom:.2rem
+}
+.reviews-strip-hd p{font-size:.8rem;color:var(--slate)}
+.reviews-strip-grid{
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:1rem
+}
+.review-chip{
+  background:var(--cream);
+  border:1px solid var(--border);
+  border-radius:var(--radius);
+  padding:1rem 1.25rem
+}
+.review-chip-stars{color:#F59E0B;font-size:.85rem;margin-bottom:.4rem}
+.review-chip-text{
+  font-size:.88rem;
+  color:var(--navy);
+  font-style:italic;
+  line-height:1.5;
+  margin-bottom:.6rem
+}
+.review-chip-author{font-size:.76rem;font-weight:600;color:var(--slate)}
+@media(max-width:768px){
+  .reviews-strip-grid{grid-template-columns:1fr}
+  .reviews-strip{padding:2rem 1rem}
+}
 `;
 
 const services = [
@@ -1254,27 +1407,35 @@ export default function Home() {
                 Area
               </div>
               <h1>
-                Fix It <em>Fast.</em>
+                Emergency Electrical or Plumbing?
                 <br />
-                Fix It Now.
-                <br />
-                24/7 Emergency
-                <br />
-                Home & Business Services.
+                <em>Book a Licensed Pro Now!</em>
               </h1>
               <p className="hero-sub">
-                BlinqFix connects you with local electricians, plumbers, HVAC
-                techs, and handymen in minutes, not days. Emergency or
-                scheduled.
+                Get fast, reliable 24/7 emergency home services with upfront
+                pricing and instant booking. Real jobs, not leads.
               </p>
               <div className="hero-cta">
                 <Link to="/gettheapp" className="btn-primary">
-                  Book a Pro Now
+                  Get Help Now
                 </Link>
                 <a href="#how-it-works" className="btn-secondary">
                   How It Works
                 </a>
               </div>
+              <div className="hero-licensed-badge">
+                🔒 Licensed &amp; Insured Professionals
+              </div>
+              <p className="hero-trust-line">
+                ✓ Guaranteed Service
+                <span className="tl-dot">·</span>
+                Upfront Pricing
+                <span className="tl-dot">·</span>
+                No Hidden Fees
+              </p>
+              <p className="scarcity-msg">
+                ⚡ Limited slots available this week — Book now to secure your appointment.
+              </p>
               <div className="hero-trust">
                 <div className="trust-avatars">
                   <div
@@ -1409,6 +1570,15 @@ export default function Home() {
           </div>
         </section>
 
+        <div className="scroll-cue" aria-hidden="true">
+          <div className="scroll-cue-inner">
+            <svg viewBox="0 0 24 24" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+              <polyline points="6 9 12 15 18 9" />
+            </svg>
+            Scroll
+          </div>
+        </div>
+
         <div className="services-strip">
           <div className="svc-scroll">
             <div className="svc-item">⚡ Electrical</div>
@@ -1439,10 +1609,17 @@ export default function Home() {
               </div>
             </div>
             <div className="trust-item">
+              <div className="trust-icon">🔒</div>
+              <div>
+                <div className="trust-big">Licensed &amp; Insured</div>
+                <div className="trust-small">Verified, background-checked pros</div>
+              </div>
+            </div>
+            <div className="trust-item">
               <div className="trust-icon">💳</div>
               <div>
-                <div className="trust-big">In-App Payments</div>
-                <div className="trust-small">Simple checkout and receipts</div>
+                <div className="trust-big">Upfront Pricing</div>
+                <div className="trust-small">No hidden fees, ever</div>
               </div>
             </div>
             <div className="trust-item">
@@ -1453,6 +1630,50 @@ export default function Home() {
                   Track and message in one place
                 </div>
               </div>
+            </div>
+          </div>
+        </div>
+
+        <div className="reviews-strip">
+          <div className="reviews-strip-inner">
+            <div className="reviews-strip-hd">
+              <h3>What Our Customers Say</h3>
+              <p>Verified reviews from real homeowners</p>
+            </div>
+            <div className="reviews-strip-grid">
+              <div className="review-chip">
+                <div className="review-chip-stars">★★★★★</div>
+                <p className="review-chip-text">"BlinqFix saved the day! Our electrician was on time, professional, and fixed our issue quickly."</p>
+                <div className="review-chip-author">— Sarah M., Miami FL</div>
+              </div>
+              <div className="review-chip">
+                <div className="review-chip-stars">★★★★★</div>
+                <p className="review-chip-text">"Our water heater burst at 10 PM. I had a plumber at my house in under an hour. Easy, fast, and transparent."</p>
+                <div className="review-chip-author">— Maria R., Miami FL</div>
+              </div>
+              <div className="review-chip">
+                <div className="review-chip-stars">★★★★★</div>
+                <p className="review-chip-text">"Great service, upfront pricing, and so easy to book. I could track the pro the whole time. Highly recommended!"</p>
+                <div className="review-chip-author">— John B., Dallas TX</div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div className="licensed-banner">
+          <div className="licensed-banner-inner">
+            <h2>Peace of Mind with Licensed Professionals</h2>
+            <p>
+              All BlinqFix technicians are fully licensed, insured, and
+              background-checked for your safety and peace of mind. We ensure
+              you receive top-quality service from qualified professionals every
+              time — no shortcuts.
+            </p>
+            <div className="licensed-pillars">
+              <div className="licensed-pillar">🔒 Fully Licensed</div>
+              <div className="licensed-pillar">🛡️ Insured</div>
+              <div className="licensed-pillar">✅ Background-Checked</div>
+              <div className="licensed-pillar">⭐ Verified Reviews</div>
             </div>
           </div>
         </div>
@@ -1529,11 +1750,11 @@ export default function Home() {
             <div>
               <p className="section-label">Why Homeowners Use BlinqFix</p>
               <h2 className="section-title">
-                A Faster, Cleaner Way to Handle Repairs
+                Around-the-Clock Home Repair Assistance
               </h2>
               <p className="section-sub">
-                Instead of scrambling through calls and texts, you can manage
-                the whole repair flow in one place.
+                Instant booking with licensed professionals. Know the price
+                before you book and manage the whole repair in one place.
               </p>
               <ul className="proof-list">
                 <li className="proof-item">
@@ -1551,8 +1772,8 @@ export default function Home() {
                 <li className="proof-item">
                   <span className="proof-check">✓</span>
                   <span>
-                    Keep communication, updates, and payment tied to one job
-                    thread.
+                    No hidden fees — know the price before you book. Get a
+                    clear scope of work every time.
                   </span>
                 </li>
                 <li className="proof-item">
@@ -1663,10 +1884,10 @@ export default function Home() {
         </section>
 
         <div className="cta-band">
-          <h2>Ready to Get It Fixed?</h2>
+          <h2>Get a Licensed Electrician in Minutes — See Upfront Pricing</h2>
           <p>
-            Use the homeowner flow to request service fast, or explore the app
-            page first.
+            Around-the-clock home repair assistance. Instant booking with
+            licensed professionals. Real jobs, not leads.
           </p>
           <div className="cta-btns">
             <Link to="/gettheapp" className="btn-white">

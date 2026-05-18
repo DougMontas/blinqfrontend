@@ -91,135 +91,214 @@ nav{
   font-family:'DM Sans',sans-serif
 }
 
-/* HERO */
-.app-hero{
-  position:relative;
+/* SPLIT HERO BANNER */
+.split-hero{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  min-height:clamp(560px,82vh,820px);
   overflow:hidden;
-  isolation:isolate;
-  background:
-    radial-gradient(circle at 16% 18%, rgba(244,82,12,.26), transparent 26%),
-    radial-gradient(circle at 84% 20%, rgba(59,130,246,.18), transparent 24%),
-    linear-gradient(180deg, #13233c 0%, var(--navy) 62%, #091120 100%);
-  padding:5rem 2rem;
-  text-align:center
+  position:relative
 }
-.app-hero-inner{
+.split-side{
   position:relative;
-  z-index:1;
-  max-width:920px;
-  margin:0 auto
+  padding:clamp(2.5rem,5vw,4.5rem) clamp(1.5rem,4vw,3.5rem);
+  display:flex;
+  flex-direction:column;
+  justify-content:center;
+  overflow:hidden
 }
-.app-hero::before{
-  content:"";
-  position:absolute;
-  inset:0;
-  background:
-    radial-gradient(circle at 14% 24%, rgba(255,255,255,.42) 0 2px, transparent 3px),
-    radial-gradient(circle at 31% 58%, rgba(244,82,12,.52) 0 2.5px, transparent 3.5px),
-    radial-gradient(circle at 50% 34%, rgba(255,255,255,.32) 0 2px, transparent 3px),
-    radial-gradient(circle at 71% 24%, rgba(59,130,246,.44) 0 2.5px, transparent 3.5px),
-    radial-gradient(circle at 85% 54%, rgba(255,255,255,.24) 0 2px, transparent 3px),
-    linear-gradient(121deg, transparent 18%, rgba(244,82,12,.15) 18.4%, rgba(244,82,12,.15) 18.9%, transparent 19.2%),
-    linear-gradient(149deg, transparent 45%, rgba(59,130,246,.12) 45.3%, rgba(59,130,246,.12) 45.8%, transparent 46.1%),
-    linear-gradient(95deg, transparent 67%, rgba(255,255,255,.08) 67.2%, rgba(255,255,255,.08) 67.5%, transparent 67.8%);
-  opacity:.9;
-  mask-image:radial-gradient(circle at center, white 0%, rgba(255,255,255,.94) 60%, transparent 88%);
-  pointer-events:none
+.split-customer{
+  background-image:
+    linear-gradient(168deg, rgba(8,16,30,.72) 0%, rgba(11,22,40,.65) 60%, rgba(15,25,48,.78) 100%),
+    url('https://images.unsplash.com/photo-1541789123190-97f9e5089099?w=1200&fit=crop&q=80');
+  background-size:cover;
+  background-position:center
 }
-.app-hero::after{
-  content:"";
-  position:absolute;
-  inset:-12% -10% auto;
-  height:78%;
-  background:
-    radial-gradient(circle at 18% 18%, rgba(244,82,12,.22), transparent 34%),
-    radial-gradient(circle at 80% 18%, rgba(59,130,246,.16), transparent 28%),
-    radial-gradient(circle at 55% 100%, rgba(255,255,255,.08), transparent 30%);
-  filter:blur(22px);
-  opacity:.95;
-  pointer-events:none
+.split-pro{
+  background-image:
+    linear-gradient(168deg, rgba(5,18,10,.75) 0%, rgba(10,23,32,.68) 60%, rgba(8,20,14,.8) 100%),
+    url('https://images.unsplash.com/photo-1676210133055-eab6ef033ce3?w=1200&fit=crop&q=80');
+  background-size:cover;
+  background-position:center;
+  border-left:1px solid rgba(255,255,255,.06)
 }
-.hero-badge{
-  display:inline-flex;
-  align-items:center;
-  gap:6px;
-  background:rgba(244,82,12,.15);
-  color:#FF8152;
-  padding:5px 14px;
-  border-radius:100px;
-  font-size:.8rem;
-  font-weight:500;
-  margin-bottom:1.25rem
+.split-particles{position:absolute;inset:0;pointer-events:none;overflow:hidden}
+.split-glow{position:absolute;border-radius:50%;filter:blur(50px);opacity:.55;pointer-events:none}
+
+/* Scene label */
+.split-scene-label{
+  display:inline-flex;align-items:center;gap:7px;
+  font-size:.7rem;font-weight:700;letter-spacing:.12em;
+  text-transform:uppercase;color:rgba(255,255,255,.45);
+  margin-bottom:1.1rem
 }
-.badge-dot{
-  width:7px;
-  height:7px;
-  background:var(--orange);
-  border-radius:50%;
+.split-scene-dot{
+  width:7px;height:7px;border-radius:50%;flex-shrink:0
+}
+.split-scene-dot.emergency{
+  background:#EF4444;
+  box-shadow:0 0 0 3px rgba(239,68,68,.22);
+  animation:pulse 2s infinite
+}
+.split-scene-dot.live{
+  background:#22c55e;
+  box-shadow:0 0 0 3px rgba(34,197,94,.22);
   animation:pulse 2s infinite
 }
 @keyframes pulse{
   0%,100%{opacity:1;transform:scale(1)}
-  50%{opacity:.6;transform:scale(1.3)}
+  50%{opacity:.6;transform:scale(1.35)}
 }
-.app-hero h1{
-  font-size:clamp(2rem,4vw,3.2rem);
-  color:var(--white);
-  font-weight:800;
-  margin-bottom:1rem
+
+/* Headlines */
+.split-headline{
+  font-size:clamp(1.6rem,2.8vw,2.55rem);
+  font-family:'Syne',sans-serif;font-weight:800;
+  color:var(--white);line-height:1.18;
+  margin-bottom:.7rem;max-width:13ch
 }
-.app-hero h1 em{
-  color:var(--orange);
-  font-style:normal
+.split-sub{
+  font-size:.88rem;color:rgba(255,255,255,.5);
+  line-height:1.65;max-width:280px;margin-bottom:1.5rem
 }
-.app-hero p{
-  font-size:1.1rem;
-  color:#D1DAE7;
-  max-width:640px;
-  margin:0 auto 2.5rem;
-  line-height:1.7
+
+/* Status badge */
+.split-status{
+  display:inline-flex;align-items:center;gap:7px;
+  font-size:.77rem;font-weight:600;
+  padding:6px 14px;border-radius:100px;margin-bottom:1.5rem;
+  width:fit-content
 }
-.store-btns{
-  display:flex;
-  justify-content:center;
-  gap:1rem;
-  flex-wrap:wrap;
-  margin-bottom:1rem
+.split-status.emergency{
+  background:rgba(239,68,68,.14);
+  border:1px solid rgba(239,68,68,.28);
+  color:#FCA5A5
+}
+.split-status.success{
+  background:rgba(34,197,94,.14);
+  border:1px solid rgba(34,197,94,.28);
+  color:#86EFAC
+}
+
+/* App mockup card */
+.split-mockup{
+  background:rgba(255,255,255,.055);
+  border:1px solid rgba(255,255,255,.1);
+  border-radius:18px;padding:1.2rem;
+  max-width:300px;backdrop-filter:blur(8px)
+}
+.split-mockup-header{
+  display:flex;align-items:center;gap:9px;
+  margin-bottom:1rem;padding-bottom:.75rem;
+  border-bottom:1px solid rgba(255,255,255,.07)
+}
+.split-mockup-icon{
+  width:34px;height:34px;border-radius:10px;
+  display:flex;align-items:center;justify-content:center;
+  font-size:1rem;flex-shrink:0
+}
+.split-mockup-icon.cust{background:rgba(244,82,12,.18);color:#FF8152}
+.split-mockup-icon.pro{background:rgba(34,197,94,.18);color:#34d399}
+.split-mockup-title{font-size:.82rem;font-weight:700;color:var(--white)}
+.split-mockup-time{font-size:.67rem;color:rgba(255,255,255,.38);margin-top:1px}
+
+/* Booking row */
+.split-booking-row{
+  display:flex;align-items:center;gap:10px;
+  background:rgba(255,255,255,.05);
+  border:1px solid rgba(255,255,255,.08);
+  border-radius:12px;padding:10px 12px;margin-bottom:8px
+}
+.split-booking-avatar{
+  width:36px;height:36px;border-radius:50%;
+  display:flex;align-items:center;justify-content:center;
+  font-size:.75rem;font-weight:700;color:var(--white);flex-shrink:0
+}
+.split-booking-name{font-size:.82rem;font-weight:600;color:var(--white)}
+.split-booking-trade{font-size:.68rem;color:rgba(255,255,255,.45)}
+.split-booking-eta{
+  margin-left:auto;font-size:.73rem;font-weight:700;
+  color:var(--orange);background:rgba(244,82,12,.15);
+  padding:3px 9px;border-radius:100px;flex-shrink:0
+}
+.split-progress-bar{
+  height:4px;border-radius:100px;
+  background:rgba(255,255,255,.08);overflow:hidden
+}
+.split-progress-fill{
+  height:100%;border-radius:100px;background:var(--orange);
+  width:65%;animation:prog 2.8s ease-in-out infinite alternate
+}
+@keyframes prog{from{width:38%}to{width:82%}}
+
+/* Job alert */
+.split-job-alert{
+  background:rgba(34,197,94,.07);
+  border:1px solid rgba(34,197,94,.2);
+  border-radius:12px;padding:12px 14px;margin-bottom:8px
+}
+.split-job-badge{
+  font-size:.65rem;font-weight:800;color:rgba(52,211,153,.75);
+  letter-spacing:.1em;text-transform:uppercase;margin-bottom:4px
+}
+.split-job-title{font-size:.95rem;font-weight:800;color:var(--white);margin-bottom:5px}
+.split-job-meta{
+  font-size:.7rem;color:rgba(255,255,255,.45);
+  display:flex;gap:10px;flex-wrap:wrap
+}
+.split-job-divider{
+  height:1px;background:rgba(255,255,255,.06);margin:10px 0
+}
+.split-job-earn{
+  display:flex;justify-content:space-between;align-items:center
+}
+.split-job-earn-label{font-size:.7rem;color:rgba(255,255,255,.45)}
+.split-job-earn-val{font-size:1.1rem;font-weight:900;color:#4ade80}
+.split-accepted-row{
+  display:inline-flex;align-items:center;gap:6px;
+  font-size:.78rem;font-weight:700;color:#4ade80;margin-top:4px;
+  background:rgba(34,197,94,.1);border:1px solid rgba(34,197,94,.22);
+  padding:5px 12px;border-radius:100px
+}
+
+/* DOWNLOAD STRIP */
+.download-strip{
+  background:var(--navy-mid);
+  border-top:1px solid rgba(255,255,255,.06);
+  padding:1.5rem 2rem;
+  display:flex;align-items:center;justify-content:center;
+  gap:1.25rem;flex-wrap:wrap
+}
+.download-strip-label{
+  font-size:.82rem;font-weight:700;
+  color:rgba(255,255,255,.6);letter-spacing:.06em;
+  text-transform:uppercase;text-align:center
 }
 .store-btn{
-  display:flex;
-  align-items:center;
-  gap:12px;
-  background:var(--white);
-  border-radius:12px;
-  padding:12px 24px;
-  transition:all .2s;
-  border:none;
-  cursor:pointer
+  display:flex;align-items:center;gap:10px;
+  background:rgba(255,255,255,.07);
+  border:1px solid rgba(255,255,255,.13);
+  border-radius:12px;padding:10px 20px;
+  transition:all .18s;text-decoration:none;color:var(--white);cursor:pointer
 }
 .store-btn:hover{
-  transform:translateY(-2px);
-  box-shadow:0 8px 24px rgba(0,0,0,.2)
+  background:rgba(255,255,255,.13);
+  transform:translateY(-1px);
+  border-color:rgba(255,255,255,.22)
 }
-.store-icon{
-  font-size:1.4rem;
-  line-height:1;
-  width:1.4rem;
-  text-align:center;
-  flex-shrink:0
-}
+.store-icon{font-size:1.3rem;flex-shrink:0}
 .store-text{text-align:left}
-.store-sub{font-size:.7rem;color:var(--slate)}
-.store-name{
-  font-size:1rem;
-  font-weight:700;
-  color:var(--navy);
-  font-family:'Syne',sans-serif
+.store-sub{font-size:.67rem;color:rgba(255,255,255,.45)}
+.store-name{font-size:.9rem;font-weight:700;font-family:'Syne',sans-serif}
+
+@media(max-width:768px){
+  .split-hero{grid-template-columns:1fr;min-height:auto}
+  .split-pro{border-left:none;border-top:1px solid rgba(255,255,255,.06)}
+  .split-mockup{max-width:100%}
 }
-.app-meta{
-  font-size:.82rem;
-  color:#D8E0EA;
-  margin-top:1.25rem
+@media(max-width:480px){
+  .split-side{padding:2rem 1.25rem}
+  .download-strip{gap:.75rem;padding:1.25rem 1rem}
 }
 
 /* RATING STRIP */
@@ -357,6 +436,7 @@ nav{
 }
 .btn-card.homeowner{color:var(--navy)}
 .btn-card.pro{color:var(--orange)}
+
 
 /* QR SECTION */
 .qr-section{
@@ -710,71 +790,172 @@ const GetTheAppPage = () => {
       </nav>
 
       <main>
-        <section className="app-hero">
-          <div className="app-hero-inner">
-            <div className="hero-badge">
-              <span className="badge-dot"></span> Available on iOS & Android
-            </div>
-            <h1>Get the BlinqFix App</h1>
-            <p>
-              Book or accept jobs on the go. Download BlinqFix for iOS and
-              Android.
-            </p>
+        {/* ── Split-screen hero banner ── */}
+        <section className="split-hero" aria-label="BlinqFix in action">
 
-            <div className="store-btns">
-              <a
-                href="https://apps.apple.com/us/app/blinqfix-app/id6747390132"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="store-btn"
-                aria-label="Download on the App Store"
-              >
-                <span className="store-icon">&#63743;</span>
-                <div className="store-text">
-                  <div className="store-sub">Download on the</div>
-                  <div className="store-name">App Store</div>
-                </div>
-              </a>
-
-              <a
-                href="https://play.google.com/store/apps/details?id=com.blinqfix.app"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="store-btn"
-                aria-label="Get it on Google Play"
-              >
-                <span className="store-icon">&#9654;</span>
-                <div className="store-text">
-                  <div className="store-sub">Get it on</div>
-                  <div className="store-name">Google Play</div>
-                </div>
-              </a>
+          {/* ── Customer side ── */}
+          <div className="split-side split-customer">
+            <div className="split-particles" aria-hidden="true">
+              <div className="split-glow" style={{width:220,height:220,background:'rgba(244,82,12,.55)',top:'-8%',right:'-6%'}}/>
+              <div className="split-glow" style={{width:140,height:140,background:'rgba(59,130,246,.45)',bottom:'8%',left:'-5%'}}/>
             </div>
 
-            <p className="app-meta">
-              Free to download · iOS and Android · Use it to request service or
-              explore the platform
+            <div className="split-scene-label">
+              <span className="split-scene-dot emergency"/>
+              Homeowner &nbsp;·&nbsp; 11:43 PM
+            </div>
+
+            <h1 className="split-headline">
+              Toilet's overflowing.
+              <br />
+              I need help{" "}
+              <em style={{color:"var(--orange)",fontStyle:"normal"}}>now.</em>
+            </h1>
+
+            <p className="split-sub">
+              Opens BlinqFix. Selects "Emergency Plumbing." Nearest licensed pro
+              dispatched in seconds — no calls, no waiting.
             </p>
+
+            <div className="split-status emergency">
+              🔴 Emergency · Dispatching nearest pro...
+            </div>
+
+            <div className="split-mockup">
+              <div className="split-mockup-header">
+                <div className="split-mockup-icon cust">🚽</div>
+                <div>
+                  <div className="split-mockup-title">Emergency Plumbing</div>
+                  <div className="split-mockup-time">Request sent · 11:43 PM</div>
+                </div>
+              </div>
+
+              <div className="split-booking-row">
+                <div
+                  className="split-booking-avatar"
+                  style={{ background: "#1A7F4B" }}
+                >
+                  MT
+                </div>
+                <div>
+                  <div className="split-booking-name">Mike T.</div>
+                  <div className="split-booking-trade">
+                    Licensed Plumber · 2.1 mi away
+                  </div>
+                </div>
+                <div className="split-booking-eta">12 min</div>
+              </div>
+              <div className="split-progress-bar">
+                <div className="split-progress-fill" />
+              </div>
+            </div>
+          </div>
+
+          {/* ── Service Pro side ── */}
+          <div className="split-side split-pro">
+            <div className="split-particles" aria-hidden="true">
+              <div className="split-glow" style={{width:230,height:230,background:'rgba(26,127,75,.55)',top:'-8%',left:'-6%'}}/>
+              <div className="split-glow" style={{width:130,height:130,background:'rgba(56,189,248,.4)',bottom:'10%',right:'-4%'}}/>
+            </div>
+
+            <div className="split-scene-label">
+              <span className="split-scene-dot live"/>
+              Service Pro &nbsp;·&nbsp; 11:44 PM
+            </div>
+
+            <h2 className="split-headline">
+              New job alert.
+              <br />
+              <em style={{color:"#4ade80",fontStyle:"normal"}}>$149 est.</em>{" "}
+              2.1 mi.
+            </h2>
+
+            <p className="split-sub">
+              Alert pings. Mike reviews job details and estimated earnings, then
+              taps Accept — all in under 10 seconds.
+            </p>
+
+            <div className="split-status success">
+              ✅ Accepted · En route to customer
+            </div>
+
+            <div className="split-mockup">
+              <div className="split-mockup-header">
+                <div className="split-mockup-icon pro">🛠️</div>
+                <div>
+                  <div className="split-mockup-title">New Job Alert</div>
+                  <div className="split-mockup-time">Just now · 11:44 PM</div>
+                </div>
+              </div>
+
+              <div className="split-job-alert">
+                <div className="split-job-badge">Emergency Request</div>
+                <div className="split-job-title">Overflowing toilet — bathroom</div>
+                <div className="split-job-meta">
+                  <span>📍 2.1 mi away</span>
+                  <span>⏱️ ASAP</span>
+                  <span>⭐ 4.9 customer</span>
+                </div>
+                <div className="split-job-divider" />
+                <div className="split-job-earn">
+                  <span className="split-job-earn-label">Estimated earnings</span>
+                  <span className="split-job-earn-val">~$149</span>
+                </div>
+              </div>
+
+              <div className="split-accepted-row">
+                ✓ Accepted &nbsp;·&nbsp; En route
+              </div>
+            </div>
           </div>
         </section>
+
+        {/* ── Download strip ── */}
+        <div className="download-strip">
+          <a
+            href="#qr-section"
+            onClick={e => { e.preventDefault(); document.getElementById('qr-section')?.scrollIntoView({ behavior: 'smooth' }); }}
+            className="store-btn"
+            aria-label="Download on the App Store"
+          >
+            <span className="store-icon">&#63743;</span>
+            <div className="store-text">
+              <div className="store-sub">Download on the</div>
+              <div className="store-name">App Store</div>
+            </div>
+          </a>
+          <span className="download-strip-label">Download the App</span>
+          <a
+            href="#qr-section"
+            onClick={e => { e.preventDefault(); document.getElementById('qr-section')?.scrollIntoView({ behavior: 'smooth' }); }}
+            className="store-btn"
+            aria-label="Get it on Google Play"
+          >
+            <span className="store-icon">&#9654;</span>
+            <div className="store-text">
+              <div className="store-sub">Get it on</div>
+              <div className="store-name">Google Play</div>
+            </div>
+          </a>
+        </div>
 
         <div className="rating-strip">
           <div className="rating-strip-inner">
             <div className="rating-item">
-              <div className="rating-num">iOS</div>
-              <div className="rating-label">Available now</div>
+              <div className="rating-num">24/7</div>
+              <div className="rating-label">Emergency request flow</div>
             </div>
             <div className="rating-item">
-              <div className="rating-num">Android</div>
-              <div className="rating-label">Available now</div>
+              <div className="rating-num">iOS + Android</div>
+              <div className="rating-label">Free to download</div>
             </div>
             <div className="rating-item">
               <div className="rating-num">1 App</div>
               <div className="rating-label">From request to payment</div>
             </div>
             <div className="rating-item">
-              <div className="rating-num">Fast</div>
-              <div className="rating-label">Better than phone tag</div>
+              <div className="rating-num">Licensed Pros</div>
+              <div className="rating-label">Verified &amp; background-checked</div>
             </div>
           </div>
         </div>
@@ -830,7 +1011,7 @@ const GetTheAppPage = () => {
           </div>
         </section>
 
-        <section className="qr-section">
+        <section className="qr-section" id="qr-section">
           <div className="section-inner">
             <p className="section-label">Scan to Download</p>
             <h2 className="section-title">Download from Your Phone</h2>
